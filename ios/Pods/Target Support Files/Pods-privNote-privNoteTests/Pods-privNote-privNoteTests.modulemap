@@ -1,0 +1,6 @@
+module Pods_privNote_privNoteTests {
+  umbrella header "Pods-privNote-privNoteTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
