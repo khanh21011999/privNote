@@ -5,24 +5,16 @@ import NoteList from "./note-list";
 import { Text, TouchableOpacity, View } from "react-native-ui-lib";
 
 import HeaderNote from "./header";
-import { Dimensions, ViewStyle } from "react-native";
+import { Dimensions, TextStyle, ViewStyle } from "react-native";
 import { spacing } from "../../theme/spacing";
 import { heightScreen, size, widthScreen } from "../../theme/size";
-const DATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "First Item",
-  },
-  {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Second Item",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Third Item",
-  },
-];
-
+import { useNavigation } from "@react-navigation/core";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { NoteI } from "../../redux/reducer";
+import { iteratorSymbol } from "immer/dist/internal";
+import { color } from "../../theme/color";
+import AddIcon from "react-native-vector-icons/Ionicons";
 const CONTAINER: ViewStyle = {
   width: widthScreen,
   height: heightScreen,
@@ -30,23 +22,41 @@ const CONTAINER: ViewStyle = {
 };
 const ADD_NOTE_BUTTON: ViewStyle = {
   ...size.addNoteButton,
-  borderWidth: 1,
+  backgroundColor: color.turquoiseBlue,
+  alignItems: "center",
+  borderRadius: spacing[3],
+  justifyContent: "center",
   alignSelf: "flex-end",
 };
+const ADD_NOTE_TEXT: TextStyle = {
+  fontWeight: "bold",
+};
 export default function NoteListScreen() {
+  const nav = useNavigation();
+  const data = useSelector((state: RootState) => state.note);
   return (
     <SafeAreaView style={CONTAINER}>
       <FlatList
         horizontal={false}
-        data={DATA}
+        data={data}
         numColumns={2}
         columnWrapperStyle={{ justifyContent: "space-between" }}
         keyExtractor={(item) => item.id}
         ListHeaderComponent={() => <HeaderNote />}
-        renderItem={() => <NoteList />}
+        renderItem={({ item, index }) => {
+          console.log(item);
+          return <NoteList note={item.note} title={item.header} />;
+        }}
       ></FlatList>
-      <TouchableOpacity style={ADD_NOTE_BUTTON}>
-        <Text>Add note</Text>
+      <TouchableOpacity
+        onPress={() => {
+          nav.navigate("Add Note");
+        }}
+        style={ADD_NOTE_BUTTON}
+      >
+        <AddIcon name="add" />
+
+        {/* <Text style={ADD_NOTE_TEXT}>Add note</Text> */}
       </TouchableOpacity>
     </SafeAreaView>
   );

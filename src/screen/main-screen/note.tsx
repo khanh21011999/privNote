@@ -3,6 +3,7 @@ import React from "react";
 import { TextStyle, ViewStyle } from "react-native";
 import { fontSize } from "../../theme/fontsize";
 import { spacing } from "../../theme/spacing";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const HEADER_TEXT: TextStyle = {
   fontSize: fontSize.headerNote,
@@ -17,13 +18,19 @@ const CONTAINER: ViewStyle = {
   display: "flex",
   flex: 1,
 };
-export default function Note() {
+export interface NoteItemI {
+  note: string;
+  header: string;
+}
+export default function Note(props: NoteItemI) {
+  const { note, header } = props;
+  console.log("header", header);
   return (
     <View style={CONTAINER}>
       <View>
-        <Text style={HEADER_TEXT}>Header</Text>
+        <Text style={HEADER_TEXT}>{header}</Text>
         <View style={NOTE_CONTAINER}>
-          <Text>What inside here is the note</Text>
+          <Text numberOfLines={7}>{note}</Text>
         </View>
       </View>
       <View style={{ alignSelf: "flex-end" }}>

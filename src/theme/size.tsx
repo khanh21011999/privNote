@@ -16,7 +16,7 @@ export const onePercentWidth =
   (widthScreen * widthScreen) / (defaultWidth * 100);
 export const size = {
   noteSize: {
-    height: onePercentHeight * 20,
+    height: onePercentHeight * 25,
     width: onePercentWidth * 43,
   },
   addNoteButton: {
