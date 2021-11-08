@@ -1,26 +1,32 @@
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native";
 import { View, Text, TouchableOpacity } from "react-native-ui-lib";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import { TextInput, TextStyle, ViewStyle } from "react-native";
-import { fontSize } from "../../theme/fontsize";
+import { fontSize } from "../../theme/font-size";
 import { spacing } from "../../theme/spacing";
-import { onePercentHeight } from "../../theme/size";
+import { onePercentHeight, onePercentWidth } from "../../theme/size";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import { addNote } from "../../redux/reducer";
-
+import { color } from "../../theme/color";
+import BackArrow from "react-native-vector-icons/AntDesign";
 const ADD_NOTE_HEADER: TextStyle = {
   fontSize: fontSize.headerFontSize,
 };
-const HEADER_INPUT: ViewStyle = {
-  borderWidth: 1,
-
+const HEADER_INPUT: TextStyle = {
   height: 4 * onePercentHeight,
+  fontSize: fontSize.headerInputNote,
 };
-const NOTE_INPUT: ViewStyle = {
-  borderWidth: 1,
+const SAVE_NOTE_BT: TextStyle = {
+  fontWeight: "bold",
+};
+const NOTE_INPUT: TextStyle = {
   height: 80 * onePercentHeight,
+};
+const HEADER: ViewStyle = {
+  justifyContent: "space-between",
+  marginBottom: spacing[3],
 };
 export default function AddNote() {
   const nav = useNavigation();
@@ -36,26 +42,29 @@ export default function AddNote() {
   };
   return (
     <SafeAreaView style={{ margin: spacing[3] }}>
-      <View row centerV style={{ justifyContent: "space-between" }}>
-        <Text style={ADD_NOTE_HEADER}>Add notes</Text>
+      <View row centerV style={HEADER}>
+        <TouchableOpacity onPress={() => nav.goBack()}>
+          <BackArrow name="arrowleft" size={onePercentWidth * 6} />
+        </TouchableOpacity>
+
         <TouchableOpacity
           onPress={() => {
             saveAndNavBack();
           }}
         >
-          <Text>Save</Text>
+          <Text style={SAVE_NOTE_BT}>Save</Text>
         </TouchableOpacity>
       </View>
       <View flex style={{ height: 400 }}>
         <TextInput
           onChangeText={(text) => setNoteHeader(text)}
           value={noteHeader}
-          placeholder="note header"
+          placeholder="Meaningful header"
           style={HEADER_INPUT}
         />
         <TextInput
           onChangeText={(text) => setAddNote(text)}
-          placeholder="type your secret here..."
+          placeholder="Type your secret here..."
           value={noteAdd}
           multiline
           style={NOTE_INPUT}

@@ -17,10 +17,11 @@ export const onePercentWidth =
 export const size = {
   noteSize: {
     height: onePercentHeight * 25,
-    width: onePercentWidth * 43,
+    width: onePercentWidth * 45,
   },
   addNoteButton: {
-    height: onePercentHeight * 5,
-    width: onePercentWidth * 30,
+    height: onePercentWidth * 16,
+    width: onePercentWidth * 16,
   },
+  headerSearch: 5 * onePercentHeight,
 };

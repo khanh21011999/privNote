@@ -13,6 +13,7 @@ if (currentHeight < currentWidth) {
 export const spacing = [
   0,
   onePercentWidth,
+
   2 * onePercentWidth,
   4 * onePercentWidth,
   8 * onePercentWidth,

@@ -1,4 +1,4 @@
-import { FlatList, ScrollView } from "react-native-gesture-handler";
+import { FlatList, ScrollView } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import NoteList from "./note-list";
@@ -7,24 +7,27 @@ import { Text, TouchableOpacity, View } from "react-native-ui-lib";
 import HeaderNote from "./header";
 import { Dimensions, TextStyle, ViewStyle } from "react-native";
 import { spacing } from "../../theme/spacing";
-import { heightScreen, size, widthScreen } from "../../theme/size";
+import {
+  heightScreen,
+  onePercentWidth,
+  size,
+  widthScreen,
+} from "../../theme/size";
 import { useNavigation } from "@react-navigation/core";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { NoteI } from "../../redux/reducer";
-import { iteratorSymbol } from "immer/dist/internal";
 import { color } from "../../theme/color";
-import AddIcon from "react-native-vector-icons/Ionicons";
+import AddNoteIcon from "react-native-vector-icons/Ionicons";
 const CONTAINER: ViewStyle = {
   width: widthScreen,
   height: heightScreen,
-  padding: spacing[3],
 };
 const ADD_NOTE_BUTTON: ViewStyle = {
   ...size.addNoteButton,
+  marginRight: spacing[4],
   backgroundColor: color.turquoiseBlue,
   alignItems: "center",
-  borderRadius: spacing[3],
+  borderRadius: size.addNoteButton.height / 2,
   justifyContent: "center",
   alignSelf: "flex-end",
 };
@@ -33,19 +36,33 @@ const ADD_NOTE_TEXT: TextStyle = {
 };
 export default function NoteListScreen() {
   const nav = useNavigation();
+
   const data = useSelector((state: RootState) => state.note);
+
   return (
     <SafeAreaView style={CONTAINER}>
       <FlatList
-        horizontal={false}
         data={data}
         numColumns={2}
-        columnWrapperStyle={{ justifyContent: "space-between" }}
-        keyExtractor={(item) => item.id}
+        columnWrapperStyle={{
+          justifyContent: "space-between",
+          marginTop: spacing[2],
+          marginHorizontal: spacing[2],
+          padding: spacing[1],
+        }}
+        keyExtractor={(item) => item.id.toString()}
         ListHeaderComponent={() => <HeaderNote />}
         renderItem={({ item, index }) => {
-          console.log(item);
-          return <NoteList note={item.note} title={item.header} />;
+          console.log("item", item);
+
+          return (
+            <NoteList
+              note={item.note}
+              title={item.header}
+              date={item.date}
+              id={item.id}
+            />
+          );
         }}
       ></FlatList>
       <TouchableOpacity
@@ -54,9 +71,7 @@ export default function NoteListScreen() {
         }}
         style={ADD_NOTE_BUTTON}
       >
-        <AddIcon name="add" />
-
-        {/* <Text style={ADD_NOTE_TEXT}>Add note</Text> */}
+        <AddNoteIcon name="add" color="white" size={onePercentWidth * 8} />
       </TouchableOpacity>
     </SafeAreaView>
   );

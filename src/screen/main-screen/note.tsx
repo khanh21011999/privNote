@@ -1,7 +1,7 @@
 import { View, Text } from "react-native-ui-lib";
 import React from "react";
 import { TextStyle, ViewStyle } from "react-native";
-import { fontSize } from "../../theme/fontsize";
+import { fontSize } from "../../theme/font-size";
 import { spacing } from "../../theme/spacing";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
@@ -21,10 +21,17 @@ const CONTAINER: ViewStyle = {
 export interface NoteItemI {
   note: string;
   header: string;
+  date?: Date;
 }
 export default function Note(props: NoteItemI) {
-  const { note, header } = props;
-  console.log("header", header);
+  const { note, header, date } = props;
+  const dateFormat = new Date(date);
+  const showDate = dateFormat.toLocaleString("default", {
+    month: "short",
+    day: "2-digit",
+  });
+  console.log("show date", typeof date);
+
   return (
     <View style={CONTAINER}>
       <View>
@@ -34,7 +41,7 @@ export default function Note(props: NoteItemI) {
         </View>
       </View>
       <View style={{ alignSelf: "flex-end" }}>
-        <Text>this is footer</Text>
+        <Text>{`${showDate}, ${dateFormat.getFullYear()} ${dateFormat?.getHours()}:${dateFormat?.getMinutes()} `}</Text>
       </View>
     </View>
   );
