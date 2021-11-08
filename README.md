@@ -21,6 +21,7 @@ This note will listen for and keep all your secret, and keep it until you don't 
 - [ ] Security
 - [ ] Audio 
 - [ ] Seperate note by days
+- [ ] ### Redesgin UI ( important )
 ## Advanced 
 - [ ] Add cloud storage
 - [ ] Add payment for no ad, special note feature
