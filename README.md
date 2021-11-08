@@ -1,6 +1,6 @@
 # privNote : The most reliable note-talking app
 
-This note will listen for and keep all your secret, and keep it until you don't want it keep it for you
+This note will listen and keep all your secret, and keep it until you don't want it keep it for you
 
 
 
