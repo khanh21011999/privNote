@@ -13,24 +13,18 @@ import {
   size,
   widthScreen,
 } from "../../theme/size";
+import AddIcon from "react-native-vector-icons/";
 import { useNavigation } from "@react-navigation/core";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { color } from "../../theme/color";
-import AddNoteIcon from "react-native-vector-icons/Ionicons";
+import FooterNote from "./footer";
+import LeftIcon from "react-native-vector-icons/AntDesign";
 const CONTAINER: ViewStyle = {
   width: widthScreen,
   height: heightScreen,
 };
-const ADD_NOTE_BUTTON: ViewStyle = {
-  ...size.addNoteButton,
-  marginRight: spacing[4],
-  backgroundColor: color.turquoiseBlue,
-  alignItems: "center",
-  borderRadius: size.addNoteButton.height / 2,
-  justifyContent: "center",
-  alignSelf: "flex-end",
-};
+
 const ADD_NOTE_TEXT: TextStyle = {
   fontWeight: "bold",
 };
@@ -40,39 +34,41 @@ export default function NoteListScreen() {
   const data = useSelector((state: RootState) => state.note);
 
   return (
-    <SafeAreaView style={CONTAINER}>
-      <FlatList
-        data={data}
-        numColumns={2}
-        columnWrapperStyle={{
-          justifyContent: "space-between",
-          marginTop: spacing[2],
-          marginHorizontal: spacing[2],
-          padding: spacing[1],
-        }}
-        keyExtractor={(item) => item.id.toString()}
-        ListHeaderComponent={() => <HeaderNote />}
-        renderItem={({ item, index }) => {
-          console.log("item", item);
-
-          return (
-            <NoteList
-              note={item.note}
-              title={item.header}
-              date={item.date}
-              id={item.id}
-            />
-          );
-        }}
-      ></FlatList>
-      <TouchableOpacity
-        onPress={() => {
-          nav.navigate("Add Note");
-        }}
-        style={ADD_NOTE_BUTTON}
-      >
-        <AddNoteIcon name="add" color="white" size={onePercentWidth * 8} />
-      </TouchableOpacity>
-    </SafeAreaView>
+    <View style={CONTAINER}>
+      {data.length === 0 ? (
+        <ScrollView>
+          <HeaderNote />
+          <Text>Hmm, so don't have any secret yet</Text>
+          <FooterNote />
+        </ScrollView>
+      ) : (
+        <View flex>
+          <FlatList
+            data={data}
+            numColumns={2}
+            columnWrapperStyle={{
+              justifyContent: "space-between",
+              marginTop: spacing[2],
+              marginHorizontal: spacing[2],
+              padding: spacing[1],
+            }}
+            keyExtractor={(item) => item.id.toString()}
+            ListHeaderComponent={() => <HeaderNote />}
+            renderItem={({ item, index }) => {
+              console.log("item", item);
+              return (
+                <NoteList
+                  note={item.note}
+                  title={item.header}
+                  date={item.date}
+                  id={item.id}
+                />
+              );
+            }}
+          />
+          <FooterNote />
+        </View>
+      )}
+    </View>
   );
 }

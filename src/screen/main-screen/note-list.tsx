@@ -8,6 +8,9 @@ import Note from "./note";
 import { TouchableOpacity } from "react-native-ui-lib";
 import { color } from "../../theme/color";
 import { useNavigation } from "@react-navigation/core";
+import { AppDispatch } from "../../redux/store";
+import { useDispatch } from "react-redux";
+import { On } from "../../redux/toggle-reducer";
 export interface noteListI {
   title?: string;
   note?: string;
@@ -35,10 +38,22 @@ export default function NoteList(props: noteListI) {
       id: id,
     });
   };
+  const dispatch: AppDispatch = useDispatch();
+  const toggleDeleteButton = () => {
+    dispatch(On());
+  };
   return (
     <View>
-      <TouchableOpacity flex style={CONTAINER} onPress={onNavDetail}>
-        <Note note={note} header={title} date={date} />
+      <TouchableOpacity
+        onLongPress={() => {
+          toggleDeleteButton();
+          console.log("is clicked");
+        }}
+        flex
+        style={CONTAINER}
+        onPress={onNavDetail}
+      >
+        <Note note={note} header={title} date={date} id={id} />
       </TouchableOpacity>
     </View>
   );

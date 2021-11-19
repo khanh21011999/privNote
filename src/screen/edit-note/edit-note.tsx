@@ -8,7 +8,7 @@ import { spacing } from "../../theme/spacing";
 import { onePercentHeight, onePercentWidth } from "../../theme/size";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
-import { addNote, editNote } from "../../redux/reducer";
+import { addNote, editNote } from "../../redux/noteList-reducer";
 import { color } from "../../theme/color";
 import BackArrow from "react-native-vector-icons/AntDesign";
 const ADD_NOTE_HEADER: TextStyle = {

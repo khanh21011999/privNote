@@ -1,16 +1,18 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import noteReducer from "./reducer";
+import noteReducer from "./noteList-reducer";
+import toggleReducer from "./toggle-reducer";
 import { persistStore, persistReducer } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const reducerNote = combineReducers({
+const reducer = combineReducers({
   note: noteReducer,
+  toggle: toggleReducer,
 });
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
 };
-const persistedReducer = persistReducer(persistConfig, reducerNote);
+const persistedReducer = persistReducer(persistConfig, reducer);
 const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
