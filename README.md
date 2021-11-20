@@ -20,6 +20,9 @@ This note will listen and keep all your secret, and keep it until you don't want
 - [ ] Bookmark Note
 - [ ] Security
 - [ ] Audio 
+- [ ] Hand writing font
+- [ ] Can draw
+- [ ] NoteTYPE ( horizontal)
 - [ ] Seperate note by days
 - [ ] Redesgin UI ( important )
 ## Advanced 
