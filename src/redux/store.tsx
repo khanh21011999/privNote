@@ -6,7 +6,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const reducer = combineReducers({
   note: noteReducer,
-  toggle: toggleReducer,
 });
 const persistConfig = {
   key: "root",
@@ -14,7 +13,7 @@ const persistConfig = {
 };
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: { persistedReducer, toggle: toggleReducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,

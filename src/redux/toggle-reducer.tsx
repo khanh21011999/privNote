@@ -8,14 +8,13 @@ const toggleReducer = createSlice({
   name: "toggleReducer",
   initialState: NoteToggle,
   reducers: {
-    On: (state) => {
-      return { ...state, enableSelectedButton: true };
+    Switch: (state) => {
+      return { ...state, enableSelectedButton: !state.enableSelectedButton };
     },
-    Off: (state) => {
-      const newToggle = { ...state, enableSelectedButton: false };
-      return newToggle;
+    defaultToggle: (state) => {
+      return { ...state, enableSelectedButton: false };
     },
   },
 });
 export default toggleReducer.reducer;
-export const { On, Off } = toggleReducer.actions;
+export const { Switch, defaultToggle } = toggleReducer.actions;

@@ -31,10 +31,10 @@ const ADD_NOTE_TEXT: TextStyle = {
 export default function NoteListScreen() {
   const nav = useNavigation();
 
-  const data = useSelector((state: RootState) => state.note);
+  const data = useSelector((state: RootState) => state.persistedReducer.note);
 
   return (
-    <View style={CONTAINER}>
+    <SafeAreaView style={CONTAINER}>
       {data.length === 0 ? (
         <ScrollView>
           <HeaderNote />
@@ -43,32 +43,35 @@ export default function NoteListScreen() {
         </ScrollView>
       ) : (
         <View flex>
-          <FlatList
-            data={data}
-            numColumns={2}
-            columnWrapperStyle={{
-              justifyContent: "space-between",
-              marginTop: spacing[2],
-              marginHorizontal: spacing[2],
-              padding: spacing[1],
-            }}
-            keyExtractor={(item) => item.id.toString()}
-            ListHeaderComponent={() => <HeaderNote />}
-            renderItem={({ item, index }) => {
-              console.log("item", item);
-              return (
-                <NoteList
-                  note={item.note}
-                  title={item.header}
-                  date={item.date}
-                  id={item.id}
-                />
-              );
-            }}
-          />
-          <FooterNote />
+          <View flex-9>
+            <FlatList
+              data={data}
+              numColumns={2}
+              columnWrapperStyle={{
+                justifyContent: "space-between",
+                marginTop: spacing[2],
+                padding: spacing[1],
+              }}
+              keyExtractor={(item) => item.id.toString()}
+              ListHeaderComponent={() => <HeaderNote />}
+              renderItem={({ item, index }) => {
+                return (
+                  <NoteList
+                    note={item.note}
+                    title={item.header}
+                    date={item.date}
+                    id={item.id}
+                  />
+                );
+              }}
+            />
+          </View>
+
+          <View flex-1>
+            <FooterNote />
+          </View>
         </View>
       )}
-    </View>
+    </SafeAreaView>
   );
 }

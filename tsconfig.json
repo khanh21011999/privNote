@@ -35,7 +35,7 @@
     // "noUnusedParameters": true,            /* Report errors on unused parameters. */
     // "noImplicitReturns": true,             /* Report error when not all code paths in function return a value. */
     // "noFallthroughCasesInSwitch": true,    /* Report errors for fallthrough cases in switch statement. */
-    "baseUrl": "src",
+    "baseUrl": ".",
     /* Module Resolution Options */
     "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
     // "baseUrl": "./",                       /* Base directory to resolve non-absolute module names. */
@@ -50,7 +50,7 @@
     "resolveJsonModule": true,
     /* Allows importing modules with a ‘.json’ extension, which is a common practice in node projects. */
     "paths": {
-      "@src/*": ["src/*"]
+      "src/*": ["src/*"]
     }
     /* Source Map Options */
     // "sourceRoot": "./",                    /* Specify the location where debugger should locate TypeScript files instead of source locations. */
@@ -62,7 +62,7 @@
     // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
-  "include": ["src/*"],
+  "include": ["."],
 
   "exclude": [
     "node_modules",

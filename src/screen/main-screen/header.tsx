@@ -26,7 +26,7 @@ const CONTAINER: ViewStyle = {
 };
 export default function HeaderNote() {
   return (
-    <SafeAreaView style={CONTAINER}>
+    <View style={CONTAINER}>
       <View
         row
         centerV
@@ -35,12 +35,12 @@ export default function HeaderNote() {
           paddingHorizontal: spacing[2],
         }}
       >
-        <Text style={HEADER_TEXT}>Notes</Text>
+        <Text style={HEADER_TEXT}>Note</Text>
         <ThreeDot name="dots-three-vertical" size={onePercentWidth * 5} />
       </View>
       <View centerH>
         <TextInput placeholder={"Search here"} style={INPUT_STYLE} />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }

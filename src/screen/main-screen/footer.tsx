@@ -7,7 +7,7 @@ import {
   onePercentWidth,
   size,
   widthScreen,
-} from "../../theme/size";
+} from "src/theme/size";
 import { spacing } from "../../theme/spacing";
 import AddNoteIcon from "react-native-vector-icons/Ionicons";
 import { ViewStyle } from "react-native";
@@ -17,11 +17,9 @@ const ADD_NOTE_BUTTON: ViewStyle = {
   backgroundColor: color.turquoiseBlue,
   alignItems: "center",
   position: "absolute",
-  bottom: 0,
   right: 0,
   borderRadius: size.addNoteButton.height / 2,
   justifyContent: "center",
-  alignSelf: "flex-end",
 };
 export default function FooterNote() {
   const nav = useNavigation();
@@ -29,7 +27,7 @@ export default function FooterNote() {
     <View
       style={{
         width: widthScreen,
-        height: heightScreen * 0.3,
+        height: heightScreen * 0.1,
       }}
     >
       <TouchableOpacity

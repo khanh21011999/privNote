@@ -1,13 +1,17 @@
 import { View, Text, TouchableOpacity } from "react-native-ui-lib";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, TextStyle, ViewStyle } from "react-native";
 import { fontSize } from "../../theme/font-size";
 import { spacing } from "../../theme/spacing";
 import Trash from "react-native-vector-icons/FontAwesome";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
-import { Off, On } from "../../redux/toggle-reducer";
-import { removeNote } from "../../redux/noteList-reducer";
+import { defaultToggle, Off, On } from "../../redux/toggle-reducer";
+import {
+  removeNote,
+  toggleDelete,
+  unSelectDelete,
+} from "../../redux/noteList-reducer";
 import CheckIcon from "react-native-vector-icons/AntDesign";
 import { size } from "../../theme/size";
 const HEADER_TEXT: TextStyle = {
@@ -27,25 +31,30 @@ const CONTAINER: ViewStyle = {
   flex: 1,
 };
 export interface NoteItemI {
-  note: string;
-  header: string;
+  note?: string;
+  header?: string;
   date?: Date;
   id?: Date;
+  deleteStatus?: boolean;
 }
 export default function Note(props: NoteItemI) {
-  const { note, header, date, id } = props;
+  const { note, header, date, id, deleteStatus } = props;
   const [isDeleteChecked, setDeleteChecked] = useState(false);
-
+  const dispatch = useDispatch();
   const toggleDeleteStatus = useSelector(
     (state: RootState) => state.toggle.enableSelectedButton
   );
-  const dispatch = useDispatch();
+
+  // Similar to componentDidMount and componentDidUpdate:
+  // useEffect(() => {
+  //   dispatch(defaultToggle());
+  // });
+
   const deleteNote = () => {
     dispatch(removeNote({ id: id }));
   };
-  const turnOffDeleteToggle = () => {
-    dispatch(Off());
-  };
+  console.log("deleteStatus", deleteStatus);
+
   const dateFormat = new Date(date);
   const showDate = dateFormat.toLocaleString("default", {
     month: "short",
@@ -57,13 +66,14 @@ export default function Note(props: NoteItemI) {
       <View>
         <View row centerV style={HEADER_CONTAINER}>
           <Text style={HEADER_TEXT}>{header}</Text>
+
           {toggleDeleteStatus && (
             <TouchableOpacity
               onPress={() => {
-                setDeleteChecked(!isDeleteChecked);
+                // setDeleteChecked(!isDeleteChecked);
               }}
             >
-              {isDeleteChecked ? (
+              {deleteStatus ? (
                 <CheckIcon name="checkcircle" size={size.iconSize} />
               ) : (
                 <CheckIcon name="checkcircleo" size={size.iconSize} />
@@ -84,20 +94,6 @@ export default function Note(props: NoteItemI) {
           justifyContent: "space-between",
         }}
       >
-        {toggleDeleteStatus && (
-          <TouchableOpacity
-            onLongPress={() => {
-              Alert.alert("delete", "item deleted", [
-                {
-                  text: "ok",
-                  style: "cancel",
-                },
-              ]);
-            }}
-          >
-            <Trash name="trash-o" size={20} />
-          </TouchableOpacity>
-        )}
         <Text>{`${showDate}, ${dateFormat.getFullYear()} ${dateFormat?.getHours()}:${dateFormat?.getMinutes()} `}</Text>
       </View>
     </View>

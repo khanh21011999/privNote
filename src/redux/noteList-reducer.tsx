@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { NoteI } from "./noteList-reducer";
 
 export interface NoteI {
   id?: number | Date;
@@ -26,6 +27,15 @@ const noteReducer = createSlice({
     removeNote: (state, action: PayloadAction<NoteI>) => {
       return state.filter((item) => item.deleteStatus !== true);
     },
+    toggleDelete: (state, action: PayloadAction<NoteI>) => {
+      return state.map((item) => {
+        if (item.id === action.payload.id) {
+          return { ...item, deleteStatus: !item.deleteStatus };
+        }
+        return item;
+      });
+    },
+
     editNote: (state, action: PayloadAction<NoteI>) => {
       return state.map((item) => {
         if (item.id === action.payload.id) {
@@ -43,4 +53,5 @@ const noteReducer = createSlice({
 });
 
 export default noteReducer.reducer;
-export const { addNote, removeNote, editNote } = noteReducer.actions;
+export const { addNote, removeNote, editNote, toggleDelete } =
+  noteReducer.actions;

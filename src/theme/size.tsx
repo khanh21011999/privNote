@@ -1,9 +1,7 @@
 import { Dimensions, PixelRatio } from "react-native";
-
 export const widthScreen = Dimensions.get("window").width;
 export const heightScreen = Dimensions.get("window").height;
-console.log("width", widthScreen);
-console.log("height", heightScreen);
+
 const defaultWidth = 390;
 const defaultHeight = 844;
 export const onePercentHeight = heightScreen / 100;
