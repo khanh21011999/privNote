@@ -24,6 +24,7 @@ This note will listen and keep all your secret, and keep it until you don't want
 - [ ] Can draw
 - [ ] NoteTYPE ( horizontal)
 - [ ] Seperate note by days
+- [ ] Add diary ( lots of note )
 - [ ] Redesgin UI ( important )
 ## Advanced 
 - [ ] Add cloud storage
