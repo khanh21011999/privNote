@@ -4,6 +4,7 @@ import { Alert, TextStyle, ViewStyle } from "react-native";
 import { fontSize } from "../../theme/font-size";
 import { spacing } from "../../theme/spacing";
 import Trash from "react-native-vector-icons/FontAwesome";
+import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
 import { defaultToggle, Off, On } from "../../redux/toggle-reducer";
@@ -94,7 +95,7 @@ export default function Note(props: NoteItemI) {
           justifyContent: "space-between",
         }}
       >
-        <Text>{`${showDate}, ${dateFormat.getFullYear()} ${dateFormat?.getHours()}:${dateFormat?.getMinutes()} `}</Text>
+        <Text>{moment().format("h:mma MMM Do YY")}</Text>
       </View>
     </View>
   );
