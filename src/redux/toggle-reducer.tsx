@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const NoteToggle = {
-  enableSelectedButton: false,
+  enableDeleteButton: false,
 };
 
 const toggleReducer = createSlice({

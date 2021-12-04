@@ -15,7 +15,7 @@ const ADD_NOTE_HEADER: TextStyle = {
   fontSize: fontSize.headerFontSize,
 };
 const HEADER_INPUT: TextStyle = {
-  height: 4 * onePercentHeight,
+  height: 6 * onePercentHeight,
   fontSize: fontSize.headerInputNote,
 };
 const SAVE_NOTE_BT: TextStyle = {
@@ -70,7 +70,7 @@ export default function EditNote() {
           <Text style={SAVE_NOTE_BT}>Save</Text>
         </TouchableOpacity>
       </View>
-      <View flex style={{ height: 400 }}>
+      <View>
         <TextInput
           onChangeText={(text) => setNoteHeader(text)}
           value={noteHeader}
@@ -78,6 +78,7 @@ export default function EditNote() {
           style={HEADER_INPUT}
         />
         <TextInput
+          textAlignVertical={Platform.OS === "android" ? "top" : ""}
           onChangeText={(text) => setNoteEdit(text)}
           placeholder="Type your secret here..."
           value={noteEdit}

@@ -26,6 +26,7 @@ const CONTAINER: ViewStyle = {
   padding: spacing[3],
   borderRadius: spacing[3],
   margin: spacing[2],
+  marginVertical: spacing[1],
 };
 export default function NoteList(props: noteListI) {
   const { title, note, id, date } = props;

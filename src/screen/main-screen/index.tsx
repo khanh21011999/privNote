@@ -23,6 +23,7 @@ import LeftIcon from "react-native-vector-icons/AntDesign";
 const CONTAINER: ViewStyle = {
   width: widthScreen,
   height: heightScreen,
+  display: "flex",
 };
 
 const ADD_NOTE_TEXT: TextStyle = {
@@ -42,41 +43,36 @@ export default function NoteListScreen() {
         <>
           <ScrollView>
             <HeaderNote />
-
             <Text style={EMPTY_NOTE}>Hmm, so don't have any secret yet</Text>
           </ScrollView>
           <FooterNote />
         </>
       ) : (
-        <View flex>
-          <View flex-9>
-            <FlatList
-              data={data}
-              numColumns={2}
-              columnWrapperStyle={{
-                justifyContent: "space-between",
-                marginTop: spacing[2],
-                padding: spacing[1],
-              }}
-              keyExtractor={(item) => item.id.toString()}
-              ListHeaderComponent={() => <HeaderNote />}
-              renderItem={({ item, index }) => {
-                return (
-                  <NoteList
-                    note={item.note}
-                    title={item.header}
-                    date={item.date}
-                    id={item.id}
-                  />
-                );
-              }}
-            />
-          </View>
+        <SafeAreaView style={CONTAINER}>
+          <FlatList
+            data={data}
+            numColumns={2}
+            columnWrapperStyle={{
+              justifyContent: "space-between",
+              marginTop: spacing[2],
+              padding: spacing[1],
+            }}
+            keyExtractor={(item) => item.id.toString()}
+            ListHeaderComponent={() => <HeaderNote />}
+            renderItem={({ item, index }) => {
+              return (
+                <NoteList
+                  note={item.note}
+                  title={item.header}
+                  date={item.date}
+                  id={item.id}
+                />
+              );
+            }}
+          />
 
-          <View flex-1>
-            <FooterNote />
-          </View>
-        </View>
+          <FooterNote />
+        </SafeAreaView>
       )}
     </SafeAreaView>
   );
