@@ -18,6 +18,7 @@ const ADD_NOTE_BUTTON: ViewStyle = {
   alignItems: "center",
   position: "absolute",
   right: 0,
+  bottom: spacing[5],
   borderRadius: size.addNoteButton.height / 2,
   justifyContent: "center",
 };

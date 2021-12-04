@@ -28,6 +28,9 @@ const CONTAINER: ViewStyle = {
 const ADD_NOTE_TEXT: TextStyle = {
   fontWeight: "bold",
 };
+const EMPTY_NOTE: TextStyle = {
+  marginHorizontal: spacing[3],
+};
 export default function NoteListScreen() {
   const nav = useNavigation();
 
@@ -36,11 +39,14 @@ export default function NoteListScreen() {
   return (
     <SafeAreaView style={CONTAINER}>
       {data.length === 0 ? (
-        <ScrollView>
-          <HeaderNote />
-          <Text>Hmm, so don't have any secret yet</Text>
+        <>
+          <ScrollView>
+            <HeaderNote />
+
+            <Text style={EMPTY_NOTE}>Hmm, so don't have any secret yet</Text>
+          </ScrollView>
           <FooterNote />
-        </ScrollView>
+        </>
       ) : (
         <View flex>
           <View flex-9>

@@ -1,4 +1,4 @@
-import { SafeAreaView } from "react-native";
+import { Platform, SafeAreaView } from "react-native";
 import { View, Text, TouchableOpacity } from "react-native-ui-lib";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
@@ -15,7 +15,7 @@ const ADD_NOTE_HEADER: TextStyle = {
   fontSize: fontSize.headerFontSize,
 };
 const HEADER_INPUT: TextStyle = {
-  height: 4 * onePercentHeight,
+  height: 6 * onePercentHeight,
   fontSize: fontSize.headerInputNote,
 };
 const SAVE_NOTE_BT: TextStyle = {
@@ -55,20 +55,25 @@ export default function AddNote() {
           <Text style={SAVE_NOTE_BT}>Save</Text>
         </TouchableOpacity>
       </View>
-      <View flex style={{ height: 400 }}>
-        <TextInput
-          onChangeText={(text) => setNoteHeader(text)}
-          value={noteHeader}
-          placeholder="Meaningful header"
-          style={HEADER_INPUT}
-        />
-        <TextInput
-          onChangeText={(text) => setAddNote(text)}
-          placeholder="Type your secret here..."
-          value={noteAdd}
-          multiline
-          style={NOTE_INPUT}
-        />
+      <View>
+        <View>
+          <TextInput
+            onChangeText={(text) => setNoteHeader(text)}
+            value={noteHeader}
+            placeholder="Meaningful header"
+            style={HEADER_INPUT}
+          />
+        </View>
+        <View>
+          <TextInput
+            textAlignVertical={Platform.OS === "android" ? "top" : ""}
+            onChangeText={(text) => setAddNote(text)}
+            placeholder="Type your secret here..."
+            value={noteAdd}
+            multiline
+            style={NOTE_INPUT}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
