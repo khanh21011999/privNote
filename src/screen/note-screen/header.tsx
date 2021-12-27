@@ -6,12 +6,13 @@ import { onePercentWidth, size, widthScreen } from "src/theme/size";
 import { spacingHeight, spacingWidth } from "src/theme/spacing";
 import { color } from "src/theme/color";
 import ThreeDot from "react-native-vector-icons/Entypo";
+import { Font } from "src/theme/font-name";
 const HEADER_TEXT: TextStyle = {
   fontSize: fontSize.headerFontSize,
   color: "black",
-  fontWeight: "bold",
   marginLeft: spacingWidth[2],
   marginBottom: spacingHeight[2],
+  fontFamily: Font.bold,
 };
 const INPUT_STYLE: ViewStyle = {
   height: size.headerSearch,

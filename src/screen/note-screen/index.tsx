@@ -41,14 +41,14 @@ export default function NoteListScreen() {
   const dispatch: AppDispatch = useDispatch();
 
   const data = useSelector((state: RootState) => state.persistedReducer.note);
-
+  console.log("anc");
   return (
     <SafeAreaView style={CONTAINER}>
       {data.length === 0 ? (
         <>
           <ScrollView>
             <HeaderNote />
-            <Text style={EMPTY_NOTE}>Hmm, so don't have any secret yet</Text>
+            <Text style={EMPTY_NOTE}>Hmm, so don't have any secret yet </Text>
           </ScrollView>
           <FooterNote />
         </>
