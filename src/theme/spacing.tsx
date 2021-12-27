@@ -1,5 +1,5 @@
 import { Dimensions } from "react-native";
-import { onePercentWidth } from "./size";
+import { onePercentHeight, onePercentWidth } from "./size";
 
 //width and height on iphone 12
 
@@ -10,7 +10,7 @@ if (currentHeight < currentWidth) {
   currentSize = currentHeight;
 }
 
-export const spacing = [
+export const spacingWidth = [
   0,
   onePercentWidth,
 
@@ -21,4 +21,16 @@ export const spacing = [
   16 * onePercentWidth,
   20 * onePercentWidth,
   24 * onePercentWidth,
+];
+export const spacingHeight = [
+  0,
+  onePercentHeight,
+
+  2 * onePercentHeight,
+  4 * onePercentHeight,
+  8 * onePercentHeight,
+  12 * onePercentHeight,
+  16 * onePercentHeight,
+  20 * onePercentHeight,
+  24 * onePercentHeight,
 ];

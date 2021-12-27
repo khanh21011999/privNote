@@ -1,24 +1,25 @@
 import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import { TouchableOpacity, View } from "react-native-ui-lib";
-import { color } from "../../theme/color";
+import { color } from "src/theme/color";
 import {
   heightScreen,
   onePercentWidth,
   size,
   widthScreen,
 } from "src/theme/size";
-import { spacing } from "../../theme/spacing";
+import { spacingWidth, spacingHeight } from "src/theme/spacing";
 import AddNoteIcon from "react-native-vector-icons/Ionicons";
 import { ViewStyle } from "react-native";
+import { RouteName } from "src/navigation/route-name";
 const ADD_NOTE_BUTTON: ViewStyle = {
   ...size.addNoteButton,
-  marginRight: spacing[4],
+  marginRight: spacingWidth[4],
   backgroundColor: color.turquoiseBlue,
   alignItems: "center",
   position: "absolute",
   right: 0,
-  bottom: spacing[5],
+  bottom: spacingHeight[5],
   borderRadius: size.addNoteButton.height / 2,
   justifyContent: "center",
 };
@@ -33,7 +34,7 @@ export default function FooterNote() {
     >
       <TouchableOpacity
         onPress={() => {
-          nav.navigate("Add Note");
+          nav.navigate(RouteName.ADD_NOTE);
         }}
         style={ADD_NOTE_BUTTON}
       >
@@ -42,3 +43,4 @@ export default function FooterNote() {
     </View>
   );
 }
+const SelectedItemFooter = () => {};

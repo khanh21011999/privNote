@@ -6,7 +6,7 @@ export interface NoteI {
   header?: string;
   note?: string;
   date?: Date;
-  deleteStatus?: boolean;
+  selectStatus?: boolean;
 }
 let NoteList: NoteI[] = [];
 
@@ -20,22 +20,26 @@ const noteReducer = createSlice({
         header: action.payload.header,
         note: action.payload.note,
         date: new Date(),
-        deleteStatus: false,
+        selectStatus: false,
       };
       state.push(newNote);
     },
     removeNote: (state, action: PayloadAction<NoteI>) => {
-      return state.filter((item) => item.deleteStatus !== true);
+      return state.filter((item) => item.selectStatus !== true);
     },
-    toggleDelete: (state, action: PayloadAction<NoteI>) => {
+    toggleSelect: (state, action: PayloadAction<NoteI>) => {
       return state.map((item) => {
         if (item.id === action.payload.id) {
-          return { ...item, deleteStatus: !item.deleteStatus };
+          return { ...item, selectStatus: !item.selectStatus };
         }
         return item;
       });
     },
-
+    loadDefault: (state) => {
+      return state.map((item) => {
+        return { ...item, selectStatus: false };
+      });
+    },
     editNote: (state, action: PayloadAction<NoteI>) => {
       return state.map((item) => {
         if (item.id === action.payload.id) {
@@ -53,5 +57,5 @@ const noteReducer = createSlice({
 });
 
 export default noteReducer.reducer;
-export const { addNote, removeNote, editNote, toggleDelete } =
+export const { addNote, removeNote, editNote, toggleSelect, loadDefault } =
   noteReducer.actions;

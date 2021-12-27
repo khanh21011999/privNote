@@ -3,13 +3,13 @@ import { View, Text, TouchableOpacity } from "react-native-ui-lib";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import { TextInput, TextStyle, ViewStyle } from "react-native";
-import { fontSize } from "../../theme/font-size";
-import { spacing } from "../../theme/spacing";
-import { onePercentHeight, onePercentWidth } from "../../theme/size";
+import { fontSize } from "src/theme/font-size";
+import { spacingHeight, spacingWidth } from "src/theme/spacing";
+import { onePercentHeight, onePercentWidth } from "src/theme/size";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../redux/store";
-import { addNote } from "../../redux/noteList-reducer";
-import { color } from "../../theme/color";
+import { AppDispatch } from "src/redux/store";
+import { addNote } from "src/redux/noteList-reducer";
+import { color } from "src/theme/color";
 import BackArrow from "react-native-vector-icons/AntDesign";
 const ADD_NOTE_HEADER: TextStyle = {
   fontSize: fontSize.headerFontSize,
@@ -26,7 +26,7 @@ const NOTE_INPUT: TextStyle = {
 };
 const HEADER: ViewStyle = {
   justifyContent: "space-between",
-  marginBottom: spacing[3],
+  marginBottom: spacingHeight[3],
 };
 export default function AddNote() {
   const nav = useNavigation();
@@ -41,7 +41,7 @@ export default function AddNote() {
     nav.goBack();
   };
   return (
-    <SafeAreaView style={{ margin: spacing[3] }}>
+    <SafeAreaView style={{ margin: spacingWidth[3] }}>
       <View row centerV style={HEADER}>
         <TouchableOpacity onPress={() => nav.goBack()}>
           <BackArrow name="arrowleft" size={onePercentWidth * 6} />

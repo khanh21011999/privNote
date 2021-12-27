@@ -2,16 +2,17 @@ import { Text, View } from "react-native-ui-lib";
 
 import React, { useState } from "react";
 import { ViewStyle } from "react-native";
-import { size } from "../../theme/size";
-import { spacing } from "../../theme/spacing";
+import { size } from "src/theme/size";
+import { spacingWidth, spacingHeight } from "src/theme/spacing";
 import Note from "./note";
 import { TouchableOpacity } from "react-native-ui-lib";
-import { color } from "../../theme/color";
+import { color } from "src/theme/color";
 import { useNavigation } from "@react-navigation/core";
-import { AppDispatch, RootState } from "../../redux/store";
+import { AppDispatch, RootState } from "src/redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { Switch } from "../../redux/toggle-reducer";
-import { toggleDelete } from "../../redux/noteList-reducer";
+import { switchToggle } from "src/redux/toggle-reducer";
+import { toggleSelect } from "src/redux/noteList-reducer";
+import { RouteName } from "src/navigation/route-name";
 export interface noteListI {
   title?: string;
   note?: string;
@@ -23,45 +24,52 @@ const CONTAINER: ViewStyle = {
   ...size.noteSize,
   backgroundColor: color.capeHoney,
   flex: 1 / 2,
-  padding: spacing[3],
-  borderRadius: spacing[3],
-  margin: spacing[2],
+  padding: spacingWidth[3],
+  borderRadius: spacingWidth[3],
+  margin: spacingWidth[2],
+  marginVertical: spacingHeight[1],
 };
 export default function NoteList(props: noteListI) {
   const { title, note, id, date } = props;
-  const [deleteStatus, setDeleteStatus] = useState(false);
+  const [selectedButtonStatus, setSelectedButtonStatus] = useState(false);
   const nav = useNavigation();
-  const toggleDeleteStatus = useSelector(
+  const dispatch = useDispatch();
+
+  const toggleSelectedButton = useSelector(
     (state: RootState) => state.toggle.enableSelectedButton
   );
 
   const onNavDetail = () => {
-    nav.navigate("Edit note", {
+    nav.navigate(RouteName.EDIT_NOTE, {
       date: date,
       note: note,
       header: title,
       id: id,
     });
   };
-  const dispatch: AppDispatch = useDispatch();
+
   const toggleDeleteButton = () => {
-    dispatch(Switch());
+    dispatch(switchToggle());
   };
-  const toggleDeleteValue = () => {
-    console.log("turn on");
-    dispatch(toggleDelete({ id: id }));
+  const toggleSelectStatus = () => {
+    dispatch(toggleSelect({ id: id }));
+  };
+  const setEnableToggle = () => {
+    setSelectedButtonStatus(!selectedButtonStatus);
+    toggleSelectStatus();
   };
   return (
     <View>
       <TouchableOpacity
         onLongPress={() => {
           toggleDeleteButton();
-          setDeleteStatus(false);
+          setSelectedButtonStatus(true);
+          toggleSelectStatus();
         }}
         // flex
         style={CONTAINER}
         onPress={() =>
-          !toggleDeleteStatus ? onNavDetail() : setDeleteStatus(!deleteStatus)
+          !toggleSelectedButton ? onNavDetail() : setEnableToggle()
         }
       >
         <Note
@@ -69,7 +77,7 @@ export default function NoteList(props: noteListI) {
           header={title}
           date={date}
           id={id}
-          deleteStatus={deleteStatus}
+          selectedStatus={selectedButtonStatus}
         />
       </TouchableOpacity>
     </View>

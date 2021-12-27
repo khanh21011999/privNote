@@ -1,25 +1,26 @@
 import { FlatList, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import NoteList from "./note-list";
 import { Text, TouchableOpacity, View } from "react-native-ui-lib";
 
 import HeaderNote from "./header";
 import { Dimensions, TextStyle, ViewStyle } from "react-native";
-import { spacing } from "../../theme/spacing";
+import { spacingWidth, spacingHeight } from "src/theme/spacing";
 import {
   heightScreen,
   onePercentWidth,
   size,
   widthScreen,
-} from "../../theme/size";
+} from "src/theme/size";
 import AddIcon from "react-native-vector-icons/";
 import { useNavigation } from "@react-navigation/core";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-import { color } from "../../theme/color";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "src/redux/store";
+import { color } from "src/theme/color";
 import FooterNote from "./footer";
 import LeftIcon from "react-native-vector-icons/AntDesign";
+import { loadDefault } from "src/redux/noteList-reducer";
 const CONTAINER: ViewStyle = {
   width: widthScreen,
   height: heightScreen,
@@ -30,10 +31,14 @@ const ADD_NOTE_TEXT: TextStyle = {
   fontWeight: "bold",
 };
 const EMPTY_NOTE: TextStyle = {
-  marginHorizontal: spacing[3],
+  marginHorizontal: spacingWidth[3],
 };
 export default function NoteListScreen() {
   const nav = useNavigation();
+  useEffect(() => {
+    dispatch(loadDefault());
+  }, []);
+  const dispatch: AppDispatch = useDispatch();
 
   const data = useSelector((state: RootState) => state.persistedReducer.note);
 
@@ -54,8 +59,8 @@ export default function NoteListScreen() {
             numColumns={2}
             columnWrapperStyle={{
               justifyContent: "space-between",
-              marginTop: spacing[2],
-              padding: spacing[1],
+              marginTop: spacingHeight[2],
+              padding: spacingWidth[1],
             }}
             keyExtractor={(item) => item.id.toString()}
             ListHeaderComponent={() => <HeaderNote />}

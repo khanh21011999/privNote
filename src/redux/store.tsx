@@ -10,6 +10,7 @@ const reducer = combineReducers({
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
+  blacklist: [],
 };
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = configureStore({
