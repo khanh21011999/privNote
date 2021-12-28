@@ -9,6 +9,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import NoteListScreen from "./src/screen/note-screen";
 import AddNote from "./src/screen/add-note/add-note";
+
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (

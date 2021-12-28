@@ -21,12 +21,10 @@ export interface noteListI {
   deleteStatus?: boolean;
 }
 const CONTAINER: ViewStyle = {
-  ...size.noteSize,
-  backgroundColor: color.capeHoney,
-  flex: 1 / 2,
+  backgroundColor: color.lightYellow,
   padding: spacingWidth[3],
   borderRadius: spacingWidth[3],
-  margin: spacingWidth[2],
+  margin: spacingWidth[4],
   marginVertical: spacingHeight[1],
 };
 export default function NoteList(props: noteListI) {

@@ -5,6 +5,7 @@ INJECTED from /Users/khanhs/Work/React-native/Personal_Project/privNote/android/
 INJECTED from /Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:1:1-25:12
 INJECTED from /Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:1:1-25:12
 MERGED from /Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:1:1-25:12
+MERGED from [hermes-debug.aar] /Users/khanhs/.gradle/caches/transforms-3/b2da0498bc78dbf8c570aeab0611ead7/transformed/jetified-hermes-debug/AndroidManifest.xml:2:1-7:12
 MERGED from [com.facebook.flipper:flipper:0.99.0] /Users/khanhs/.gradle/caches/transforms-3/2f5725507f1929c6ddf8255f0bef77bd/transformed/jetified-flipper-0.99.0/AndroidManifest.xml:8:1-18:12
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.99.0] /Users/khanhs/.gradle/caches/transforms-3/2c29b736c8f2a9d82fade7115b471d70/transformed/jetified-flipper-network-plugin-0.99.0/AndroidManifest.xml:8:1-15:12
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.99.0] /Users/khanhs/.gradle/caches/transforms-3/e3a733608d857c466939da27af54ba77/transformed/jetified-flipper-fresco-plugin-0.99.0/AndroidManifest.xml:8:1-15:12
@@ -15,12 +16,12 @@ MERGED from [:react-native-picker_picker] /Users/khanhs/Work/React-native/Person
 MERGED from [:react-native-gesture-handler] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-safe-area-context] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-screens] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-svg] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-ui-lib] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-ui-lib/lib/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-vector-icons] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.react:react-native:0.66.1] /Users/khanhs/.gradle/caches/transforms-3/17983b27092628c498529e8f14a21a1e/transformed/jetified-react-native-0.66.1/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/khanhs/.gradle/caches/transforms-3/9341f36f0ce470d4b55127e33c2ce075/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [org.webkit:android-jsc:r250230] /Users/khanhs/.gradle/caches/transforms-3/7873a5158addb5bf75ec8bc5226b9f2a/transformed/jetified-android-jsc-r250230/AndroidManifest.xml:2:1-11:12
-MERGED from [:react-native-reanimated] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-reanimated/android/build/.transforms/e598de6d67e8e00e9f4b59899e12a417/transformed/jetified-react-native-reanimated-66-jsc/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-reanimated] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-reanimated/android/build/.transforms/2ca11cfe9bf57dab436d1c59edf0649b/transformed/jetified-react-native-reanimated-66-hermes/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:flipper:2.5.0] /Users/khanhs/.gradle/caches/transforms-3/5880c3ffcd9f3ffb65016eb160ab2121/transformed/jetified-flipper-2.5.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:stetho:2.5.0] /Users/khanhs/.gradle/caches/transforms-3/247a35ea3454e43292f80ed4e869afa6/transformed/jetified-stetho-2.5.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:fresco:2.5.0] /Users/khanhs/.gradle/caches/transforms-3/2e3be5b59ff1001e620058abe4b7c8c9/transformed/jetified-fresco-2.5.0/AndroidManifest.xml:2:1-9:12
@@ -45,7 +46,7 @@ MERGED from [com.facebook.fresco:ui-common:2.5.0] /Users/khanhs/.gradle/caches/t
 MERGED from [androidx.appcompat:appcompat-resources:1.3.0] /Users/khanhs/.gradle/caches/transforms-3/262def0251b4f6c882149d15641ff92b/transformed/jetified-appcompat-resources-1.3.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/khanhs/.gradle/caches/transforms-3/57e3d46cd409853c916c88a2c3ae94fd/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/khanhs/.gradle/caches/transforms-3/db0f9dfc2cb9e58d20874cad38a46146/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [com.eightbitlab:blurview:1.6.3] /Users/khanhs/.gradle/caches/transforms-3/7f6788ae4654a27cbbc95070783ee8f9/transformed/jetified-blurview-1.6.3/AndroidManifest.xml:2:1-11:12
+MERGED from [com.eightbitlab:blurview:1.6.3] /Users/khanhs/.gradle/caches/transforms-3/c714bdbd226dac28553874b964b3654c/transformed/jetified-blurview-1.6.3/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/khanhs/.gradle/caches/transforms-3/530e90c3ee142f7f959c69298c7c5ded/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/khanhs/.gradle/caches/transforms-3/a19e52b53eb437c1a1e2beb909f23bc9/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment:1.3.4] /Users/khanhs/.gradle/caches/transforms-3/d29e2b008fda9570dcb20a45a8889feb/transformed/fragment-1.3.4/AndroidManifest.xml:17:1-24:12
@@ -110,8 +111,8 @@ MERGED from [com.facebook.soloader:soloader:0.10.1] /Users/khanhs/.gradle/caches
 MERGED from [com.facebook.soloader:soloader:0.10.1] /Users/khanhs/.gradle/caches/transforms-3/4c346baed8905fc786ccf697aebc99f4/transformed/jetified-soloader-0.10.1/AndroidManifest.xml:11:5-20
 MERGED from [com.google.android.material:material:1.1.0] /Users/khanhs/.gradle/caches/transforms-3/94ecee73d302f93903038c0fd7a3667d/transformed/material-1.1.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.1.0] /Users/khanhs/.gradle/caches/transforms-3/94ecee73d302f93903038c0fd7a3667d/transformed/material-1.1.0/AndroidManifest.xml:22:5-20
-MERGED from [com.eightbitlab:blurview:1.6.3] /Users/khanhs/.gradle/caches/transforms-3/7f6788ae4654a27cbbc95070783ee8f9/transformed/jetified-blurview-1.6.3/AndroidManifest.xml:9:5-20
-MERGED from [com.eightbitlab:blurview:1.6.3] /Users/khanhs/.gradle/caches/transforms-3/7f6788ae4654a27cbbc95070783ee8f9/transformed/jetified-blurview-1.6.3/AndroidManifest.xml:9:5-20
+MERGED from [com.eightbitlab:blurview:1.6.3] /Users/khanhs/.gradle/caches/transforms-3/c714bdbd226dac28553874b964b3654c/transformed/jetified-blurview-1.6.3/AndroidManifest.xml:9:5-20
+MERGED from [com.eightbitlab:blurview:1.6.3] /Users/khanhs/.gradle/caches/transforms-3/c714bdbd226dac28553874b964b3654c/transformed/jetified-blurview-1.6.3/AndroidManifest.xml:9:5-20
 MERGED from [androidx.core:core:1.5.0] /Users/khanhs/.gradle/caches/transforms-3/5646db46e2cfb43e7b3d42f3054c498c/transformed/core-1.5.0/AndroidManifest.xml:24:5-89
 MERGED from [androidx.core:core:1.5.0] /Users/khanhs/.gradle/caches/transforms-3/5646db46e2cfb43e7b3d42f3054c498c/transformed/core-1.5.0/AndroidManifest.xml:24:5-89
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/khanhs/.gradle/caches/transforms-3/233eab6c731cb1ce714d2d0256cc6f18/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
@@ -168,6 +169,8 @@ uses-sdk
 INJECTED from /Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml
+MERGED from [hermes-debug.aar] /Users/khanhs/.gradle/caches/transforms-3/b2da0498bc78dbf8c570aeab0611ead7/transformed/jetified-hermes-debug/AndroidManifest.xml:5:5-44
+MERGED from [hermes-debug.aar] /Users/khanhs/.gradle/caches/transforms-3/b2da0498bc78dbf8c570aeab0611ead7/transformed/jetified-hermes-debug/AndroidManifest.xml:5:5-44
 MERGED from [com.facebook.flipper:flipper:0.99.0] /Users/khanhs/.gradle/caches/transforms-3/2f5725507f1929c6ddf8255f0bef77bd/transformed/jetified-flipper-0.99.0/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper:0.99.0] /Users/khanhs/.gradle/caches/transforms-3/2f5725507f1929c6ddf8255f0bef77bd/transformed/jetified-flipper-0.99.0/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.99.0] /Users/khanhs/.gradle/caches/transforms-3/2c29b736c8f2a9d82fade7115b471d70/transformed/jetified-flipper-network-plugin-0.99.0/AndroidManifest.xml:11:5-13:41
@@ -188,6 +191,8 @@ MERGED from [:react-native-safe-area-context] /Users/khanhs/Work/React-native/Pe
 MERGED from [:react-native-safe-area-context] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-screens] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-screens] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-svg] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-svg] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-svg/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-ui-lib] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-ui-lib/lib/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-ui-lib] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-ui-lib/lib/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-vector-icons] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
@@ -196,10 +201,8 @@ MERGED from [com.facebook.react:react-native:0.66.1] /Users/khanhs/.gradle/cache
 MERGED from [com.facebook.react:react-native:0.66.1] /Users/khanhs/.gradle/caches/transforms-3/17983b27092628c498529e8f14a21a1e/transformed/jetified-react-native-0.66.1/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/khanhs/.gradle/caches/transforms-3/9341f36f0ce470d4b55127e33c2ce075/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/khanhs/.gradle/caches/transforms-3/9341f36f0ce470d4b55127e33c2ce075/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [org.webkit:android-jsc:r250230] /Users/khanhs/.gradle/caches/transforms-3/7873a5158addb5bf75ec8bc5226b9f2a/transformed/jetified-android-jsc-r250230/AndroidManifest.xml:7:5-9:41
-MERGED from [org.webkit:android-jsc:r250230] /Users/khanhs/.gradle/caches/transforms-3/7873a5158addb5bf75ec8bc5226b9f2a/transformed/jetified-android-jsc-r250230/AndroidManifest.xml:7:5-9:41
-MERGED from [:react-native-reanimated] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-reanimated/android/build/.transforms/e598de6d67e8e00e9f4b59899e12a417/transformed/jetified-react-native-reanimated-66-jsc/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-reanimated] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-reanimated/android/build/.transforms/e598de6d67e8e00e9f4b59899e12a417/transformed/jetified-react-native-reanimated-66-jsc/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-reanimated] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-reanimated/android/build/.transforms/2ca11cfe9bf57dab436d1c59edf0649b/transformed/jetified-react-native-reanimated-66-hermes/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-reanimated] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/react-native-reanimated/android/build/.transforms/2ca11cfe9bf57dab436d1c59edf0649b/transformed/jetified-react-native-reanimated-66-hermes/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:flipper:2.5.0] /Users/khanhs/.gradle/caches/transforms-3/5880c3ffcd9f3ffb65016eb160ab2121/transformed/jetified-flipper-2.5.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:flipper:2.5.0] /Users/khanhs/.gradle/caches/transforms-3/5880c3ffcd9f3ffb65016eb160ab2121/transformed/jetified-flipper-2.5.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:stetho:2.5.0] /Users/khanhs/.gradle/caches/transforms-3/247a35ea3454e43292f80ed4e869afa6/transformed/jetified-stetho-2.5.0/AndroidManifest.xml:5:5-7:41
@@ -248,8 +251,8 @@ MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/khanh
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/khanhs/.gradle/caches/transforms-3/57e3d46cd409853c916c88a2c3ae94fd/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/khanhs/.gradle/caches/transforms-3/db0f9dfc2cb9e58d20874cad38a46146/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/khanhs/.gradle/caches/transforms-3/db0f9dfc2cb9e58d20874cad38a46146/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.eightbitlab:blurview:1.6.3] /Users/khanhs/.gradle/caches/transforms-3/7f6788ae4654a27cbbc95070783ee8f9/transformed/jetified-blurview-1.6.3/AndroidManifest.xml:5:5-7:41
-MERGED from [com.eightbitlab:blurview:1.6.3] /Users/khanhs/.gradle/caches/transforms-3/7f6788ae4654a27cbbc95070783ee8f9/transformed/jetified-blurview-1.6.3/AndroidManifest.xml:5:5-7:41
+MERGED from [com.eightbitlab:blurview:1.6.3] /Users/khanhs/.gradle/caches/transforms-3/c714bdbd226dac28553874b964b3654c/transformed/jetified-blurview-1.6.3/AndroidManifest.xml:5:5-7:41
+MERGED from [com.eightbitlab:blurview:1.6.3] /Users/khanhs/.gradle/caches/transforms-3/c714bdbd226dac28553874b964b3654c/transformed/jetified-blurview-1.6.3/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/khanhs/.gradle/caches/transforms-3/530e90c3ee142f7f959c69298c7c5ded/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/khanhs/.gradle/caches/transforms-3/530e90c3ee142f7f959c69298c7c5ded/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/khanhs/.gradle/caches/transforms-3/a19e52b53eb437c1a1e2beb909f23bc9/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41

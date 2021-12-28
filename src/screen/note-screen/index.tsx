@@ -25,6 +25,7 @@ const CONTAINER: ViewStyle = {
   width: widthScreen,
   height: heightScreen,
   display: "flex",
+  backgroundColor: color.backgroundGrey,
 };
 
 const ADD_NOTE_TEXT: TextStyle = {
@@ -41,7 +42,7 @@ export default function NoteListScreen() {
   const dispatch: AppDispatch = useDispatch();
 
   const data = useSelector((state: RootState) => state.persistedReducer.note);
-  console.log("anc");
+
   return (
     <SafeAreaView style={CONTAINER}>
       {data.length === 0 ? (
@@ -56,13 +57,6 @@ export default function NoteListScreen() {
         <SafeAreaView style={CONTAINER}>
           <FlatList
             data={data}
-            numColumns={2}
-            columnWrapperStyle={{
-              justifyContent: "space-between",
-              marginTop: spacingHeight[2],
-              padding: spacingWidth[1],
-            }}
-            keyExtractor={(item) => item.id.toString()}
             ListHeaderComponent={() => <HeaderNote />}
             renderItem={({ item, index }) => {
               return (

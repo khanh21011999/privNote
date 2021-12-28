@@ -14,23 +14,23 @@ export const spacingWidth = [
   0,
   onePercentWidth,
 
+  1 * onePercentWidth,
   2 * onePercentWidth,
+  3 * onePercentWidth,
   4 * onePercentWidth,
-  8 * onePercentWidth,
-  12 * onePercentWidth,
-  16 * onePercentWidth,
-  20 * onePercentWidth,
-  24 * onePercentWidth,
+  5 * onePercentWidth,
+  6 * onePercentWidth,
+  7 * onePercentWidth,
 ];
 export const spacingHeight = [
   0,
   onePercentHeight,
 
+  1 * onePercentHeight,
   2 * onePercentHeight,
+  3 * onePercentHeight,
   4 * onePercentHeight,
-  8 * onePercentHeight,
-  12 * onePercentHeight,
-  16 * onePercentHeight,
-  20 * onePercentHeight,
-  24 * onePercentHeight,
+  5 * onePercentHeight,
+  6 * onePercentHeight,
+  7 * onePercentHeight,
 ];

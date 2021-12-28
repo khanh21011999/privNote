@@ -6,8 +6,10 @@ import EditNote from "../screen/edit-note/edit-note";
 import NoteListScreen from "../screen/note-screen";
 
 import { RouteName } from "src/navigation/route-name";
+import TabNavigation from "./tab/botton-navigation";
 
 type RootStateParamList = {
+  [RouteName.HOME_NAV]: undefined;
   [RouteName.ADD_NOTE]: undefined;
   [RouteName.HOME]: undefined;
   [RouteName.EDIT_NOTE]: {
@@ -31,7 +33,7 @@ export function NoteNavigation() {
         <Stack.Screen
           options={{ headerShown: false }}
           name={RouteName.HOME}
-          component={NoteListScreen}
+          component={TabNavigation}
         />
         <Stack.Screen
           options={{ headerShown: false }}

@@ -3,4 +3,5 @@ export enum Font {
   regular = "Montserrat-Regular",
   bold = "Montserrat-Bold",
   semiBold = "Montserrat-SemiBold",
+  italic = "Montserrat-Italic",
 }
