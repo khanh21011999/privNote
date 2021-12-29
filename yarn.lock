@@ -2786,6 +2786,11 @@ csstype@^3.0.2:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.10.tgz#2ad3a7bed70f35b965707c092e5f30b327c290e5"
   integrity sha512-2u44ZG2OcNUO9HDp/Jl8C07x6pU/eTR3ncV91SiK3dhG9TWvRVsCoJw14Ckx5DgWkzGA3waZWO3d7pgqpUI/XA==
 
+cycle@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/cycle/-/cycle-1.0.3.tgz#21e80b2be8580f98b468f379430662b046c34ad2"
+  integrity sha1-IegLK+hYD5i0aPN5QwZisEbDStI=
+
 data-urls@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/data-urls/-/data-urls-2.0.0.tgz#156485a72963a970f5d5821aaf642bef2bf2db9b"
@@ -2795,7 +2800,7 @@ data-urls@^2.0.0:
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
 
-dayjs@^1.8.15:
+dayjs@^1.8.15, dayjs@^1.8.29:
   version "1.10.7"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.7.tgz#2cf5f91add28116748440866a0a1d26f3a6ce468"
   integrity sha512-P6twpd70BcPK34K26uJ1KT3wlhpuOAPoMwJzpsIWUxHZ7wpmbdZL/hQqBDfz7hGurYSa5PhzdhDHtt319hL3ig==
@@ -6251,6 +6256,11 @@ react-native-color@0.0.10:
     react-native-slider "^0.11.0"
     tinycolor2 "^1.4.1"
 
+react-native-flipper@^0.127.0:
+  version "0.127.0"
+  resolved "https://registry.yarnpkg.com/react-native-flipper/-/react-native-flipper-0.127.0.tgz#4d4040c0d0a45136b9bbabdc801d3e32d385de73"
+  integrity sha512-qloUyUOs9MoMVncIDDWeOxAPbomWJ3e4y0SgyCgq8joJEOXC7RvPWeEfUXp0EPyNhHGQV9a4RwzF6BWKFCR3Kg==
+
 react-native-gesture-handler@^1.10.3:
   version "1.10.3"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.10.3.tgz#942bbf2963bbf49fa79593600ee9d7b5dab3cfc0"
@@ -6275,7 +6285,7 @@ react-native-keyboard-aware-scroll-view@^0.9.5:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
-react-native-reanimated@^2.3.0:
+react-native-reanimated@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.3.1.tgz#c7abad48f9e6c84610b0d5e270088ecd61750382"
   integrity sha512-nzjVqwkB8eeyPKT2KoiA9EEz17ZMFSGMoOTC17Z9b5nE2Z4ZHjHM5EKhY0TlwzXFUuJAE9PhOfxF0wIO/maZSA==
@@ -6348,7 +6358,7 @@ react-native-text-size@4.0.0-rc.1:
   resolved "https://registry.yarnpkg.com/react-native-text-size/-/react-native-text-size-4.0.0-rc.1.tgz#1e048d345dd6a5a8e1269e0585c1a5948c478da5"
   integrity sha512-CysqjU2jK6Yc+a+kEI222pUyTY2ywcU2HqbFqf1KHymW6OPTdvBBHqbEJKL0QiLhQaFYDbqicM+h990s9TP00g==
 
-react-native-ui-lib@^6.2.1:
+react-native-ui-lib@^6.6.2:
   version "6.6.2"
   resolved "https://registry.yarnpkg.com/react-native-ui-lib/-/react-native-ui-lib-6.6.2.tgz#b1a918733cd07bb58b4a0a99794de039e419e949"
   integrity sha512-tmFSUKTT0Jw0NJIFLBpZVsd+vNosyfiVfupK7TLnzJZF6uSQ8UUmBAjvlTE85kndWdCD9sTydrpfglyk8b444g==
@@ -6508,6 +6518,14 @@ recast@^0.20.3:
     esprima "~4.0.0"
     source-map "~0.6.1"
     tslib "^2.0.1"
+
+redux-flipper@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/redux-flipper/-/redux-flipper-2.0.1.tgz#a43603a13e6f06a48c627ae7c144579bd4f1fa54"
+  integrity sha512-JqgnL+fUp3h2fPQRszItLkarTbIf5gjU4Sn0IY/ZxUo6oUUmMh4Lx2J7BBy78cE8KEW9prRRpvJ6NH2uc/QktA==
+  dependencies:
+    cycle "^1.0.3"
+    dayjs "^1.8.29"
 
 redux-persist@^6.0.0:
   version "6.0.0"

@@ -8,6 +8,8 @@ import NoteListScreen from "../screen/note-screen";
 import { RouteName } from "src/navigation/route-name";
 import TabNavigation from "./tab/botton-navigation";
 import Login from "src/screen/login/login";
+import { useSelector } from "react-redux";
+import { RootState } from "src/redux/store";
 
 type RootStateParamList = {
   [RouteName.LOGIN]: undefined;
@@ -29,29 +31,37 @@ declare global {
   }
 }
 export function NoteNavigation() {
+  const token: string = useSelector(
+    (item: RootState) => item.persistedReducer.token.token
+  );
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={RouteName.LOGIN}>
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name={RouteName.LOGIN}
-          component={Login}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name={RouteName.HOME}
-          component={TabNavigation}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name={RouteName.ADD_NOTE}
-          component={AddNote}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name={RouteName.EDIT_NOTE}
-          component={EditNote}
-        />
+        {token.length > 0 ? (
+          <>
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name={RouteName.HOME}
+              component={TabNavigation}
+            />
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name={RouteName.ADD_NOTE}
+              component={AddNote}
+            />
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name={RouteName.EDIT_NOTE}
+              component={EditNote}
+            />
+          </>
+        ) : (
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name={RouteName.LOGIN}
+            component={Login}
+          />
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

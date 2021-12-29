@@ -1,11 +1,11 @@
 import { Text, View } from "react-native-ui-lib";
 
 import React, { useState } from "react";
-import { ViewStyle } from "react-native";
+import { ViewStyle, TouchableOpacity } from "react-native";
 import { size } from "src/theme/size";
 import { spacingWidth, spacingHeight } from "src/theme/spacing";
 import Note from "./note";
-import { TouchableOpacity } from "react-native-ui-lib";
+
 import { color } from "src/theme/color";
 import { useNavigation } from "@react-navigation/core";
 import { AppDispatch, RootState } from "src/redux/store";

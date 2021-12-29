@@ -3,15 +3,18 @@ import noteReducer from "./noteList-reducer";
 import toggleReducer from "./toggle-reducer";
 import { persistStore, persistReducer } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import authentication from "./authentication";
 
 const reducer = combineReducers({
   note: noteReducer,
+  token: authentication,
 });
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
   blacklist: [],
 };
+
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = configureStore({
   reducer: { persistedReducer, toggle: toggleReducer },

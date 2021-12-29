@@ -27,8 +27,12 @@ import io.invertase.firebase.firestore.ReactNativeFirebaseFirestorePackage;
 import com.reactnativegooglesignin.RNGoogleSigninPackage;
 // @react-native-picker/picker
 import com.reactnativecommunity.picker.RNCPickerPackage;
+// react-native-flipper
+import com.facebook.flipper.reactnative.FlipperPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+// react-native-reanimated
+import com.swmansion.reanimated.ReanimatedPackage;
 // react-native-safe-area-context
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 // react-native-screens
@@ -95,7 +99,9 @@ public class PackageList {
       new ReactNativeFirebaseFirestorePackage(),
       new RNGoogleSigninPackage(),
       new RNCPickerPackage(),
+      new FlipperPackage(),
       new RNGestureHandlerPackage(),
+      new ReanimatedPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
       new SvgPackage(),
