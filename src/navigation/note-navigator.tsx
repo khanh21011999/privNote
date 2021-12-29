@@ -37,7 +37,7 @@ export function NoteNavigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={RouteName.LOGIN}>
-        {token.length > 0 ? (
+        {token?.length > 0 ? (
           <>
             <Stack.Screen
               options={{ headerShown: false }}

@@ -42,7 +42,7 @@ export default function Login(props: LoginI) {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      setUserInfo(userInfo);
+      dispatch(signedIn({ token: userInfo?.idToken }));
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
@@ -55,13 +55,13 @@ export default function Login(props: LoginI) {
       }
     }
   };
-
+  console.log("user token", userInfo?.idToken);
+  console.log("token redux", token);
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Button
         onPress={() => {
           signIn().then(() => console.log("Signed in with Google!"));
-          dispatch(signedIn({ token: token }));
         }}
       >
         <Text style={{ color: "white" }}>Login</Text>

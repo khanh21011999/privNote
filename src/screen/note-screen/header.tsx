@@ -8,6 +8,9 @@ import { color } from "src/theme/color";
 import Icon from "react-native-vector-icons/Ionicons";
 import { Font } from "src/theme/font-name";
 import { RFPercentage } from "react-native-responsive-fontsize";
+import { useDispatch } from "react-redux";
+import { logOut } from "src/redux/authentication";
+import { AppDispatch } from "src/redux/store";
 const HEADER_TEXT: TextStyle = {
   fontSize: RFPercentage(3.5),
   color: "black",
@@ -31,6 +34,7 @@ const ICON: TextStyle = {
   right: onePercentWidth * 3,
 };
 export default function HeaderNote() {
+  const dispatch: AppDispatch = useDispatch();
   return (
     <View style={CONTAINER}>
       <View
@@ -43,7 +47,7 @@ export default function HeaderNote() {
       >
         <Text style={HEADER_TEXT}>Your secret, keep it private</Text>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => dispatch(logOut())}>
           <Icon
             name="settings-outline"
             color={color.black}

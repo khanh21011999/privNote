@@ -14,10 +14,10 @@ const Authentication = createSlice({
     signedIn: (state, action: PayloadAction<AuthI>) => {
       return { ...state, token: action.payload.token };
     },
-    reset: (state) => {
+    logOut: (state) => {
       return { ...state, token: "" };
     },
   },
 });
 export default Authentication.reducer;
-export const { signedIn, reset } = Authentication.actions;
+export const { signedIn, logOut } = Authentication.actions;
