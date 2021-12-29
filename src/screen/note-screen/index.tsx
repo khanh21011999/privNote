@@ -21,6 +21,7 @@ import { color } from "src/theme/color";
 import FooterNote from "./footer";
 import LeftIcon from "react-native-vector-icons/AntDesign";
 import { loadDefault } from "src/redux/noteList-reducer";
+import auth from "@react-native-firebase/auth";
 const CONTAINER: ViewStyle = {
   width: widthScreen,
   height: heightScreen,
@@ -40,7 +41,7 @@ export default function NoteListScreen() {
     dispatch(loadDefault());
   }, []);
   const dispatch: AppDispatch = useDispatch();
-
+  console.log("a");
   const data = useSelector((state: RootState) => state.persistedReducer.note);
 
   return (

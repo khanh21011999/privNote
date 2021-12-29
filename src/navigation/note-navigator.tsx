@@ -7,8 +7,10 @@ import NoteListScreen from "../screen/note-screen";
 
 import { RouteName } from "src/navigation/route-name";
 import TabNavigation from "./tab/botton-navigation";
+import Login from "src/screen/login/login";
 
 type RootStateParamList = {
+  [RouteName.LOGIN]: undefined;
   [RouteName.HOME_NAV]: undefined;
   [RouteName.ADD_NOTE]: undefined;
   [RouteName.HOME]: undefined;
@@ -30,6 +32,11 @@ export function NoteNavigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={RouteName.HOME}>
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name={RouteName.LOGIN}
+          component={Login}
+        />
         <Stack.Screen
           options={{ headerShown: false }}
           name={RouteName.HOME}

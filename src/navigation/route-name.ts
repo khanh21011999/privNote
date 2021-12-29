@@ -4,4 +4,5 @@ export enum RouteName {
   ADD_NOTE = "Add Note",
   EDIT_NOTE = "Edit",
   STORY = "Story",
+  LOGIN = "Login",
 }
