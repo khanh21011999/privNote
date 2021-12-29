@@ -31,7 +31,7 @@ declare global {
 export function NoteNavigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={RouteName.HOME}>
+      <Stack.Navigator initialRouteName={RouteName.LOGIN}>
         <Stack.Screen
           options={{ headerShown: false }}
           name={RouteName.LOGIN}
