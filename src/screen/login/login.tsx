@@ -40,37 +40,11 @@ export default function Login(props: LoginI) {
   const {} = props;
   const addNew = () => {
     firestore()
-      .collection("testAndroid20")
+      .collection("testAndroidFinal")
       .add({})
       .then(() => console.log("success"));
-
-    // .then(() => {
-    //   console.log("User added!");
-    // });
   };
-  // const signIn = async () => {
-  //   try {
-  //     await GoogleSignin.hasPlayServices();
-  //     const userInfo = await GoogleSignin.signIn();
-  //     user.current = userInfo;
-  //     addNew();
-  //     dispatch(
-  //       signedIn({ token: userInfo?.idToken, userInfomation: userInfo.user })
-  //     );
 
-  //     // console.log("token", userInfo);
-  //   } catch (error: any) {
-  //     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-  //       // user cancelled the login flow
-  //     } else if (error.code === statusCodes.IN_PROGRESS) {
-  //       // operation (e.g. sign in) is in progress already
-  //     } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-  //       // play services not available or outdated
-  //     } else {
-  //       // some other error happened
-  //     }
-  //   }
-  // };
   async function signIn() {
     // Get the users ID token
 
