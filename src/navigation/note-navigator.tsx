@@ -34,6 +34,7 @@ export function NoteNavigation() {
   const token: string = useSelector(
     (item: RootState) => item.persistedReducer.token.token
   );
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={RouteName.LOGIN}>

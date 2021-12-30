@@ -5,7 +5,7 @@ import { RouteName } from "../route-name";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native-ui-lib";
 import { CustomBottomTab } from "./custom-bottom-tab";
-import { TextStyle, ViewStyle } from "react-native";
+import { Platform, TextStyle, ViewStyle } from "react-native";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import { Font } from "src/theme/font-name";
 import { onePercentHeight, onePercentWidth } from "src/theme/size";
@@ -23,7 +23,7 @@ const TAB_LABEL: TextStyle = {
   marginBottom: spacingHeight[2],
 };
 const TAB_STYLE: ViewStyle = {
-  height: onePercentHeight * 8,
+  height: Platform.OS === "ios" ? onePercentHeight * 10 : onePercentHeight * 8,
 };
 const TEXT_LABEL_FOCUS: TextStyle = {
   fontSize: RFPercentage(2),

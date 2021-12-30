@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthI {
-  token: string | null;
+  token: string | undefined;
+  userInfomation: Object;
 }
 const Auth: AuthI = {
   token: "",
+  userInfomation: [],
 };
 
 const Authentication = createSlice({
@@ -12,7 +14,11 @@ const Authentication = createSlice({
   initialState: Auth,
   reducers: {
     signedIn: (state, action: PayloadAction<AuthI>) => {
-      return { ...state, token: action.payload.token };
+      return {
+        ...state,
+        token: action.payload.token,
+        userInfomation: action.payload.userInfomation,
+      };
     },
     logOut: (state) => {
       return { ...state, token: "" };

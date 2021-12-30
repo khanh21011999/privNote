@@ -22,10 +22,12 @@ import FooterNote from "./footer";
 import LeftIcon from "react-native-vector-icons/AntDesign";
 import { loadDefault } from "src/redux/noteList-reducer";
 import auth from "@react-native-firebase/auth";
+import { Button } from "react-native-ui-lib";
 const CONTAINER: ViewStyle = {
   width: widthScreen,
-  height: heightScreen,
-  display: "flex",
+  minHeight: heightScreen,
+
+  // display: "flex",
   backgroundColor: color.backgroundGrey,
 };
 
@@ -55,7 +57,7 @@ export default function NoteListScreen() {
           <FooterNote />
         </>
       ) : (
-        <SafeAreaView style={CONTAINER}>
+        <View style={CONTAINER}>
           <FlatList
             data={data}
             ListHeaderComponent={() => <HeaderNote />}
@@ -70,8 +72,11 @@ export default function NoteListScreen() {
               );
             }}
           />
+          {/* <TouchableOpacity style={{ borderWidth: 1, bottom: 150 }}>
+            <Text style={{ color: "black" }}>Click me</Text>
+          </TouchableOpacity> */}
           <FooterNote />
-        </SafeAreaView>
+        </View>
       )}
     </SafeAreaView>
   );

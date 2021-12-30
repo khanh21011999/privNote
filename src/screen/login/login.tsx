@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "src/redux/store";
 import { signedIn } from "src/redux/authentication";
 import firestore from "@react-native-firebase/firestore";
+import { Image } from "react-native";
 GoogleSignin.configure({
   webClientId:
     "556280479080-e3he9kh8o9nhl84b9uqin4arbl2nsuq9.apps.googleusercontent.com",
@@ -31,7 +32,7 @@ interface User {
   };
 }
 export default function Login(props: LoginI) {
-  const [userInfo, setUserInfo] = useState<User>();
+  const [user, setUserInfo] = useState<User>();
   const token = useSelector(
     (item: RootState) => item.persistedReducer.token.token
   );
@@ -39,23 +40,25 @@ export default function Login(props: LoginI) {
   const {} = props;
   const addNew = () => {
     firestore()
-      .collection("Users")
+      .collection("Users1")
       .add({
-        name: "Xuan Xuan",
-        age: 15,
+        username: "note 4",
+        note: "sample",
       })
-      .then(() => {
-        console.log("User added!");
-      });
+      .then(() => console.log("success"));
+
+    // .then(() => {
+    //   console.log("User added!");
+    // });
   };
   const signIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      setUserInfo(userInfo);
-      addNew();
-
-      // dispatch(signedIn({ token: userInfo?.idToken }));
+      await setUserInfo(userInfo);
+      // console.log("token", userInfo);
+      // addNew();
+      dispatch(signedIn({ token: user?.idToken, userInfomation: user.user }));
     } catch (error: any) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
@@ -68,6 +71,7 @@ export default function Login(props: LoginI) {
       }
     }
   };
+
   // async function signIn() {
   //   // Get the users ID token
 
@@ -80,7 +84,6 @@ export default function Login(props: LoginI) {
   //   // Sign-in the user with the credential
   //   return auth().signInWithCredential(googleCredential);
   // }
-  console.log("userInfo", userInfo);
 
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -92,11 +95,6 @@ export default function Login(props: LoginI) {
       >
         <Text style={{ color: "white" }}>Login</Text>
       </Button>
-      {userInfo && (
-        <Text style={{ color: color.black }}>
-          {`Hello ${userInfo.user?.name}`}
-        </Text>
-      )}
     </View>
   );
 }

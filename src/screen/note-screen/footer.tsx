@@ -23,6 +23,7 @@ const ADD_NOTE_BUTTON: ViewStyle = {
   borderRadius: size.addNoteButton.height / 2,
   justifyContent: "center",
 };
+console.log("footer");
 export default function FooterNote() {
   const nav = useNavigation();
   return (

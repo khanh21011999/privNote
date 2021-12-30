@@ -8,10 +8,11 @@ import { color } from "src/theme/color";
 import Icon from "react-native-vector-icons/Ionicons";
 import { Font } from "src/theme/font-name";
 import { RFPercentage } from "react-native-responsive-fontsize";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "src/redux/authentication";
 import firestore from "@react-native-firebase/firestore";
-import { AppDispatch } from "src/redux/store";
+import { AppDispatch, RootState } from "src/redux/store";
+import { user } from "src/constants/type";
 const HEADER_TEXT: TextStyle = {
   fontSize: RFPercentage(3.5),
   color: "black",
@@ -36,7 +37,11 @@ const ICON: TextStyle = {
 };
 export default function HeaderNote() {
   const dispatch: AppDispatch = useDispatch();
-
+  const userInfo: user = useSelector(
+    (user: RootState) => user.persistedReducer.token.userInfomation
+  );
+  console.log("header");
+  // console.log("user information", userInfo);
   return (
     <View style={CONTAINER}>
       <View
@@ -47,7 +52,9 @@ export default function HeaderNote() {
           paddingHorizontal: spacingWidth[2],
         }}
       >
-        <Text style={HEADER_TEXT}>Your secret, keep it private</Text>
+        <Text style={HEADER_TEXT}>
+          Your secret, keep it private, {userInfo.name}
+        </Text>
 
         <TouchableOpacity onPress={() => dispatch(logOut())}>
           <Icon

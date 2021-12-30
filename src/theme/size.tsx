@@ -1,7 +1,9 @@
 import { Dimensions, PixelRatio, Platform } from "react-native";
 
 export const widthScreen = Dimensions.get("window").width;
-export const heightScreen = Dimensions.get("window").height;
+export const heightScreen = Dimensions.get(
+  Platform.OS === "ios" ? "screen" : "window"
+).height;
 
 const defaultWidth = 390;
 const defaultHeight = 844;
