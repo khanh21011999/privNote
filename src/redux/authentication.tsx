@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthI {
-  token: string | undefined;
-  userInfomation: Object;
+  token: string | null;
+  userInfomation: any;
 }
 const Auth: AuthI = {
   token: "",
@@ -21,7 +21,7 @@ const Authentication = createSlice({
       };
     },
     logOut: (state) => {
-      return { ...state, token: "" };
+      return { ...state, token: "", userInfomation: "" };
     },
   },
 });

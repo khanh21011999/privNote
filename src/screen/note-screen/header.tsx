@@ -13,6 +13,7 @@ import { logOut } from "src/redux/authentication";
 import firestore from "@react-native-firebase/firestore";
 import { AppDispatch, RootState } from "src/redux/store";
 import { user } from "src/constants/type";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 const HEADER_TEXT: TextStyle = {
   fontSize: RFPercentage(3.5),
   color: "black",
@@ -40,7 +41,16 @@ export default function HeaderNote() {
   const userInfo: user = useSelector(
     (user: RootState) => user.persistedReducer.token.userInfomation
   );
-  console.log("header");
+  const signOut = async () => {
+    try {
+      await GoogleSignin.signOut();
+      dispatch(logOut());
+      // Remember to remove the user from your app's state as well
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   // console.log("user information", userInfo);
   return (
     <View style={CONTAINER}>
@@ -56,7 +66,7 @@ export default function HeaderNote() {
           Your secret, keep it private, {userInfo.name}
         </Text>
 
-        <TouchableOpacity onPress={() => dispatch(logOut())}>
+        <TouchableOpacity onPress={() => signOut()}>
           <Icon
             name="settings-outline"
             color={color.black}

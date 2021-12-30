@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { ViewProps, TextProps, Text } from "react-native";
 import { Button, View } from "react-native-ui-lib";
 interface LoginI extends ViewProps {}
@@ -32,20 +32,15 @@ interface User {
   };
 }
 export default function Login(props: LoginI) {
-  const [user, setUserInfo] = useState<User>();
+  const user = useRef<User>();
   const token = useSelector(
     (item: RootState) => item.persistedReducer.token.token
   );
   const dispatch: AppDispatch = useDispatch();
   const {} = props;
   const addNew = () => {
-    firestore()
-      .collection("Users1")
-      .add({
-        username: "note 4",
-        note: "sample",
-      })
-      .then(() => console.log("success"));
+    console.log(user.current?.user?.email);
+    firestore().collection(user.current?.user?.familyName);
 
     // .then(() => {
     //   console.log("User added!");
@@ -55,10 +50,14 @@ export default function Login(props: LoginI) {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      await setUserInfo(userInfo);
+      user.current = userInfo;
+      addNew();
+
+      dispatch(
+        signedIn({ token: userInfo?.idToken, userInfomation: userInfo.user })
+      );
+
       // console.log("token", userInfo);
-      // addNew();
-      dispatch(signedIn({ token: user?.idToken, userInfomation: user.user }));
     } catch (error: any) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
