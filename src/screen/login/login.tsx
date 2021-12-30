@@ -11,7 +11,7 @@ import { color } from "src/theme/color";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "src/redux/store";
 import { signedIn } from "src/redux/authentication";
-
+import firestore from "@react-native-firebase/firestore";
 GoogleSignin.configure({
   webClientId:
     "556280479080-e3he9kh8o9nhl84b9uqin4arbl2nsuq9.apps.googleusercontent.com",
@@ -37,13 +37,26 @@ export default function Login(props: LoginI) {
   );
   const dispatch: AppDispatch = useDispatch();
   const {} = props;
-
+  const addNew = () => {
+    firestore()
+      .collection("Users")
+      .add({
+        name: "Xuan Xuan",
+        age: 15,
+      })
+      .then(() => {
+        console.log("User added!");
+      });
+  };
   const signIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      dispatch(signedIn({ token: userInfo?.idToken }));
-    } catch (error) {
+      setUserInfo(userInfo);
+      addNew();
+
+      // dispatch(signedIn({ token: userInfo?.idToken }));
+    } catch (error: any) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
       } else if (error.code === statusCodes.IN_PROGRESS) {
@@ -55,13 +68,26 @@ export default function Login(props: LoginI) {
       }
     }
   };
-  console.log("user token", userInfo?.idToken);
-  console.log("token redux", token);
+  // async function signIn() {
+  //   // Get the users ID token
+
+  //   const user = await GoogleSignin.signIn();
+  //   addNew();
+
+  //   // Create a Google credential with the token
+  //   const googleCredential = auth.GoogleAuthProvider.credential(user.idToken);
+
+  //   // Sign-in the user with the credential
+  //   return auth().signInWithCredential(googleCredential);
+  // }
+  console.log("userInfo", userInfo);
+
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Button
         onPress={() => {
           signIn().then(() => console.log("Signed in with Google!"));
+          // addNew();
         }}
       >
         <Text style={{ color: "white" }}>Login</Text>

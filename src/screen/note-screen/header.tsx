@@ -10,6 +10,7 @@ import { Font } from "src/theme/font-name";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import { useDispatch } from "react-redux";
 import { logOut } from "src/redux/authentication";
+import firestore from "@react-native-firebase/firestore";
 import { AppDispatch } from "src/redux/store";
 const HEADER_TEXT: TextStyle = {
   fontSize: RFPercentage(3.5),
@@ -35,6 +36,7 @@ const ICON: TextStyle = {
 };
 export default function HeaderNote() {
   const dispatch: AppDispatch = useDispatch();
+
   return (
     <View style={CONTAINER}>
       <View

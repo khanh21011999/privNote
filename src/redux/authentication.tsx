@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthI {
-  token: string;
+  token: string | null;
 }
 const Auth: AuthI = {
   token: "",
