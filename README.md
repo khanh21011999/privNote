@@ -34,14 +34,14 @@ This note will listen and keep all your secret, and keep it until you don't want
  
 ## ISSUES ❌
 Change the line 
-```
+``` javascript
 global.performance = {
      now: global._chronoNow,
  };
 ```
 
 to 
-```
+``` javascript
 if (global.performance == null) {
         global.performance = {
           now: global._chronoNow,
