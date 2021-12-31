@@ -31,4 +31,21 @@ This note will listen and keep all your secret, and keep it until you don't want
 - [ ] Add payment for no ad, special note feature
 - [ ] Animation
 - [ ] Add "Series" ( a numerous notes of a story )
+ 
+## ISSUES ❌
+Change the line 
+```
+global.performance = {
+     now: global._chronoNow,
+ };
+```
 
+to 
+```
+if (global.performance == null) {
+        global.performance = {
+          now: global._chronoNow,
+        };
+ }
+```
+in ```node_modules/react-native-reanimated/src/reanimated2/core.ts```  to prevent ```performance..now()``` error
