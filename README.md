@@ -27,7 +27,7 @@ This note will listen and keep all your secret, and keep it until you don't want
 - [ ] Add diary ( lots of note )
 - [ ] Redesgin UI ( important )
 ## Advanced 
-- [ ] Add cloud storage
+- [x] Add cloud storage
 - [ ] Add payment for no ad, special note feature
 - [ ] Animation
 - [ ] Add "Series" ( a numerous notes of a story )
