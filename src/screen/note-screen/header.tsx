@@ -14,6 +14,7 @@ import firestore from "@react-native-firebase/firestore";
 import { AppDispatch, RootState } from "src/redux/store";
 import { user } from "src/constants/type";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import { resetNote } from "src/redux/noteList-reducer";
 const HEADER_TEXT: TextStyle = {
   fontSize: RFPercentage(3.5),
   color: "black",
@@ -39,12 +40,13 @@ const ICON: TextStyle = {
 export default function HeaderNote() {
   const dispatch: AppDispatch = useDispatch();
   const userInfo: user = useSelector(
-    (user: RootState) => user.persistedReducer.token.userInfomation
+    (user: RootState) => user.persistedReducer.firebase.userInfomation
   );
   const signOut = async () => {
     try {
       await GoogleSignin.signOut();
       dispatch(logOut());
+      dispatch(resetNote());
       // Remember to remove the user from your app's state as well
     } catch (error) {
       console.error(error);

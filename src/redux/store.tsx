@@ -7,7 +7,7 @@ import authentication from "./authentication";
 
 const reducer = combineReducers({
   note: noteReducer,
-  token: authentication,
+  firebase: authentication,
 });
 const persistConfig = {
   key: "root",

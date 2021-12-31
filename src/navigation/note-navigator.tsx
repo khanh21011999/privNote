@@ -32,7 +32,7 @@ declare global {
 }
 export function NoteNavigation() {
   const token: string = useSelector(
-    (item: RootState) => item.persistedReducer.token.token
+    (item: RootState) => item.persistedReducer.firebase.token
   );
 
   return (

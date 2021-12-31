@@ -1,5 +1,5 @@
 import { FlatList, ScrollView } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import NoteList from "./note-list";
 import { Text, TouchableOpacity, View } from "react-native-ui-lib";
@@ -20,9 +20,13 @@ import { AppDispatch, RootState } from "src/redux/store";
 import { color } from "src/theme/color";
 import FooterNote from "./footer";
 import LeftIcon from "react-native-vector-icons/AntDesign";
-import { loadDefault } from "src/redux/noteList-reducer";
+import { fetchNote, getPosts, loadDefault } from "src/redux/noteList-reducer";
 import auth from "@react-native-firebase/auth";
+
 import { Button } from "react-native-ui-lib";
+import firestore from "@react-native-firebase/firestore";
+import { async } from "@firebase/util";
+import { user } from "src/constants/type";
 const CONTAINER: ViewStyle = {
   width: widthScreen,
   minHeight: heightScreen,
@@ -38,14 +42,32 @@ const EMPTY_NOTE: TextStyle = {
   marginHorizontal: spacingWidth[3],
 };
 export default function NoteListScreen() {
+  const [user, setUser] = useState<any>();
   const nav = useNavigation();
-  useEffect(() => {
-    dispatch(loadDefault());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(loadDefault());
+  // }, []);
   const dispatch: AppDispatch = useDispatch();
   console.log("a");
   const data = useSelector((state: RootState) => state.persistedReducer.note);
-
+  const userInfo: user = useSelector(
+    (state: RootState) => state.persistedReducer.firebase.userInfomation
+  );
+  // useEffect(() => {
+  //   const getUser = async () => {
+  //     await firestore()
+  //       .collection("Users")
+  //       .doc(userInfo.email)
+  //       .get()
+  //       .then((res) => setUser(res.data().note ?? ""));
+  //   };
+  //   getUser();
+  // }, []);
+  // console.log("user", user);
+  useEffect(() => {
+    dispatch(fetchNote(userInfo.email));
+  }, []);
+  console.log("Data", data);
   return (
     <SafeAreaView style={CONTAINER}>
       {data.length === 0 ? (

@@ -34,15 +34,19 @@ interface User {
 export default function Login(props: LoginI) {
   const user = useRef<User>();
   const token = useSelector(
-    (item: RootState) => item.persistedReducer.token.token
+    (item: RootState) => item.persistedReducer.firebase.token
   );
   const dispatch: AppDispatch = useDispatch();
   const {} = props;
   const addNew = () => {
     firestore()
-      .collection("testAndroidFinal")
-      .add({})
-      .then(() => console.log("success"));
+      .collection("Users")
+      .doc(user.current?.user?.email)
+      .set({
+        userInfo: { ...user.current },
+        note: [],
+      });
+    // .then(() => console.log("success"));
   };
 
   async function signIn() {
@@ -68,7 +72,7 @@ export default function Login(props: LoginI) {
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Button
         onPress={() => {
-          signIn().then(() => console.log("Signed in with Google!"));
+          signIn();
         }}
       >
         <Text style={{ color: "white" }}>Login</Text>

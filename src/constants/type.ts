@@ -9,3 +9,6 @@ export interface user {
   photo: string; // url
   name: string; // full name
 }
+export enum ActionType {
+  fetchData = "FETCH_DATA",
+}
