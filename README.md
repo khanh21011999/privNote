@@ -49,3 +49,6 @@ if (global.performance == null) {
  }
 ```
 in ```node_modules/react-native-reanimated/src/reanimated2/core.ts```  to prevent ```performance..now()``` error
+
+Link fix firebase https://github.com/invertase/react-native-firebase/issues/1878
+Link fix react-native-reanimated https://github.com/gorhom/react-native-bottom-sheet/issues/771
