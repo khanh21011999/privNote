@@ -794,14 +794,14 @@ PODS:
     - React-Core
   - RNDateTimePicker (3.5.2):
     - React-Core
-  - RNFBApp (14.1.0):
+  - RNFBApp (14.2.1):
     - Firebase/CoreOnly (= 8.10.0)
     - React-Core
-  - RNFBAuth (14.1.0):
+  - RNFBAuth (14.2.1):
     - Firebase/Auth (= 8.10.0)
     - React-Core
     - RNFBApp
-  - RNFBFirestore (14.1.0):
+  - RNFBFirestore (14.2.1):
     - Firebase/Firestore (= 8.10.0)
     - React-Core
     - RNFBApp
@@ -1118,9 +1118,9 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: ea6b5c280997b2b32a587793163b1f10e580c4f7
   RNCPicker: cb57c823d5ce8d2d0b5dfb45ad97b737260dc59e
   RNDateTimePicker: 7658208086d86d09e1627b5c34ba0cf237c60140
-  RNFBApp: e884e9a2dcc5edfa73e2651ef6638df5e0672f89
-  RNFBAuth: fd6cbf93302641dbe20045a44e64c1fa3d4eff02
-  RNFBFirestore: 335dcbdb91786a892dd76831373f9794ac947e3b
+  RNFBApp: 4f490a1e02e41721c55b354019f39f2323d72f82
+  RNFBAuth: 8a2d139824431757f1a6b71a8d086cb104e56a0d
+  RNFBFirestore: 1269c01e670c2b1833dc3ba1b09bc7b08669393e
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNGoogleSignin: c4381751eefd73c552b923ba347a9bfc6f18771c
   RNReanimated: da3860204e5660c0dd66739936732197d359d753

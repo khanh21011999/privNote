@@ -20,16 +20,22 @@ import { AppDispatch, RootState } from "src/redux/store";
 import { color } from "src/theme/color";
 import FooterNote from "./footer";
 import LeftIcon from "react-native-vector-icons/AntDesign";
-import { fetchNote, getPosts, loadDefault } from "src/redux/noteList-reducer";
+import {
+  fetchNote,
+  getPosts,
+  loadDefault,
+  updateDeletedNote,
+} from "src/redux/noteList-reducer";
 import auth from "@react-native-firebase/auth";
 
 import { Button } from "react-native-ui-lib";
-import firestore from "@react-native-firebase/firestore";
+
 import { async } from "@firebase/util";
 import { user } from "src/constants/type";
+
 const CONTAINER: ViewStyle = {
   width: widthScreen,
-  minHeight: heightScreen,
+  // minHeight: heightScreen,
 
   // display: "flex",
   backgroundColor: color.backgroundGrey,
@@ -48,7 +54,6 @@ export default function NoteListScreen() {
   //   dispatch(loadDefault());
   // }, []);
   const dispatch: AppDispatch = useDispatch();
-  console.log("a");
   const data = useSelector((state: RootState) => state.persistedReducer.note);
   const userInfo: user = useSelector(
     (state: RootState) => state.persistedReducer.firebase.userInfomation
@@ -67,7 +72,7 @@ export default function NoteListScreen() {
   useEffect(() => {
     dispatch(fetchNote(userInfo.email));
   }, []);
-  console.log("Data", data);
+
   return (
     <SafeAreaView style={CONTAINER}>
       {data.length === 0 ? (
@@ -82,6 +87,15 @@ export default function NoteListScreen() {
         <View style={CONTAINER}>
           <FlatList
             data={data}
+            style={{ marginBottom: spacingHeight[8] }}
+            keyExtractor={() => {
+              return (
+                new Date().getTime().toString() +
+                Math.floor(
+                  Math.random() * Math.floor(new Date().getTime())
+                ).toString()
+              );
+            }}
             ListHeaderComponent={() => <HeaderNote />}
             renderItem={({ item, index }) => {
               return (
@@ -94,9 +108,6 @@ export default function NoteListScreen() {
               );
             }}
           />
-          {/* <TouchableOpacity style={{ borderWidth: 1, bottom: 150 }}>
-            <Text style={{ color: "black" }}>Click me</Text>
-          </TouchableOpacity> */}
           <FooterNote />
         </View>
       )}

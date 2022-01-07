@@ -1,7 +1,12 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSlice,
+  current,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 import { ActionType } from "src/constants/type";
 import { NoteI } from "./noteList-reducer";
-import firestore from "@react-native-firebase/firestore";
+import firestore, { firebase } from "@react-native-firebase/firestore";
 
 export interface NoteI {
   id?: number | Date;
@@ -22,22 +27,37 @@ export const fetchNote = createAsyncThunk(
       .then((res: any) => res.data())
       .then((data) => data.note);
 
-    console.log("userNote", userNote);
     return userNote;
   }
 );
-// export const getPosts = createAsyncThunk(
-//   //action type string
-//   "posts/getPosts",
-//   // callback function
-//   async (thunkAPI) => {
-//     const res = await fetch("https://jsonplaceholder.typicode.com/posts").then(
-//       (data) => data.json()
-//     );
-//     return res;
+export const addNoteToFirestore = createAsyncThunk(
+  ActionType.addNote,
+  async (userEmail: any, thunkAPI) => {
+    return await firestore()
+      .collection("Users")
+      .doc(userEmail)
+      .update({
+        note: firebase.firestore.FieldValue.arrayUnion({
+          id: new Date(),
+          header: "test header3",
+          note: "test note23",
+          date: new Date(),
+          selectStatus: false,
+        }),
+      });
+    // .then(() => console.log("success"));
+  }
+);
+
+// export const updateDeletedNoteFirebase = createAsyncThunk(
+//   ActionType.deleteNote,
+//   async ({ userEmail, user }, thunkAPI) => {
+//     return await firestore().collection("Users").doc(userEmail).update({
+//       note: user,
+//     });
+//     // .then(() => console.log("success"));
 //   }
 // );
-
 const noteReducer = createSlice({
   name: "note",
   initialState: NoteList,
@@ -53,7 +73,10 @@ const noteReducer = createSlice({
       state.push(newNote);
     },
     removeNote: (state, action: PayloadAction<NoteI>) => {
-      return state.filter((item) => item.selectStatus !== true);
+      // return state.filter((item) => item.selectStatus !== true);
+      return state.filter(
+        (item) => JSON.stringify(item.id) !== JSON.stringify(action.payload.id)
+      );
     },
     toggleSelect: (state, action: PayloadAction<NoteI>) => {
       return state.map((item) => {
@@ -95,6 +118,11 @@ const noteReducer = createSlice({
       return state.concat(action.payload);
       // return state.concat(action.payload);
     });
+    // builder.addCase(updateDeletedNoteFirebase.fulfilled, (state, action) => {
+    //   state = [];
+    //   return state.concat(action.payload);
+    //   // return state.concat(action.payload);
+    // });
   },
 });
 

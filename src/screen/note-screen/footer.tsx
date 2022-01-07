@@ -17,13 +17,13 @@ const ADD_NOTE_BUTTON: ViewStyle = {
   marginRight: spacingWidth[4],
   backgroundColor: color.turquoiseBlue,
   alignItems: "center",
+  alignSelf: "center",
   position: "absolute",
   right: 0,
-  bottom: spacingHeight[5],
+  bottom: 200,
   borderRadius: size.addNoteButton.height / 2,
   justifyContent: "center",
 };
-console.log("footer");
 export default function FooterNote() {
   const nav = useNavigation();
   return (

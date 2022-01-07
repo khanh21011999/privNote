@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "556280479080",
+    "firebase_url": "https://privnote-cfcd6-default-rtdb.firebaseio.com",
     "project_id": "privnote-cfcd6",
     "storage_bucket": "privnote-cfcd6.appspot.com"
   },
@@ -37,6 +38,13 @@
             {
               "client_id": "556280479080-e3he9kh8o9nhl84b9uqin4arbl2nsuq9.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "556280479080-omrtql7m0lhl0nct6dpclrscdhaafvpb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.privNote"
+              }
             }
           ]
         }

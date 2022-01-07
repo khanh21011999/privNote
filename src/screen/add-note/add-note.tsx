@@ -6,11 +6,16 @@ import { TextInput, TextStyle, ViewStyle } from "react-native";
 import { fontSize } from "src/theme/font-size";
 import { spacingHeight, spacingWidth } from "src/theme/spacing";
 import { onePercentHeight, onePercentWidth } from "src/theme/size";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "src/redux/store";
-import { addNote } from "src/redux/noteList-reducer";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "src/redux/store";
+import {
+  addNote,
+  addNoteToFirestore,
+  fetchNote,
+} from "src/redux/noteList-reducer";
 import { color } from "src/theme/color";
 import BackArrow from "react-native-vector-icons/AntDesign";
+import { user } from "src/constants/type";
 const ADD_NOTE_HEADER: TextStyle = {
   fontSize: fontSize.headerFontSize,
 };
@@ -33,11 +38,16 @@ export default function AddNote() {
   const [noteAdd, setAddNote] = useState("");
   const [noteHeader, setNoteHeader] = useState("");
   const dispatch: AppDispatch = useDispatch();
+  const userInfo: user = useSelector(
+    (state: RootState) => state.persistedReducer.firebase.userInfomation
+  );
   const addNoteFunc = () => {
     dispatch(addNote({ note: noteAdd, header: noteHeader }));
   };
   const saveAndNavBack = () => {
     addNoteFunc();
+    dispatch(addNoteToFirestore(userInfo.email));
+    dispatch(fetchNote(userInfo.email));
     nav.goBack();
   };
   return (

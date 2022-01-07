@@ -11,4 +11,6 @@ export interface user {
 }
 export enum ActionType {
   fetchData = "FETCH_DATA",
+  addNote = "ADD_NOTE",
+  deleteNote = "DELETE_NOTE",
 }
