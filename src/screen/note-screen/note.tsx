@@ -76,7 +76,7 @@ export default function Note(props: NoteItemI) {
           justifyContent: "space-between",
         }}
       >
-        <Text>{moment().format("h:mmA MMM Do YY")}</Text>
+        <Text>{moment(date).format("h:mmA MMM Do YY")}</Text>
       </View>
     </View>
   );

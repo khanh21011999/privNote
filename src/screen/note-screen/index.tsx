@@ -87,7 +87,7 @@ export default function NoteListScreen() {
         <View style={CONTAINER}>
           <FlatList
             data={data}
-            style={{ marginBottom: spacingHeight[8] }}
+            // style={{ marginBottom: spacingHeight[8] }}
             keyExtractor={() => {
               return (
                 new Date().getTime().toString() +

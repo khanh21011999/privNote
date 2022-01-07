@@ -17,10 +17,6 @@ const ADD_NOTE_BUTTON: ViewStyle = {
   marginRight: spacingWidth[4],
   backgroundColor: color.turquoiseBlue,
   alignItems: "center",
-  alignSelf: "center",
-  position: "absolute",
-  right: 0,
-  bottom: 200,
   borderRadius: size.addNoteButton.height / 2,
   justifyContent: "center",
 };
@@ -29,8 +25,10 @@ export default function FooterNote() {
   return (
     <View
       style={{
-        width: widthScreen,
-        height: heightScreen * 0.1,
+        //
+        position: "absolute",
+        bottom: 0,
+        left: 0,
       }}
     >
       <TouchableOpacity

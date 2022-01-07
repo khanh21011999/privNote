@@ -25,6 +25,8 @@
     "@reduxjs/toolkit": "^1.6.2",
     "firebase": "^9.6.1",
     "lodash": "^4.17.21",
+    "lottie-ios": "3.2.3",
+    "lottie-react-native": "^5.0.1",
     "moment": "^2.29.1",
     "patch-package": "^6.4.7",
     "postinstall-postinstall": "^2.1.0",

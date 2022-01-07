@@ -17,10 +17,15 @@ import { useNavigation } from "@react-navigation/core";
 import { AppDispatch, RootState } from "src/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { switchToggle } from "src/redux/toggle-reducer";
-import { NoteI, removeNote, toggleSelect } from "src/redux/noteList-reducer";
+import {
+  fetchNote,
+  NoteI,
+  removeNote,
+  toggleSelect,
+} from "src/redux/noteList-reducer";
 import { RouteName } from "src/navigation/route-name";
 import firestore, { firebase } from "@react-native-firebase/firestore";
-import { user } from "src/constants/type";
+import { ConstantString, user } from "src/constants/type";
 
 export interface noteListI {
   title?: string;
@@ -38,8 +43,10 @@ const CONTAINER: ViewStyle = {
 };
 export default function NoteList(props: noteListI) {
   const { title, note, id, date } = props;
-  const [currentNote, setCurrentNote] = useState<NoteI[]>();
-  const currentDate = useRef<NoteI[]>();
+
+  let updatedUser: NoteI[] = [];
+  const currentNote = useRef<NoteI[]>();
+  const mounted = useRef(false);
   const [selectedButtonStatus, setSelectedButtonStatus] = useState(false);
   const nav = useNavigation();
   const dispatch = useDispatch();
@@ -50,9 +57,8 @@ export default function NoteList(props: noteListI) {
   const toggleSelectedButton = useSelector(
     (state: RootState) => state.toggle.enableSelectedButton
   );
-
   useEffect(() => {
-    currentDate.current = data;
+    currentNote.current = data;
   }, [data]);
   const onNavDetail = () => {
     nav.navigate(RouteName.EDIT_NOTE, {
@@ -62,22 +68,22 @@ export default function NoteList(props: noteListI) {
       id: id,
     });
   };
-  const updateDeletedNoteFirebase = async () => {
-    console.log(currentDate.current);
-    await firestore()
-      .collection("Users")
+  const updateDeletedNoteFirebase = () => {
+    firestore()
+      .collection(ConstantString.user)
       .doc(userInfo.email)
       .update({
-        note: currentDate.current,
+        note: data.filter(
+          (item) => JSON.stringify(item.id) !== JSON.stringify(id)
+        ),
       })
       .then(() => {
         console.log("delete success");
       });
   };
-  const removeSelectedNote = () => {
-    dispatch(removeNote({ id: id }));
-    console.log(id);
-  };
+  // const removeSelectedNote = () => {
+  //   dispatch(removeNote({ id: id }));
+  // };
   const toggleDeleteButton = () => {
     dispatch(switchToggle());
   };
@@ -99,9 +105,12 @@ export default function NoteList(props: noteListI) {
           // toggleDeleteButton();
           // setSelectedButtonStatus(true);
           // toggleSelectStatus();
-          removeSelectedNote();
+          // removeSelectedNote();
+          console.log("Data", currentNote);
+
           // getNote();
           updateDeletedNoteFirebase();
+          dispatch(fetchNote(userInfo.email));
         }}
         // flex
         style={CONTAINER}

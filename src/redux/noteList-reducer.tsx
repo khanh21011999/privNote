@@ -72,12 +72,12 @@ const noteReducer = createSlice({
       };
       state.push(newNote);
     },
-    removeNote: (state, action: PayloadAction<NoteI>) => {
-      // return state.filter((item) => item.selectStatus !== true);
-      return state.filter(
-        (item) => JSON.stringify(item.id) !== JSON.stringify(action.payload.id)
-      );
-    },
+    // removeNote: (state, action: PayloadAction<NoteI>) => {
+    //   // return state.filter((item) => item.selectStatus !== true);
+    //   return state.filter(
+    //     (item) => JSON.stringify(item.id) !== JSON.stringify(action.payload.id)
+    //   );
+    // },
     toggleSelect: (state, action: PayloadAction<NoteI>) => {
       return state.map((item) => {
         if (item.id === action.payload.id) {
@@ -129,7 +129,7 @@ const noteReducer = createSlice({
 export default noteReducer.reducer;
 export const {
   addNote,
-  removeNote,
+
   editNote,
   toggleSelect,
   loadDefault,

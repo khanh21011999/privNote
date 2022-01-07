@@ -14,3 +14,7 @@ export enum ActionType {
   addNote = "ADD_NOTE",
   deleteNote = "DELETE_NOTE",
 }
+
+export enum ConstantString {
+  user = "Users",
+}

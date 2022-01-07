@@ -47,7 +47,7 @@ export default function Login(props: LoginI) {
       .doc(user.current?.user?.email)
       .set({
         userInfo: { ...user.current },
-        note: firebase.firestore.FieldValue.arrayUnion(),
+        note: [],
       });
     // .then(() => console.log("success"));
   };
@@ -59,7 +59,6 @@ export default function Login(props: LoginI) {
       .then((data) => {
         data.forEach((snapshot) => {
           ListUser.push(snapshot.id);
-          console.log("user", snapshot.id);
         });
       });
   };
@@ -79,13 +78,10 @@ export default function Login(props: LoginI) {
     await getUser();
     user.current = userInfo;
     if (ListUser.includes(user.current.user?.email)) {
-      console.log("existed");
       dispatch(
         signedIn({ token: userInfo?.idToken, userInfomation: userInfo.user })
       );
     } else {
-      console.log("new");
-
       addNew();
       dispatch(
         signedIn({ token: userInfo?.idToken, userInfomation: userInfo.user })
