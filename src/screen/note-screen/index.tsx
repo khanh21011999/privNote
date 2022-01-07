@@ -1,7 +1,7 @@
-import { FlatList, ScrollView } from "react-native";
+import { FlatList, Platform, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import NoteList from "./note-list";
+import NoteList from "./notes";
 import { Text, TouchableOpacity, View } from "react-native-ui-lib";
 
 import HeaderNote from "./header";
@@ -9,6 +9,7 @@ import { Dimensions, TextStyle, ViewStyle } from "react-native";
 import { spacingWidth, spacingHeight } from "src/theme/spacing";
 import {
   heightScreen,
+  onePercentHeight,
   onePercentWidth,
   size,
   widthScreen,
@@ -35,7 +36,7 @@ import { user } from "src/constants/type";
 
 const CONTAINER: ViewStyle = {
   width: widthScreen,
-  // minHeight: heightScreen,
+  minHeight: heightScreen,
 
   // display: "flex",
   backgroundColor: color.backgroundGrey,
@@ -87,7 +88,12 @@ export default function NoteListScreen() {
         <View style={CONTAINER}>
           <FlatList
             data={data}
-            // style={{ marginBottom: spacingHeight[8] }}
+            style={{
+              marginBottom:
+                Platform.OS === "ios"
+                  ? onePercentHeight * 15
+                  : onePercentHeight * 12,
+            }}
             keyExtractor={() => {
               return (
                 new Date().getTime().toString() +

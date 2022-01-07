@@ -7,7 +7,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { ViewStyle, TouchableOpacity } from "react-native";
+import { ViewStyle, TouchableOpacity, TextStyle } from "react-native";
 import { size } from "src/theme/size";
 import { spacingWidth, spacingHeight } from "src/theme/spacing";
 import Note from "./note";
@@ -26,7 +26,9 @@ import {
 import { RouteName } from "src/navigation/route-name";
 import firestore, { firebase } from "@react-native-firebase/firestore";
 import { ConstantString, user } from "src/constants/type";
-
+import { fontSize } from "src/theme/font-size";
+import moment from "moment";
+import CheckIcon from "react-native-vector-icons/AntDesign";
 export interface noteListI {
   title?: string;
   note?: string;
@@ -41,6 +43,22 @@ const CONTAINER: ViewStyle = {
   margin: spacingWidth[4],
   marginVertical: spacingHeight[1],
 };
+const HEADER_TEXT: TextStyle = {
+  fontSize: fontSize.headerNote,
+  fontWeight: "600",
+};
+const NOTE_CONTAINER: ViewStyle = {
+  marginTop: spacingHeight[1],
+};
+const HEADER_CONTAINER: ViewStyle = {
+  justifyContent: "space-between",
+};
+const NOTE_ITEM_CONTAINER: ViewStyle = {
+  margin: spacingWidth[1],
+  justifyContent: "space-between",
+  display: "flex",
+  flex: 1,
+};
 export default function NoteList(props: noteListI) {
   const { title, note, id, date } = props;
 
@@ -49,6 +67,7 @@ export default function NoteList(props: noteListI) {
   const mounted = useRef(false);
   const [selectedButtonStatus, setSelectedButtonStatus] = useState(false);
   const nav = useNavigation();
+  const [isDeleteChecked, setDeleteChecked] = useState(false);
   const dispatch = useDispatch();
   const userInfo: user = useSelector(
     (state: RootState) => state.persistedReducer.firebase.userInfomation
@@ -68,6 +87,9 @@ export default function NoteList(props: noteListI) {
       id: id,
     });
   };
+  const toggleDeleteStatus = useSelector(
+    (state: RootState) => state.toggle.enableSelectedButton
+  );
   const updateDeletedNoteFirebase = () => {
     firestore()
       .collection(ConstantString.user)
@@ -102,29 +124,53 @@ export default function NoteList(props: noteListI) {
     <View>
       <TouchableOpacity
         onLongPress={() => {
-          // toggleDeleteButton();
-          // setSelectedButtonStatus(true);
-          // toggleSelectStatus();
+          toggleDeleteButton();
+          setSelectedButtonStatus(true);
+          toggleSelectStatus();
           // removeSelectedNote();
-          console.log("Data", currentNote);
-
+          // console.log("Data", currentNote);
           // getNote();
-          updateDeletedNoteFirebase();
-          dispatch(fetchNote(userInfo.email));
+          // updateDeletedNoteFirebase();
+          // dispatch(fetchNote(userInfo.email));
         }}
         // flex
         style={CONTAINER}
         onPress={() =>
-          !toggleSelectedButton ? onNavDetail() : setEnableToggle()
+          !toggleSelectedButton
+            ? onNavDetail()
+            : setDeleteChecked(!isDeleteChecked)
         }
       >
-        <Note
-          note={note}
-          header={title}
-          date={date}
-          id={id}
-          selectedStatus={selectedButtonStatus}
-        />
+        <View style={NOTE_ITEM_CONTAINER}>
+          <View>
+            <View row centerV style={HEADER_CONTAINER}>
+              <Text style={HEADER_TEXT}>{title}</Text>
+
+              {toggleDeleteStatus && (
+                <TouchableOpacity onPress={() => {}}>
+                  {isDeleteChecked ? (
+                    <CheckIcon name="checkcircle" size={size.iconSize} />
+                  ) : (
+                    <CheckIcon name="checkcircleo" size={size.iconSize} />
+                  )}
+                </TouchableOpacity>
+              )}
+            </View>
+            <View style={NOTE_CONTAINER}>
+              <Text numberOfLines={7}>{note}</Text>
+            </View>
+          </View>
+          <View
+            style={{
+              alignSelf: "flex-end",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Text>{moment(date).format("h:mmA MMM Do YY")}</Text>
+          </View>
+        </View>
       </TouchableOpacity>
     </View>
   );

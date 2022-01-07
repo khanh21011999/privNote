@@ -27,6 +27,8 @@ import io.invertase.firebase.firestore.ReactNativeFirebaseFirestorePackage;
 import com.reactnativegooglesignin.RNGoogleSigninPackage;
 // @react-native-picker/picker
 import com.reactnativecommunity.picker.RNCPickerPackage;
+// lottie-react-native
+import com.airbnb.android.react.lottie.LottiePackage;
 // react-native-flipper
 import com.facebook.flipper.reactnative.FlipperPackage;
 // react-native-gesture-handler
@@ -99,6 +101,7 @@ public class PackageList {
       new ReactNativeFirebaseFirestorePackage(),
       new RNGoogleSigninPackage(),
       new RNCPickerPackage(),
+      new LottiePackage(),
       new FlipperPackage(),
       new RNGestureHandlerPackage(),
       new ReanimatedPackage(),

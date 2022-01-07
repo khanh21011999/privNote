@@ -27,8 +27,8 @@ export default function FooterNote() {
       style={{
         //
         position: "absolute",
-        bottom: 0,
-        left: 0,
+        bottom: 140,
+        right: 0,
       }}
     >
       <TouchableOpacity

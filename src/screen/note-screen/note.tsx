@@ -5,25 +5,9 @@ import { fontSize } from "src/theme/font-size";
 import { spacingWidth, spacingHeight } from "src/theme/spacing";
 import { useSelector } from "react-redux";
 import { RootState } from "src/redux/store";
-import CheckIcon from "react-native-vector-icons/AntDesign";
+
 import moment from "moment";
 import { size } from "src/theme/size";
-const HEADER_TEXT: TextStyle = {
-  fontSize: fontSize.headerNote,
-  fontWeight: "600",
-};
-const NOTE_CONTAINER: ViewStyle = {
-  marginTop: spacingHeight[1],
-};
-const HEADER_CONTAINER: ViewStyle = {
-  justifyContent: "space-between",
-};
-const CONTAINER: ViewStyle = {
-  margin: spacingWidth[1],
-  justifyContent: "space-between",
-  display: "flex",
-  flex: 1,
-};
 
 export interface NoteItemI {
   note?: string;
@@ -34,11 +18,7 @@ export interface NoteItemI {
 }
 export default function Note(props: NoteItemI) {
   const { note, header, date, id, selectedStatus } = props;
-  const [isDeleteChecked, setDeleteChecked] = useState(false);
 
-  const toggleDeleteStatus = useSelector(
-    (state: RootState) => state.toggle.enableSelectedButton
-  );
   // const deleteNote = () => {
   //   dispatch(removeNote({ id: id }));
   // };
