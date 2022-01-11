@@ -4,7 +4,7 @@ import { Text } from "react-native-ui-lib";
 import { Font } from "src/theme/font-name";
 interface TextI extends TextProps {
   text?: string;
-  present?: Present;
+  present?: string;
   style?: TextStyle | TextStyle[];
   children?: string;
   bold?: boolean;

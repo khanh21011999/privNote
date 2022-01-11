@@ -9,7 +9,7 @@ import { NoteI } from "./noteList-reducer";
 import firestore, { firebase } from "@react-native-firebase/firestore";
 
 export interface NoteI {
-  id?: number | Date;
+  id?: string;
   header?: string;
   note?: string;
   date?: Date;
@@ -38,7 +38,11 @@ export const addNoteToFirestore = createAsyncThunk(
       .doc(userEmail)
       .update({
         note: firebase.firestore.FieldValue.arrayUnion({
-          id: new Date(),
+          id:
+            new Date().getTime().toString() +
+            Math.floor(
+              Math.random() * Math.floor(new Date().getTime())
+            ).toString(),
           header: "test header3",
           note: "test note23",
           date: new Date(),
@@ -64,7 +68,11 @@ const noteReducer = createSlice({
   reducers: {
     addNote: (state, action: PayloadAction<NoteI>) => {
       const newNote: NoteI = {
-        id: new Date(),
+        id:
+          new Date().getTime().toString() +
+          Math.floor(
+            Math.random() * Math.floor(new Date().getTime())
+          ).toString(),
         header: action.payload.header,
         note: action.payload.note,
         date: new Date(),

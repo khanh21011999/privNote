@@ -1,5 +1,6 @@
 import { persistStore } from "redux-persist";
-import store from "src/redux/store";
+import store, { AppDispatch } from "src/redux/store";
+import { useDispatch } from "react-redux";
 
 export interface user {
   email: string;
@@ -14,7 +15,7 @@ export enum ActionType {
   addNote = "ADD_NOTE",
   deleteNote = "DELETE_NOTE",
 }
-
 export enum ConstantString {
   user = "Users",
+  searchHere = "Search here",
 }

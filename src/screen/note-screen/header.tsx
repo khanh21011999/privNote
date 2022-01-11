@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "src/redux/authentication";
 import firestore from "@react-native-firebase/firestore";
 import { AppDispatch, RootState } from "src/redux/store";
-import { user } from "src/constants/type";
+import { ConstantString, user } from "src/constants/type";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { resetNote } from "src/redux/noteList-reducer";
 const HEADER_TEXT: TextStyle = {
@@ -23,11 +23,12 @@ const HEADER_TEXT: TextStyle = {
   fontFamily: Font.bold,
 };
 
-const INPUT_STYLE: ViewStyle = {
+const INPUT_STYLE: TextStyle = {
   height: size.headerSearch,
   borderRadius: spacingWidth[4],
   paddingHorizontal: spacingWidth[3],
   width: onePercentWidth * 95,
+  fontFamily: Font.regular,
   backgroundColor: color.lightGrey,
 };
 const CONTAINER: ViewStyle = {
@@ -59,16 +60,19 @@ export default function HeaderNote() {
       <View
         row
         centerV
+        flex
         style={{
           justifyContent: "space-between",
           paddingHorizontal: spacingWidth[2],
         }}
       >
-        <Text style={HEADER_TEXT}>
-          Your secret, keep it private, {userInfo.name}
-        </Text>
+        <View style={{ flex: 15 }}>
+          <Text style={HEADER_TEXT}>
+            Your secret, keep it private, {userInfo.name}
+          </Text>
+        </View>
 
-        <TouchableOpacity onPress={() => signOut()}>
+        <TouchableOpacity style={{ flex: 1 }} onPress={() => signOut()}>
           <Icon
             name="settings-outline"
             color={color.black}
@@ -78,7 +82,10 @@ export default function HeaderNote() {
         </TouchableOpacity>
       </View>
       <View centerH>
-        <TextInput placeholder={"Search here"} style={INPUT_STYLE} />
+        <TextInput
+          placeholder={ConstantString.searchHere}
+          style={INPUT_STYLE}
+        />
       </View>
     </View>
   );

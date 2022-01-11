@@ -33,6 +33,7 @@ import { Button } from "react-native-ui-lib";
 
 import { async } from "@firebase/util";
 import { user } from "src/constants/type";
+import { AppText } from "src/components/Text/text";
 
 const CONTAINER: ViewStyle = {
   width: widthScreen,
@@ -59,6 +60,7 @@ export default function NoteListScreen() {
   const userInfo: user = useSelector(
     (state: RootState) => state.persistedReducer.firebase.userInfomation
   );
+  console.log("abc");
   // useEffect(() => {
   //   const getUser = async () => {
   //     await firestore()
@@ -80,13 +82,16 @@ export default function NoteListScreen() {
         <>
           <ScrollView>
             <HeaderNote />
-            <Text style={EMPTY_NOTE}>Hmm, so don't have any secret yet </Text>
+            <AppText style={EMPTY_NOTE}>
+              Hmm, so don't have any secret yet
+            </AppText>
           </ScrollView>
           <FooterNote />
         </>
       ) : (
         <View style={CONTAINER}>
           <FlatList
+            removeClippedSubviews
             data={data}
             style={{
               marginBottom:
@@ -94,14 +99,7 @@ export default function NoteListScreen() {
                   ? onePercentHeight * 15
                   : onePercentHeight * 12,
             }}
-            keyExtractor={() => {
-              return (
-                new Date().getTime().toString() +
-                Math.floor(
-                  Math.random() * Math.floor(new Date().getTime())
-                ).toString()
-              );
-            }}
+            keyExtractor={(item) => item.id}
             ListHeaderComponent={() => <HeaderNote />}
             renderItem={({ item, index }) => {
               return (
@@ -110,6 +108,7 @@ export default function NoteListScreen() {
                   title={item.header}
                   date={item.date}
                   id={item.id}
+                  selectStatus={item.selectStatus}
                 />
               );
             }}

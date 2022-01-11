@@ -10,6 +10,7 @@ import TabNavigation from "./tab/botton-navigation";
 import Login from "src/screen/login/login";
 import { useSelector } from "react-redux";
 import { RootState } from "src/redux/store";
+import { user } from "src/constants/type";
 
 type RootStateParamList = {
   [RouteName.LOGIN]: undefined;
@@ -22,6 +23,9 @@ type RootStateParamList = {
     header: string | undefined;
     id: Date | undefined;
   };
+  [RouteName.SETTING]: {
+    userInfo: user;
+  };
 };
 
 const Stack = createNativeStackNavigator<RootStateParamList>();
@@ -31,14 +35,14 @@ declare global {
   }
 }
 export function NoteNavigation() {
-  const token: string = useSelector(
+  const token: string | null = useSelector(
     (item: RootState) => item.persistedReducer.firebase.token
   );
 
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={RouteName.LOGIN}>
-        {token?.length > 0 ? (
+        {token!.length > 0 ? (
           <>
             <Stack.Screen
               options={{ headerShown: false }}
