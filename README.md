@@ -1,7 +1,7 @@
 # privNote : The most reliable note-talking app
 
 This note will listen and keep all your secret, and keep it until you don't want it keep your secret for you anymore
-
+Cancel changes
 
 
 # To-do list
@@ -10,7 +10,7 @@ This note will listen and keep all your secret, and keep it until you don't want
 
 - [x] Add Note
 - [x] Edit Note
-- [ ] Remove Note
+- [x] Remove Note
 - [ ] Add dark mode
 - [ ] HightLight Text
 - [ ] Change font weight of hightlight
