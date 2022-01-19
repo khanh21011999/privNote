@@ -15,6 +15,7 @@ import { AppDispatch, RootState } from "src/redux/store";
 import { ConstantString, user } from "src/constants/type";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { resetNote } from "src/redux/noteList-reducer";
+
 const HEADER_TEXT: TextStyle = {
   fontSize: RFPercentage(3.5),
   color: "black",

@@ -30,28 +30,6 @@ export const fetchNote = createAsyncThunk(
     return userNote;
   }
 );
-export const addNoteToFirestore = createAsyncThunk(
-  ActionType.addNote,
-  async (userEmail: any, thunkAPI) => {
-    return await firestore()
-      .collection("Users")
-      .doc(userEmail)
-      .update({
-        note: firebase.firestore.FieldValue.arrayUnion({
-          id:
-            new Date().getTime().toString() +
-            Math.floor(
-              Math.random() * Math.floor(new Date().getTime())
-            ).toString(),
-          header: "test header3",
-          note: "test note23",
-          date: new Date(),
-          selectStatus: false,
-        }),
-      });
-    // .then(() => console.log("success"));
-  }
-);
 
 // export const updateDeletedNoteFirebase = createAsyncThunk(
 //   ActionType.deleteNote,
@@ -66,20 +44,20 @@ const noteReducer = createSlice({
   name: "note",
   initialState: NoteList,
   reducers: {
-    addNote: (state, action: PayloadAction<NoteI>) => {
-      const newNote: NoteI = {
-        id:
-          new Date().getTime().toString() +
-          Math.floor(
-            Math.random() * Math.floor(new Date().getTime())
-          ).toString(),
-        header: action.payload.header,
-        note: action.payload.note,
-        date: new Date(),
-        selectStatus: false,
-      };
-      state.push(newNote);
-    },
+    // addNote: (state, action: PayloadAction<NoteI>) => {
+    //   const newNote: NoteI = {
+    //     id:
+    //       new Date().getTime().toString() +
+    //       Math.floor(
+    //         Math.random() * Math.floor(new Date().getTime())
+    //       ).toString(),
+    //     header: action.payload.header,
+    //     note: action.payload.note,
+    //     date: new Date(),
+    //     selectStatus: false,
+    //   };
+    //   state.push(newNote);
+    // },
     // removeNote: (state, action: PayloadAction<NoteI>) => {
     //   // return state.filter((item) => item.selectStatus !== true);
     //   return state.filter(
@@ -93,6 +71,20 @@ const noteReducer = createSlice({
         }
         return item;
       });
+    },
+    searchNote: (state, action: PayloadAction<NoteI>) => {
+      const resultArray = [];
+      const lowerCaseNoteResult = action.payload.note?.toLowerCase();
+      const lowerCaseHeaderResult = action.payload.header?.toLocaleLowerCase();
+      for (let i = 0; i < state.length; i++) {
+        if (
+          state[i].header?.includes(lowerCaseHeaderResult!) ||
+          state[i].note?.includes(lowerCaseNoteResult!)
+        ) {
+          resultArray.push(state[i]);
+        }
+      }
+      return resultArray;
     },
     loadDefault: (state) => {
       return state.map((item) => {

@@ -34,10 +34,11 @@ import { Button } from "react-native-ui-lib";
 import { async } from "@firebase/util";
 import { user } from "src/constants/type";
 import { AppText } from "src/components/Text/text";
+import { signedIn } from "src/redux/authentication";
+import { switchReloadOff, switchReloadOn } from "src/redux/toggle-reducer";
 
 const CONTAINER: ViewStyle = {
   width: widthScreen,
-  minHeight: heightScreen,
 
   // display: "flex",
   backgroundColor: color.backgroundGrey,
@@ -55,12 +56,14 @@ export default function NoteListScreen() {
   // useEffect(() => {
   //   dispatch(loadDefault());
   // }, []);
+  // const [refresh, setRefresh] = useState(false);
   const dispatch: AppDispatch = useDispatch();
+  const refresh = useSelector((state: RootState) => state.toggle.reloadNote);
   const data = useSelector((state: RootState) => state.persistedReducer.note);
   const userInfo: user = useSelector(
     (state: RootState) => state.persistedReducer.firebase.userInfomation
   );
-  console.log("abc");
+
   // useEffect(() => {
   //   const getUser = async () => {
   //     await firestore()
@@ -75,47 +78,64 @@ export default function NoteListScreen() {
   useEffect(() => {
     dispatch(fetchNote(userInfo.email));
   }, []);
-
+  const fetchData = () => {
+    setTimeout(() => {
+      dispatch(fetchNote(userInfo.email)).then(() =>
+        dispatch(switchReloadOff())
+      );
+    }, 500);
+  };
+  console.log("refresh", refresh);
   return (
-    <SafeAreaView style={CONTAINER}>
+    <View style={CONTAINER}>
       {data.length === 0 ? (
         <>
-          <ScrollView>
-            <HeaderNote />
-            <AppText style={EMPTY_NOTE}>
-              Hmm, so don't have any secret yet
-            </AppText>
-          </ScrollView>
-          <FooterNote />
+          <SafeAreaView>
+            <ScrollView style={{ minHeight: heightScreen * 0.9 }}>
+              <HeaderNote />
+              <AppText style={EMPTY_NOTE}>
+                Hmm, so don't have any secret yet
+              </AppText>
+            </ScrollView>
+            <FooterNote />
+          </SafeAreaView>
         </>
       ) : (
-        <View style={CONTAINER}>
-          <FlatList
-            removeClippedSubviews
-            data={data}
-            style={{
-              marginBottom:
-                Platform.OS === "ios"
-                  ? onePercentHeight * 15
-                  : onePercentHeight * 12,
-            }}
-            keyExtractor={(item) => item.id}
-            ListHeaderComponent={() => <HeaderNote />}
-            renderItem={({ item, index }) => {
-              return (
-                <NoteList
-                  note={item.note}
-                  title={item.header}
-                  date={item.date}
-                  id={item.id}
-                  selectStatus={item.selectStatus}
-                />
-              );
-            }}
-          />
+        <View>
+          <SafeAreaView style={{ minHeight: heightScreen }}>
+            <FlatList
+              refreshing={refresh}
+              onRefresh={() => {
+                dispatch(switchReloadOn());
+                fetchData();
+              }}
+              removeClippedSubviews
+              data={data}
+              style={{
+                marginBottom:
+                  Platform.OS === "ios"
+                    ? onePercentHeight * 6
+                    : onePercentHeight * 6,
+              }}
+              keyExtractor={(item) => item.id}
+              ListHeaderComponent={() => <HeaderNote />}
+              renderItem={({ item, index }) => {
+                return (
+                  <NoteList
+                    note={item.note}
+                    title={item.header}
+                    date={item.date}
+                    id={item.id}
+                    selectStatus={item.selectStatus}
+                  />
+                );
+              }}
+            />
+          </SafeAreaView>
+
           <FooterNote />
         </View>
       )}
-    </SafeAreaView>
+    </View>
   );
 }

@@ -2,19 +2,32 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const NoteToggle = {
   enableSelectedButton: false,
+  reloadNote: false,
 };
 
 const toggleReducer = createSlice({
   name: "toggleReducer",
   initialState: NoteToggle,
   reducers: {
-    switchToggle: (state) => {
-      return { ...state, enableSelectedButton: !state.enableSelectedButton };
+    switchSelectedOn: (state) => {
+      return { ...state, enableSelectedButton: true };
     },
-    defaultToggle: (state) => {
+    switchReloadOn: (state) => {
+      return { ...state, reloadNote: true };
+    },
+    switchReloadOff: (state) => {
+      return { ...state, reloadNote: false };
+    },
+
+    switchSelectedOff: (state) => {
       return { ...state, enableSelectedButton: false };
     },
   },
 });
 export default toggleReducer.reducer;
-export const { switchToggle, defaultToggle } = toggleReducer.actions;
+export const {
+  switchSelectedOn,
+  switchSelectedOff,
+  switchReloadOff,
+  switchReloadOn,
+} = toggleReducer.actions;

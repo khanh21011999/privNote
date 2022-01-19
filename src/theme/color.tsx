@@ -6,4 +6,5 @@ export const color = {
   turquoiseBlue: "#60BFE9",
   backgroundGrey: "#EEEEEE",
   black: "#000",
+  white: "#FFFFFF",
 };

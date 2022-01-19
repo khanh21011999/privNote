@@ -1,4 +1,4 @@
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, ScrollView } from "react-native";
 import { View, Text, TouchableOpacity } from "react-native-ui-lib";
 import React, { useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/core";
@@ -6,25 +6,29 @@ import { TextInput, TextStyle, ViewStyle } from "react-native";
 import { fontSize } from "src/theme/font-size";
 import { spacingWidth, spacingHeight } from "src/theme/spacing";
 import { onePercentHeight, onePercentWidth } from "src/theme/size";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "src/redux/store";
-import { addNote, editNote } from "src/redux/noteList-reducer";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "src/redux/store";
+import { addNote, editNote, fetchNote } from "src/redux/noteList-reducer";
 import { color } from "src/theme/color";
 import BackArrow from "react-native-vector-icons/AntDesign";
 import { RouteName } from "src/navigation/route-name";
+import InputScrollView from "react-native-input-scroll-view";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { firebase } from "@react-native-firebase/firestore";
+import { ConstantString, user } from "src/constants/type";
+import { switchReloadOff, switchReloadOn } from "src/redux/toggle-reducer";
 const ADD_NOTE_HEADER: TextStyle = {
   fontSize: fontSize.headerFontSize,
 };
 const PLACEhHOLDER: ViewStyle = {};
 const HEADER_INPUT: TextStyle = {
-  height: 6 * onePercentHeight,
   fontSize: fontSize.headerInputNote,
 };
 const SAVE_NOTE_BT: TextStyle = {
   fontWeight: "bold",
 };
 const NOTE_INPUT: TextStyle = {
-  height: 80 * onePercentHeight,
+  fontSize: 30,
 };
 const HEADER: ViewStyle = {
   justifyContent: "space-between",
@@ -41,8 +45,13 @@ export default function EditNote() {
 
   const { date, note, header, id } = route.params;
   const [noteEdit, setNoteEdit] = useState(note);
+  const data = useSelector((state: RootState) => state.persistedReducer.note);
+  const userInfo: user = useSelector(
+    (state: RootState) => state.persistedReducer.firebase.userInfomation
+  );
   const [noteHeader, setNoteHeader] = useState(header);
   const dispatch: AppDispatch = useDispatch();
+
   const editNoteFunc = () => {
     dispatch(
       editNote({
@@ -53,10 +62,30 @@ export default function EditNote() {
       })
     );
   };
-  const saveAndNavBack = () => {
-    editNoteFunc();
-    nav.goBack();
+
+  const editAndSaveFirebase = () => {
+    firebase
+      .firestore()
+      .collection(ConstantString.user)
+      .doc(userInfo.email)
+      .update({
+        note: data.map((item) => {
+          if (item.id === id) {
+            return {
+              ...item,
+              note: noteEdit,
+              header: noteHeader,
+              date: date,
+            };
+          }
+          return item;
+        }),
+      });
   };
+  // const saveAndNavBack = () => {
+  //   editNoteFunc();
+  //   nav.goBack();
+  // };
   return (
     <SafeAreaView style={{ margin: spacingWidth[3] }}>
       <View row centerV style={HEADER}>
@@ -66,19 +95,26 @@ export default function EditNote() {
 
         <TouchableOpacity
           onPress={() => {
-            saveAndNavBack();
+            editAndSaveFirebase();
+            nav.goBack();
+            dispatch(switchReloadOn());
+            dispatch(fetchNote(userInfo.email)).then(() =>
+              dispatch(switchReloadOff())
+            );
+            // saveAndNavBack();
           }}
         >
           <Text style={SAVE_NOTE_BT}>Save</Text>
         </TouchableOpacity>
       </View>
-      <View>
-        <TextInput
-          onChangeText={(text) => setNoteHeader(text)}
-          value={noteHeader}
-          placeholder="Meaningful header"
-          style={HEADER_INPUT}
-        />
+
+      <TextInput
+        onChangeText={(text) => setNoteHeader(text)}
+        value={noteHeader}
+        placeholder="Meaningful header"
+        style={HEADER_INPUT}
+      />
+      <InputScrollView>
         <TextInput
           textAlignVertical={Platform.OS === "android" ? "top" : ""}
           onChangeText={(text) => setNoteEdit(text)}
@@ -87,7 +123,7 @@ export default function EditNote() {
           multiline
           style={NOTE_INPUT}
         />
-      </View>
+      </InputScrollView>
     </SafeAreaView>
   );
 }

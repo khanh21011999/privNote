@@ -17,7 +17,7 @@ import { color } from "src/theme/color";
 import { useNavigation } from "@react-navigation/core";
 import { AppDispatch, RootState } from "src/redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { switchToggle } from "src/redux/toggle-reducer";
+import { switchSelectedOn } from "src/redux/toggle-reducer";
 import {
   fetchNote,
   NoteI,
@@ -82,22 +82,7 @@ function NoteList(props: noteListI) {
       id: id,
     });
   };
-  useEffect(() => {
-    console.log(isDeleteChecked);
-  }, [isDeleteChecked]);
-  const updateDeletedNoteFirebase = () => {
-    firestore()
-      .collection(ConstantString.user)
-      .doc(userInfo.email)
-      .update({
-        note: data.filter(
-          (item) => JSON.stringify(item.id) !== JSON.stringify(id)
-        ),
-      })
-      .then(() => {
-        console.log("delete success");
-      });
-  };
+
   // const removeSelectedNote = () => {
   //   dispatch(removeNote({ id: id }));
   // };
@@ -109,9 +94,8 @@ function NoteList(props: noteListI) {
   // }, [isDeleteChecked]);
 
   const toggleSelectButton = () => {
-    dispatch(switchToggle());
+    dispatch(switchSelectedOn());
   };
-  console.log(isDeleteChecked);
   const toggleSelectStatus = () => {};
   const setDeleteItem = () => {
     // setDeleteChecked(!isDeleteChecked);
@@ -131,21 +115,12 @@ function NoteList(props: noteListI) {
     <TouchableOpacity
       onLongPress={() => {
         toggleSelectButton();
-        // setDeleteChecked(!isDeleteChecked);
-        // setSelectedButtonStatus(true);
-        // toggleSelectStatus();
-        // removeSelectedNote();
-        // console.log("Data", currentNote);
-        // getNote();
-        // updateDeletedNoteFirebase();
-        // dispatch(fetchNote(userInfo.email));
       }}
       // flex
       style={CONTAINER}
       onPress={() => (!toggleSelectedButton ? onNavDetail() : setDeleteItem())}
     >
       <View style={NOTE_ITEM_CONTAINER}>
-        <Text>{isDeleteChecked?.toString()}</Text>
         <View>
           <View row centerV style={HEADER_CONTAINER}>
             <View>

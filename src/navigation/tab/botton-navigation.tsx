@@ -16,6 +16,8 @@ import ImportantIconFocus from "assets/icons/important.svg";
 import { AppText } from "src/components/Text/text";
 import { color } from "src/theme/color";
 import { spacingHeight, spacingWidth } from "src/theme/spacing";
+import { useSelector } from "react-redux";
+import { RootState } from "src/redux/store";
 const Tab = createBottomTabNavigator();
 const TAB_LABEL: TextStyle = {
   fontSize: RFPercentage(2),
@@ -23,6 +25,9 @@ const TAB_LABEL: TextStyle = {
   marginBottom: spacingHeight[2],
 };
 const TAB_STYLE: ViewStyle = {
+  justifyContent: "center",
+  alignItems: "center",
+  paddingBottom: spacingHeight[2],
   height: Platform.OS === "ios" ? onePercentHeight * 10 : onePercentHeight * 8,
 };
 const TEXT_LABEL_FOCUS: TextStyle = {
@@ -30,10 +35,16 @@ const TEXT_LABEL_FOCUS: TextStyle = {
   bottom: spacingHeight[1],
 };
 export default function TabNavigation() {
+  const selectToggle = useSelector(
+    (state: RootState) => state.toggle.enableSelectedButton
+  );
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarStyle: TAB_STYLE,
+        tabBarStyle: [
+          TAB_STYLE,
+          selectToggle === true ? { display: "none" } : null,
+        ],
       }}
     >
       <Tab.Screen

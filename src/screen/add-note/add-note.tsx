@@ -16,18 +16,18 @@ import {
 import { color } from "src/theme/color";
 import BackArrow from "react-native-vector-icons/AntDesign";
 import { user } from "src/constants/type";
+import { firebase } from "@react-native-firebase/firestore";
 const ADD_NOTE_HEADER: TextStyle = {
   fontSize: fontSize.headerFontSize,
 };
 const HEADER_INPUT: TextStyle = {
-  height: 6 * onePercentHeight,
   fontSize: fontSize.headerInputNote,
 };
 const SAVE_NOTE_BT: TextStyle = {
   fontWeight: "bold",
 };
 const NOTE_INPUT: TextStyle = {
-  height: 80 * onePercentHeight,
+  fontSize: 30,
 };
 const HEADER: ViewStyle = {
   justifyContent: "space-between",
@@ -35,21 +35,37 @@ const HEADER: ViewStyle = {
 };
 export default function AddNote() {
   const nav = useNavigation();
-  const [noteAdd, setAddNote] = useState("");
-  const [noteHeader, setNoteHeader] = useState("");
+  const [headerValue, setHeaderValue] = useState("");
+  const [notes, setNotes] = useState("");
   const dispatch: AppDispatch = useDispatch();
   const userInfo: user = useSelector(
     (state: RootState) => state.persistedReducer.firebase.userInfomation
   );
-  const addNoteFunc = () => {
-    dispatch(addNote({ note: noteAdd, header: noteHeader }));
-  };
   const saveAndNavBack = () => {
-    addNoteFunc();
-    dispatch(addNoteToFirestore(userInfo.email));
+    addNoteToFirestore();
     dispatch(fetchNote(userInfo.email));
     nav.goBack();
   };
+  const addNoteToFirestore = () => {
+    firebase
+      .firestore()
+      .collection("Users")
+      .doc(userInfo.email)
+      .update({
+        note: firebase.firestore.FieldValue.arrayUnion({
+          id:
+            new Date().getTime().toString() +
+            Math.floor(
+              Math.random() * Math.floor(new Date().getTime())
+            ).toString(),
+          header: headerValue,
+          note: notes,
+          date: new Date(),
+          selectStatus: false,
+        }),
+      });
+  };
+
   return (
     <SafeAreaView style={{ margin: spacingWidth[3] }}>
       <View row centerV style={HEADER}>
@@ -68,8 +84,8 @@ export default function AddNote() {
       <View>
         <View>
           <TextInput
-            onChangeText={(text) => setNoteHeader(text)}
-            value={noteHeader}
+            onChangeText={(text) => setHeaderValue(text)}
+            value={headerValue}
             placeholder="Meaningful header"
             style={HEADER_INPUT}
           />
@@ -77,9 +93,9 @@ export default function AddNote() {
         <View>
           <TextInput
             textAlignVertical={Platform.OS === "android" ? "top" : ""}
-            onChangeText={(text) => setAddNote(text)}
+            onChangeText={(text) => setNotes(text)}
             placeholder="Type your secret here..."
-            value={noteAdd}
+            value={notes}
             multiline
             style={NOTE_INPUT}
           />
