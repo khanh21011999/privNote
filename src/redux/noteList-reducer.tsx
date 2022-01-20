@@ -44,26 +44,26 @@ const noteReducer = createSlice({
   name: "note",
   initialState: NoteList,
   reducers: {
-    // addNote: (state, action: PayloadAction<NoteI>) => {
-    //   const newNote: NoteI = {
-    //     id:
-    //       new Date().getTime().toString() +
-    //       Math.floor(
-    //         Math.random() * Math.floor(new Date().getTime())
-    //       ).toString(),
-    //     header: action.payload.header,
-    //     note: action.payload.note,
-    //     date: new Date(),
-    //     selectStatus: false,
-    //   };
-    //   state.push(newNote);
-    // },
-    // removeNote: (state, action: PayloadAction<NoteI>) => {
-    //   // return state.filter((item) => item.selectStatus !== true);
-    //   return state.filter(
-    //     (item) => JSON.stringify(item.id) !== JSON.stringify(action.payload.id)
-    //   );
-    // },
+    addNote: (state, action: PayloadAction<NoteI>) => {
+      const newNote: NoteI = {
+        id:
+          new Date().getTime().toString() +
+          Math.floor(
+            Math.random() * Math.floor(new Date().getTime())
+          ).toString(),
+        header: action.payload.header,
+        note: action.payload.note,
+        date: new Date(),
+        selectStatus: false,
+      };
+      state.push(newNote);
+    },
+    removeNote: (state, action: PayloadAction<NoteI>) => {
+      // return state.filter((item) => item.selectStatus !== true);
+      return state.filter(
+        (item) => JSON.stringify(item.id) !== JSON.stringify(action.payload.id)
+      );
+    },
     toggleSelect: (state, action: PayloadAction<NoteI>) => {
       return state.map((item) => {
         if (item.id === action.payload.id) {

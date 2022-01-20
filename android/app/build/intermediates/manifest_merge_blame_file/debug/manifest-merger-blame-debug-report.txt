@@ -12,8 +12,8 @@
 11-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/debug/AndroidManifest.xml:5:5-77
 11-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/debug/AndroidManifest.xml:5:22-75
 12    <uses-permission android:name="android.permission.INTERNET" />
-12-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:4:5-67
-12-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:4:22-64
+12-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:3:3-65
+12-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:3:20-62
 13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 13-->[com.facebook.flipper:flipper:0.99.0] /Users/khanhs/.gradle/caches/transforms-3/85722bbced5f75f7128f01e28eb86f9e/transformed/jetified-flipper-0.99.0/AndroidManifest.xml:16:5-76
 13-->[com.facebook.flipper:flipper:0.99.0] /Users/khanhs/.gradle/caches/transforms-3/85722bbced5f75f7128f01e28eb86f9e/transformed/jetified-flipper-0.99.0/AndroidManifest.xml:16:22-73
@@ -25,48 +25,48 @@
 15-->[:react-native-firebase_auth] /Users/khanhs/Work/React-native/Personal_Project/privNote/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:22-76
 16
 17    <application
-17-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:6:5-24:19
+17-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:5:3-12:17
 18        android:name="com.privnote.MainApplication"
-18-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:7:7-38
+18-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:5:16-47
 19        android:allowBackup="false"
-19-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:11:7-34
+19-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:5:162-189
 20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 20-->[androidx.core:core:1.5.0] /Users/khanhs/.gradle/caches/transforms-3/9eba7cef7293f195e486b5c1bb290770/transformed/core-1.5.0/AndroidManifest.xml:24:18-86
 21        android:debuggable="true"
 22        android:icon="@mipmap/ic_launcher"
-22-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:9:7-41
+22-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:5:81-115
 23        android:label="@string/app_name"
-23-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:8:7-39
+23-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:5:48-80
 24        android:roundIcon="@mipmap/ic_launcher_round"
-24-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:10:7-52
+24-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:5:116-161
 25        android:theme="@style/AppTheme"
-25-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:12:7-38
+25-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:5:190-221
 26        android:usesCleartextTraffic="true" >
 26-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/debug/AndroidManifest.xml:8:9-44
 27        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
 27-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/debug/AndroidManifest.xml:11:9-86
 27-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/debug/AndroidManifest.xml:11:19-83
 28        <activity
-28-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:13:7-23:18
+28-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:6:5-11:16
 29            android:name="com.privnote.MainActivity"
-29-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:14:9-37
+29-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:6:15-43
 30            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-30-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:16:9-86
+30-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:6:77-154
 31            android:label="@string/app_name"
-31-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:15:9-41
+31-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:6:44-76
 32            android:launchMode="singleTask"
-32-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:17:9-40
+32-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:6:155-186
 33            android:windowSoftInputMode="adjustResize" >
-33-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:18:9-51
+33-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:6:187-229
 34            <intent-filter>
-34-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:19:9-22:25
+34-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:7:7-10:23
 35                <action android:name="android.intent.action.MAIN" />
-35-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:20:13-65
-35-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:20:21-62
+35-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:8:9-61
+35-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:8:17-58
 36
 37                <category android:name="android.intent.category.LAUNCHER" />
-37-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:21:13-73
-37-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:21:23-70
+37-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:9:9-69
+37-->/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/src/main/AndroidManifest.xml:9:19-66
 38            </intent-filter>
 39        </activity>
 40
