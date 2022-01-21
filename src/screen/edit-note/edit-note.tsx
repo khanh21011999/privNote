@@ -5,7 +5,7 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
 } from "react-native";
-import { View, Text, TouchableOpacity } from "react-native-ui-lib";
+import { View, Text, TouchableOpacity, TextField } from "react-native-ui-lib";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/core";
 import { TextInput, TextStyle, ViewStyle } from "react-native";
@@ -105,7 +105,7 @@ export default function EditNote() {
   console.log("count focus", countFocus);
 
   return (
-    <ScrollView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <View row centerV style={HEADER}>
         <TouchableOpacity onPress={() => nav.goBack()}>
           <BackArrow name="arrowleft" size={onePercentWidth * 6} />
@@ -139,6 +139,7 @@ export default function EditNote() {
       {Platform.OS === "ios" ? (
         <InputScrollView>
           <TextInput
+            autoFocus
             scrollEnabled={false}
             textAlignVertical={Platform.OS === "android" ? "top" : ""}
             onChangeText={(text) => setNoteEdit(text)}
@@ -163,6 +164,7 @@ export default function EditNote() {
               }}
               onSelectionChange={() => {
                 setCountFocus(countFocus + 1);
+                setIsFocused(true);
               }}
               caretHidden={countFocus === 1 ? true : false}
               showSoftInputOnFocus={isFocused}
@@ -178,6 +180,6 @@ export default function EditNote() {
           </ScrollView>
         </TouchableWithoutFeedback>
       )}
-    </ScrollView>
+    </SafeAreaView>
   );
 }

@@ -1455,6 +1455,7 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable redbox_top_border_background
+drawable rn_edit_text_material
 drawable spinner_dropdown_background
 drawable test_custom_background
 drawable tooltip_frame_dark
