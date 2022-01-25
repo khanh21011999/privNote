@@ -62,6 +62,15 @@
             android:authorities="com.privnote.reactnativefirebaseappinitprovider"
             android:exported="false"
             android:initOrder="99" />
+        <provider
+            android:name="com.reactnativecommunity.webview.RNCWebViewFileProvider"
+            android:authorities="com.privnote.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_paths" />
+        </provider>
 
         <activity
             android:name="com.google.firebase.auth.internal.GenericIdpActivity"

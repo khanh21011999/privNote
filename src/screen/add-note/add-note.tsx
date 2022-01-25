@@ -17,11 +17,13 @@ import { color } from "src/theme/color";
 import BackArrow from "react-native-vector-icons/AntDesign";
 import { user } from "src/constants/type";
 import { firebase } from "@react-native-firebase/firestore";
+import { Font } from "src/theme/font-name";
 const ADD_NOTE_HEADER: TextStyle = {
   fontSize: fontSize.headerFontSize,
 };
 const HEADER_INPUT: TextStyle = {
   fontSize: fontSize.headerInputNote,
+  fontFamily: Font.regular,
 };
 const SAVE_NOTE_BT: TextStyle = {
   fontWeight: "bold",

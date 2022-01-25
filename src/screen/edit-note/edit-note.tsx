@@ -5,44 +5,41 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
 } from "react-native";
-import { View, Text, TouchableOpacity, TextField } from "react-native-ui-lib";
+import { View, Text, TouchableOpacity } from "react-native-ui-lib";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/core";
 import { TextInput, TextStyle, ViewStyle } from "react-native";
 import { fontSize } from "src/theme/font-size";
-import { spacingWidth, spacingHeight } from "src/theme/spacing";
-import {
-  heightScreen,
-  onePercentHeight,
-  onePercentWidth,
-} from "src/theme/size";
+import { spacingHeight } from "src/theme/spacing";
+import { onePercentWidth } from "src/theme/size";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "src/redux/store";
-import { addNote, editNote, fetchNote } from "src/redux/noteList-reducer";
+import { editNote, fetchNote } from "src/redux/noteList-reducer";
 import { color } from "src/theme/color";
 import BackArrow from "react-native-vector-icons/AntDesign";
-import { RouteName } from "src/navigation/route-name";
 import InputScrollView from "react-native-input-scroll-view";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { firebase } from "@react-native-firebase/firestore";
 import { ConstantString, user } from "src/constants/type";
 import { switchReloadOff, switchReloadOn } from "src/redux/toggle-reducer";
-const ADD_NOTE_HEADER: TextStyle = {
-  fontSize: fontSize.headerFontSize,
-};
-const PLACEhHOLDER: ViewStyle = {};
+import { Font } from "src/theme/font-name";
+import LottieView from "lottie-react-native";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { spacingWidth } from "../../theme/spacing";
+import AnimatedLottieView from "lottie-react-native";
 const HEADER_INPUT: TextStyle = {
   fontSize: fontSize.headerInputNote,
+  fontFamily: Font.bold,
+  color: color.darkGrey,
 };
 const SAVE_NOTE_BT: TextStyle = {
   fontWeight: "bold",
 };
-const NOTE_INPUT: TextStyle = {
-  fontSize: 30,
-};
 const HEADER: ViewStyle = {
   justifyContent: "space-between",
   marginBottom: spacingHeight[3],
+};
+const CHECKBOX_CONTAINER: ViewStyle = {
+  padding: spacingWidth[5],
 };
 export interface EditNoteI {
   note?: string;
@@ -52,13 +49,17 @@ export interface EditNoteI {
 export default function EditNote() {
   const nav = useNavigation();
   const route = useRoute();
+  const [check, setCheck] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [changeSelect, setChangeSelect] = useState(false);
   const [countFocus, setCountFocus] = useState(0);
   const { date, note, header, id } = route.params;
+  const animation = useRef<LottieView>(null);
   const [hideCaret, setHideCaret] = useState(true);
+  const [textCheck, setTextCheck] = useState(false);
   const [hideKeyboard, setHideKeyboard] = useState(false);
   const [noteEdit, setNoteEdit] = useState(note);
+  const [arrayOfItem, setArrayofItem] = useState<string[]>(["sample"]);
   const [startPos, setStart] = useState(0);
   const [endPos, setEnd] = useState(0);
   const data = useSelector((state: RootState) => state.persistedReducer.note);
@@ -67,17 +68,6 @@ export default function EditNote() {
   );
   const [noteHeader, setNoteHeader] = useState(header);
   const dispatch: AppDispatch = useDispatch();
-
-  const editNoteFunc = () => {
-    dispatch(
-      editNote({
-        date: new Date(),
-        header: noteHeader,
-        note: noteEdit,
-        id: id,
-      })
-    );
-  };
 
   const editAndSaveFirebase = () => {
     firebase
@@ -102,8 +92,16 @@ export default function EditNote() {
   //   editNoteFunc();
   //   nav.goBack();
   // }
-  console.log("count focus", countFocus);
 
+  const changeAnimation = () => {
+    if (check === false) {
+      animation.current?.play(20, 60);
+    } else if (check === true) {
+      animation.current?.play(100, 160);
+    }
+  };
+  const arrayOfItem1 = ["adasdsa"];
+  const animationJson = require("assets/animation/checkbox.json");
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View row centerV style={HEADER}>
@@ -138,7 +136,7 @@ export default function EditNote() {
       />
       {Platform.OS === "ios" ? (
         <InputScrollView>
-          <TextInput
+          {/* <TextInput
             autoFocus
             scrollEnabled={false}
             textAlignVertical={Platform.OS === "android" ? "top" : ""}
@@ -147,20 +145,62 @@ export default function EditNote() {
             value={noteEdit}
             multiline
             style={NOTE_INPUT}
-          />
+          /> */}
+
+          {arrayOfItem.map((item, index) => {
+            return (
+              <View row centerV style={CHECKBOX_CONTAINER}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setCheck(!check);
+                    changeAnimation();
+                  }}
+                >
+                  <LottieView
+                    ref={animation}
+                    onAnimationFinish={() => setTextCheck(!textCheck)}
+                    style={{ width: 30, height: 30 }}
+                    source={animationJson}
+                    // autoPlay
+                    // loop
+                    autoPlay={false}
+                    loop={false}
+                  />
+                </TouchableOpacity>
+                <TextInput
+                  value={item}
+                  style={{
+                    textDecorationLine: textCheck ? "line-through" : "none",
+                    paddingLeft: spacingWidth[3],
+                    fontSize: 15,
+                    fontFamily: Font.regular,
+                  }}
+                />
+              </View>
+            );
+          })}
+
+          <TouchableOpacity
+            onPress={() => {
+              const a: string = "sample Text";
+              setArrayofItem([...arrayOfItem, a]);
+            }}
+          >
+            <Text>Add more</Text>
+          </TouchableOpacity>
+
+          {/* <LottieView source={animation} autoPlay loop /> */}
         </InputScrollView>
       ) : (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <ScrollView>
-            <TextInput
+            {/* <TextInput
               selection={isFocused ? undefined : { start: 0 }}
               onFocus={() => {
                 setIsFocused(true);
               }}
               onBlur={() => {
                 setIsFocused(false);
-                // setHideCaret(false);
-                // setHideKeyboard(true);
               }}
               onSelectionChange={() => {
                 setCountFocus(countFocus + 1);
@@ -176,7 +216,13 @@ export default function EditNote() {
               multiline
               value={noteEdit}
               style={NOTE_INPUT}
-            />
+            /> */}
+            {/* <LottieView
+              style={{ width: 100, height: 100 }}
+              source={require("./checkbox.json")}
+              autoPlay
+              loop
+            /> */}
           </ScrollView>
         </TouchableWithoutFeedback>
       )}

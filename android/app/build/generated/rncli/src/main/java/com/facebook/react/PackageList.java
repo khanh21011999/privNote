@@ -48,6 +48,8 @@ import com.wix.reactnativeuilib.textinput.TextInputDelKeyHandlerPackage;
 import com.wix.reactnativeuilib.wheelpicker.WheelPickerPackage;
 // react-native-vector-icons
 import com.oblador.vectoricons.VectorIconsPackage;
+// react-native-webview
+import com.reactnativecommunity.webview.RNCWebViewPackage;
 
 public class PackageList {
   private Application application;
@@ -112,7 +114,8 @@ public class PackageList {
       new WheelPickerPackage(),
       new TextInputDelKeyHandlerPackage(),
       new KeyboardInputPackage(getApplication()),
-      new VectorIconsPackage()
+      new VectorIconsPackage(),
+      new RNCWebViewPackage()
     ));
   }
 }

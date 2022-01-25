@@ -51,6 +51,7 @@ const CONTAINER: ViewStyle = {
 const HEADER_TEXT: TextStyle = {
   fontSize: fontSize.headerNote,
   fontWeight: "600",
+  color: color.darkGrey,
 };
 const NOTE_CONTAINER: ViewStyle = {
   marginTop: spacingHeight[1],
@@ -63,6 +64,9 @@ const NOTE_ITEM_CONTAINER: ViewStyle = {
   justifyContent: "space-between",
   display: "flex",
   flex: 1,
+};
+const NOTES: TextStyle = {
+  color: color.darkGrey,
 };
 function NoteList(props: noteListI) {
   const { title, note, id, date, selectStatus } = props;
@@ -140,7 +144,9 @@ function NoteList(props: noteListI) {
             )}
           </View>
           <View style={NOTE_CONTAINER}>
-            <AppText numberOfLines={7}>{note}</AppText>
+            <AppText style={NOTES} numberOfLines={7}>
+              {note}
+            </AppText>
           </View>
         </View>
         <View
@@ -151,7 +157,9 @@ function NoteList(props: noteListI) {
             justifyContent: "space-between",
           }}
         >
-          <AppText>{moment(date).format("h:mmA MMM Do YY")}</AppText>
+          <AppText style={NOTES}>
+            {moment(date).format("h:mmA MMM Do YY")}
+          </AppText>
         </View>
       </View>
     </TouchableOpacity>
