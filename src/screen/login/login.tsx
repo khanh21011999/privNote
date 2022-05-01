@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ViewProps, TextProps, Text } from "react-native";
+import { ViewProps, TextProps, Text, ActivityIndicator } from "react-native";
 import { Button, View } from "react-native-ui-lib";
-interface LoginI extends ViewProps {}
+interface LoginI extends ViewProps { }
 import {
   GoogleSignin,
   statusCodes,
@@ -32,15 +32,17 @@ interface User {
   };
 }
 export default function Login(props: LoginI) {
-  const user = useRef<User>();
+  const user = useRef<User>(null);
 
   const [userExist, setUserExist] = useState<boolean>(false);
+  const [isPressLoading, setPressLoading] = useState(false);
+
   let ListUser: any[] = [];
   const token = useSelector(
     (item: RootState) => item.persistedReducer.firebase.token
   );
   const dispatch: AppDispatch = useDispatch();
-  const {} = props;
+  const { } = props;
   const addNew = async () => {
     await firestore()
       .collection("Users")
@@ -70,10 +72,11 @@ export default function Login(props: LoginI) {
   async function signIn() {
     // Get the users ID token
     const userInfo = await GoogleSignin.signIn();
-
+    setPressLoading(true)
     const googleCredential = auth.GoogleAuthProvider.credential(
       userInfo.idToken
     );
+
     await auth().signInWithCredential(googleCredential);
     await getUser();
     user.current = userInfo;
@@ -105,10 +108,18 @@ export default function Login(props: LoginI) {
       <Button
         onPress={() => {
           signIn();
+
         }}
       >
         <Text style={{ color: "white" }}>Login</Text>
       </Button>
+      {isPressLoading && user.current == null && (
+        <View >
+          <ActivityIndicator size="large" color="red" />
+
+        </View>
+
+      )}
     </View>
   );
 }

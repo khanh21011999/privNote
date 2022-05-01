@@ -63,7 +63,7 @@ export default function NoteListScreen() {
   const userInfo: user = useSelector(
     (state: RootState) => state.persistedReducer.firebase.userInfomation
   );
-
+  console.log("refresh", refresh)
   // useEffect(() => {
   //   const getUser = async () => {
   //     await firestore()
@@ -85,7 +85,7 @@ export default function NoteListScreen() {
       );
     }, 500);
   };
-  console.log("refresh", refresh);
+
   return (
     <View style={CONTAINER}>
       {data.length === 0 ? (
@@ -101,12 +101,12 @@ export default function NoteListScreen() {
           </SafeAreaView>
         </>
       ) : (
-        <View>
+        <View >
           <SafeAreaView style={{ minHeight: heightScreen }}>
             <FlatList
               refreshing={refresh}
               onRefresh={() => {
-                dispatch(switchReloadOn());
+                dispatch(switchReloadOn())
                 fetchData();
               }}
               removeClippedSubviews
@@ -122,6 +122,7 @@ export default function NoteListScreen() {
               renderItem={({ item, index }) => {
                 return (
                   <NoteList
+                    checkList={item.checkList}
                     note={item.note}
                     title={item.header}
                     date={item.date}

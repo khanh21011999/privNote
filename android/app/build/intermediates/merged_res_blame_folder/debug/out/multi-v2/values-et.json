@@ -4,7 +4,7 @@
             "outputFile": "/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-et/values-et.xml",
             "map": [
                 {
-                    "source": "/Users/khanhs/.gradle/caches/transforms-3/37a0f710a9d0fd6629c58a7a0f5675fb/transformed/jetified-play-services-base-18.0.0/res/values-et/values.xml",
+                    "source": "/Users/khanhs/.gradle/caches/transforms-3/493a5b32eb8a4a7bb025ee227b7212c1/transformed/jetified-play-services-base-18.0.1/res/values-et/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -18,23 +18,6 @@
                         "startOffsets": "2827,2930,3092,3219,3327,3477,3606,3722,3965,4125,4233,4397,4529,4684,4829,4892,4957",
                         "endColumns": "102,161,126,107,149,128,115,102,159,107,163,131,154,144,62,64,87",
                         "endOffsets": "2925,3087,3214,3322,3472,3601,3717,3820,4120,4228,4392,4524,4679,4824,4887,4952,5040"
-                    }
-                },
-                {
-                    "source": "/Users/khanhs/.gradle/caches/transforms-3/47291499e05edddbe677d920b83f8a54/transformed/core-1.5.0/res/values-et/values-et.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "48",
-                        "startColumns": "4",
-                        "startOffsets": "5128",
-                        "endColumns": "100",
-                        "endOffsets": "5224"
                     }
                 },
                 {
@@ -69,6 +52,23 @@
                         "startOffsets": "3825",
                         "endColumns": "139",
                         "endOffsets": "3960"
+                    }
+                },
+                {
+                    "source": "/Users/khanhs/.gradle/caches/transforms-3/64a9063406808f30fdf55983aa926644/transformed/core-1.6.0/res/values-et/values-et.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "48",
+                        "startColumns": "4",
+                        "startOffsets": "5128",
+                        "endColumns": "100",
+                        "endOffsets": "5224"
                     }
                 }
             ]

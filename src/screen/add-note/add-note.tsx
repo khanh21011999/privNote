@@ -18,18 +18,21 @@ import BackArrow from "react-native-vector-icons/AntDesign";
 import { user } from "src/constants/type";
 import { firebase } from "@react-native-firebase/firestore";
 import { Font } from "src/theme/font-name";
+import { switchReloadOff, switchReloadOn } from "src/redux/toggle-reducer";
 const ADD_NOTE_HEADER: TextStyle = {
   fontSize: fontSize.headerFontSize,
 };
 const HEADER_INPUT: TextStyle = {
   fontSize: fontSize.headerInputNote,
-  fontFamily: Font.regular,
+  fontFamily: Font.bold,
+  color: color.darkGrey,
 };
 const SAVE_NOTE_BT: TextStyle = {
   fontWeight: "bold",
 };
 const NOTE_INPUT: TextStyle = {
-  fontSize: 30,
+  fontSize: fontSize.noteInput,
+  fontFamily: Font.regular,
 };
 const HEADER: ViewStyle = {
   justifyContent: "space-between",
@@ -64,6 +67,7 @@ export default function AddNote() {
           note: notes,
           date: new Date(),
           selectStatus: false,
+          checkList: [],
         }),
       });
   };
@@ -78,6 +82,10 @@ export default function AddNote() {
         <TouchableOpacity
           onPress={() => {
             saveAndNavBack();
+            dispatch(switchReloadOn());
+            dispatch(fetchNote(userInfo.email)).then(() =>
+              dispatch(switchReloadOff())
+            );
           }}
         >
           <Text style={SAVE_NOTE_BT}>Save</Text>

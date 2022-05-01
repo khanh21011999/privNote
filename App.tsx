@@ -25,7 +25,7 @@ const app = initializeApp(firebaseConfig);
 export default function App() {
   return (
     <Provider store={store}>
-      <PersistGate persistor={persistStorageNote} loading={<Text>abcd</Text>}>
+      <PersistGate persistor={persistStorageNote}>
         <NoteNavigation />
         {/* <NavigationContainer>
           <Stack.Navigator initialRouteName="Home">

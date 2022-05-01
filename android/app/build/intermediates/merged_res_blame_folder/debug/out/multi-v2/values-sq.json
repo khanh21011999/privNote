@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/Users/khanhs/.gradle/caches/transforms-3/37a0f710a9d0fd6629c58a7a0f5675fb/transformed/jetified-play-services-base-18.0.0/res/values-sq/values.xml",
+                    "source": "/Users/khanhs/.gradle/caches/transforms-3/493a5b32eb8a4a7bb025ee227b7212c1/transformed/jetified-play-services-base-18.0.1/res/values-sq/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -35,23 +35,6 @@
                         "startOffsets": "2801,2908,3081,3218,3325,3486,3620,3746,3991,4161,4269,4444,4582,4744,4928,4993,5060",
                         "endColumns": "106,172,136,106,160,133,125,115,169,107,174,137,161,183,64,66,81",
                         "endOffsets": "2903,3076,3213,3320,3481,3615,3741,3857,4156,4264,4439,4577,4739,4923,4988,5055,5137"
-                    }
-                },
-                {
-                    "source": "/Users/khanhs/.gradle/caches/transforms-3/47291499e05edddbe677d920b83f8a54/transformed/core-1.5.0/res/values-sq/values-sq.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "48",
-                        "startColumns": "4",
-                        "startOffsets": "5224",
-                        "endColumns": "100",
-                        "endOffsets": "5320"
                     }
                 },
                 {
@@ -69,6 +52,23 @@
                         "startOffsets": "105,219,319,431,517,623,746,828,906,997,1090,1185,1279,1380,1473,1568,1665,1756,1849,1930,2036,2140,2238,2344,2448,2550,2704,5142",
                         "endColumns": "113,99,111,85,105,122,81,77,90,92,94,93,100,92,94,96,90,92,80,105,103,97,105,103,101,153,96,81",
                         "endOffsets": "214,314,426,512,618,741,823,901,992,1085,1180,1274,1375,1468,1563,1660,1751,1844,1925,2031,2135,2233,2339,2443,2545,2699,2796,5219"
+                    }
+                },
+                {
+                    "source": "/Users/khanhs/.gradle/caches/transforms-3/64a9063406808f30fdf55983aa926644/transformed/core-1.6.0/res/values-sq/values-sq.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "48",
+                        "startColumns": "4",
+                        "startOffsets": "5224",
+                        "endColumns": "100",
+                        "endOffsets": "5320"
                     }
                 }
             ]

@@ -30,8 +30,8 @@ import CloseIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import { firebase } from "@react-native-firebase/firestore";
 import { ConstantString, user } from "src/constants/type";
 import { fetchNote, loadDefault } from "src/redux/noteList-reducer";
-import { switchSelectedOff } from "src/redux/toggle-reducer";
-interface FooterI extends ViewProps {}
+import { switchReloadOn, switchSelectedOff } from "src/redux/toggle-reducer";
+interface FooterI extends ViewProps { }
 const ADD_NOTE_BUTTON: ViewStyle = {
   ...size.addNoteButton,
   marginRight: spacingWidth[4],
@@ -124,7 +124,9 @@ const SelectedItemFooter = (props: FooterI) => {
           onPress={() => {
             updateDeletedNoteFirebase();
             Alert.alert("Note deleted");
+            dispatch(switchSelectedOff());
             dispatch(loadDefault());
+
             dispatch(fetchNote(userInfo.email));
           }}
         >

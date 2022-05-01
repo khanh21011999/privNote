@@ -11,8 +11,9 @@ import Login from "src/screen/login/login";
 import { useSelector } from "react-redux";
 import { RootState } from "src/redux/store";
 import { user } from "src/constants/type";
+import { checkListI } from "src/redux/noteList-reducer";
 
-type RootStateParamList = {
+export type RootStateParamList = {
   [RouteName.LOGIN]: undefined;
   [RouteName.HOME_NAV]: undefined;
   [RouteName.ADD_NOTE]: undefined;
@@ -21,7 +22,8 @@ type RootStateParamList = {
     date: Date | undefined;
     note: string | undefined;
     header: string | undefined;
-    id: Date | undefined;
+    id: string | undefined;
+    checklist: checkListI[] | undefined;
   };
   [RouteName.SETTING]: {
     userInfo: user;

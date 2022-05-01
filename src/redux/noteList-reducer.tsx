@@ -8,11 +8,16 @@ import { ActionType } from "src/constants/type";
 import { NoteI } from "./noteList-reducer";
 import firestore, { firebase } from "@react-native-firebase/firestore";
 
+export interface checkListI {
+  item: string;
+  isCheck: boolean;
+}
 export interface NoteI {
   id?: string;
   header?: string;
   note?: string;
   date?: Date;
+  checkList?: checkListI[];
   selectStatus?: boolean;
 }
 let NoteList: NoteI[] = [];
@@ -55,6 +60,7 @@ const noteReducer = createSlice({
         note: action.payload.note,
         date: new Date(),
         selectStatus: false,
+        checkList: [],
       };
       state.push(newNote);
     },

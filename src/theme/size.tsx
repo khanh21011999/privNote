@@ -1,4 +1,5 @@
 import { Dimensions, PixelRatio, Platform, StatusBar } from "react-native";
+import { widthPercentageToDP } from "react-native-responsive-screen";
 
 export const widthScreen = Dimensions.get("window").width;
 // export const heightScreen = Dimensions.get(
@@ -31,7 +32,8 @@ export const size = {
     height: onePercentWidth * 16,
     width: onePercentWidth * 16,
   },
-  iconAssetSize: onePercentHeight * 3.5,
-  iconSize: onePercentHeight * 2,
-  headerSearch: 5 * onePercentHeight,
+  iconAssetSize: widthPercentageToDP(5),
+  iconSize: widthPercentageToDP(5),
+  noteCheckSize: onePercentWidth * 8,
+  headerSearch: 10 * onePercentWidth,
 };

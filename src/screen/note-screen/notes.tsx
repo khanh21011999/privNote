@@ -19,6 +19,7 @@ import { AppDispatch, RootState } from "src/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { switchSelectedOn } from "src/redux/toggle-reducer";
 import {
+  checkListI,
   fetchNote,
   NoteI,
   removeNote,
@@ -38,6 +39,7 @@ export interface noteListI {
   note?: string;
   id?: string | undefined;
   date?: Date;
+  checkList: checkListI[] | undefined;
   deleteStatus?: boolean;
   selectStatus: boolean | undefined;
 }
@@ -69,7 +71,7 @@ const NOTES: TextStyle = {
   color: color.darkGrey,
 };
 function NoteList(props: noteListI) {
-  const { title, note, id, date, selectStatus } = props;
+  const { title, note, id, date, selectStatus, checkList } = props;
   const mounted = useRef(false);
   const [selectedButtonStatus, setSelectedButtonStatus] = useState(false);
   const nav = useNavigation();
@@ -84,6 +86,7 @@ function NoteList(props: noteListI) {
       note: note,
       header: title,
       id: id,
+      checklist: checkList,
     });
   };
 

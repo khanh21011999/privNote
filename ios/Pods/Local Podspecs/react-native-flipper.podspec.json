@@ -1,6 +1,6 @@
 {
   "name": "react-native-flipper",
-  "version": "0.127.0",
+  "version": "0.129.0",
   "summary": "Flipper bindings for React Native",
   "description": "react-native-flipper",
   "homepage": "https://fbflipper.com/",
@@ -16,7 +16,7 @@
   },
   "source": {
     "git": "https://github.com/facebook/flipper.git",
-    "tag": "0.127.0"
+    "tag": "0.129.0"
   },
   "source_files": "ios/**/*.{h,m,swift}",
   "pod_target_xcconfig": {

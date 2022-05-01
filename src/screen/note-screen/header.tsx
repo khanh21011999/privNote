@@ -27,7 +27,7 @@ const HEADER_TEXT: TextStyle = {
 const INPUT_STYLE: TextStyle = {
   height: size.headerSearch,
   borderRadius: spacingWidth[4],
-  paddingHorizontal: spacingWidth[3],
+  paddingHorizontal: spacingWidth[5],
   width: onePercentWidth * 95,
   fontFamily: Font.regular,
   backgroundColor: color.lightGrey,

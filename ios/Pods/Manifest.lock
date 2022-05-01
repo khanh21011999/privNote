@@ -721,11 +721,11 @@ PODS:
     - glog
   - react-native-blur (0.8.0):
     - React
-  - react-native-flipper (0.127.0):
+  - react-native-flipper (0.129.0):
     - React-Core
   - react-native-safe-area-context (3.3.2):
     - React-Core
-  - react-native-webview (11.17.0):
+  - react-native-webview (11.17.1):
     - React-Core
   - React-perflogger (0.67.1)
   - React-RCTActionSheet (0.67.1):
@@ -794,24 +794,24 @@ PODS:
     - React-perflogger (= 0.67.1)
   - ReactNativeUiLib (3.0.4):
     - React
-  - RNCAsyncStorage (1.15.15):
+  - RNCAsyncStorage (1.15.17):
     - React-Core
   - RNCPicker (2.2.1):
     - React-Core
-  - RNDateTimePicker (3.5.2):
+  - RNDateTimePicker (5.1.0):
     - React-Core
-  - RNFBApp (14.2.3):
+  - RNFBApp (14.2.4):
     - Firebase/CoreOnly (= 8.11.0)
     - React-Core
-  - RNFBAuth (14.2.3):
+  - RNFBAuth (14.2.4):
     - Firebase/Auth (= 8.11.0)
     - React-Core
     - RNFBApp
-  - RNFBFirestore (14.2.3):
+  - RNFBFirestore (14.2.4):
     - Firebase/Firestore (= 8.11.0)
     - React-Core
     - RNFBApp
-  - RNGestureHandler (1.10.3):
+  - RNGestureHandler (2.2.0):
     - React-Core
   - RNGoogleSignin (7.0.4):
     - GoogleSignIn (~> 6.0.0)
@@ -1118,9 +1118,9 @@ SPEC CHECKSUMS:
   React-jsinspector: ab80bcdb02f28cdfc0dbbaea6db1241565d59002
   React-logger: b08f354e4c928ff794ca477347fea0922aaf11c3
   react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
-  react-native-flipper: b9e2e817604af8da0d5a9ba20a8516e780e30f3c
+  react-native-flipper: 9993c1518795f4edc10f918566273f8a821afa6b
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
-  react-native-webview: 10996be8bcc5e37a30dbc139fc544bb651dc8612
+  react-native-webview: 162b6453d074e0b1c7025242bb7a939b6f72b9e7
   React-perflogger: 9a6172711d9c4c8c7ac0a426717317c3c6ecf85c
   React-RCTActionSheet: ed408b54b08278e6af8a75e08679675041da61ae
   React-RCTAnimation: 0163b497a423a9576a776685c6e3fe276f934758
@@ -1134,13 +1134,13 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 2c92a8bddd1a3e72c7513d1e74235c2d9c84875c
   ReactCommon: 2e816fad39f65f2a94a5999d5be463a6b620dcf6
   ReactNativeUiLib: cde7263a7d308b60161cd286f95c9433e79f2f7d
-  RNCAsyncStorage: 0bef6a21517c0254bd6bd59a3672963abfa0d18e
+  RNCAsyncStorage: 6bd5a7ba3dde1c3facba418aa273f449bdc5437a
   RNCPicker: cb57c823d5ce8d2d0b5dfb45ad97b737260dc59e
-  RNDateTimePicker: 7658208086d86d09e1627b5c34ba0cf237c60140
-  RNFBApp: 0d0ffe0e3aacdf9fcad35f90b79bd8a3d3a99844
-  RNFBAuth: e156e2afa8695023b7507f76080527bdd3e38cb7
-  RNFBFirestore: 1ba382d55702376493cf6b7f7c5f9d9389fd9a3a
-  RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
+  RNDateTimePicker: 1dd15d7ed1ab7d999056bc77879a42920d139c12
+  RNFBApp: 7777c22386149f3845f1b0ca74e3d69a574559c5
+  RNFBAuth: 1835fbec6d337a3c875a1936541dc08ce7188794
+  RNFBFirestore: 446dbd0d8ad5c9db0ffadd9e0014bf127692fca0
+  RNGestureHandler: bf572f552ea324acd5b5464b8d30755b2d8c1de6
   RNGoogleSignin: c4381751eefd73c552b923ba347a9bfc6f18771c
   RNReanimated: 1326679461fa5d2399d54c18ca1432ba3e816b9e
   RNScreens: d6da2b9e29cf523832c2542f47bf1287318b1868
