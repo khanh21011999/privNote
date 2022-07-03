@@ -768,11 +768,15 @@
     <string name="common_open_on_phone">Open on phone</string>
     <string name="common_signin_button_text">Sign in</string>
     <string name="common_signin_button_text_long">Sign in with Google</string>
+    <string name="copy_toast_msg">Link copied to clipboard</string>
     <string name="default_web_client_id" translatable="false">556280479080-e3he9kh8o9nhl84b9uqin4arbl2nsuq9.apps.googleusercontent.com</string>
     <string name="error_icon_content_description">Error</string>
     <string name="exposed_dropdown_menu_content_description">Show dropdown menu</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
+    <string name="fallback_menu_item_copy_link">Copy link</string>
+    <string name="fallback_menu_item_open_in_browser">Open in browser</string>
+    <string name="fallback_menu_item_share_link">Share link</string>
     <string name="firebase_database_url" translatable="false">https://privnote-cfcd6-default-rtdb.firebaseio.com</string>
     <string name="gcm_defaultSenderId" translatable="false">556280479080</string>
     <string name="google_api_key" translatable="false">AIzaSyAvpJuEVj191V_cUVunlWsFjUq4v15Lm5c</string>
@@ -6316,10 +6320,10 @@
         <attr format="float" name="lottie_progress"/>
         <attr format="boolean" name="lottie_enableMergePathsForKitKatAndAbove"/>
         <attr format="color" name="lottie_colorFilter"/>
-        <attr format="float" name="lottie_scale"/>
         <attr format="float" name="lottie_speed"/>
         <attr format="boolean" name="lottie_cacheComposition"/>
         <attr format="boolean" name="lottie_ignoreDisabledSystemAnimations"/>
+        <attr format="boolean" name="lottie_clipToCompositionBounds"/>
         <!-- These values must be kept in sync with the RenderMode enum -->
         <attr format="enum" name="lottie_renderMode">
             <enum name="automatic" value="0"/>

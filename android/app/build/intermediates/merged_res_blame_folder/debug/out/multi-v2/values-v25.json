@@ -4,7 +4,7 @@
             "outputFile": "/Users/khanhs/Work/React-native/Personal_Project/privNote/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v25/values-v25.xml",
             "map": [
                 {
-                    "source": "/Users/khanhs/.gradle/caches/transforms-3/0e1fcb0115600141ea6b47249b31c449/transformed/appcompat-1.3.0/res/values-v25/values-v25.xml",
+                    "source": "/Users/khanhs/.gradle/caches/transforms-3/4997b706bb3b9ea1c5295914507dfdfe/transformed/appcompat-1.3.1/res/values-v25/values-v25.xml",
                     "from": {
                         "startLines": "2,3,4,6",
                         "startColumns": "4,4,4,4",
