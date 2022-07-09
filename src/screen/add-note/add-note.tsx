@@ -21,6 +21,9 @@ import { Font } from 'src/theme/font-name';
 import { switchReloadOff, switchReloadOn } from 'src/redux/toggle-reducer';
 import { AppText } from 'src/components/Text/text';
 import { ScrollView } from 'react-native-gesture-handler';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { RFPercentage } from 'react-native-responsive-fontsize';
+import moment from 'moment';
 const ADD_NOTE_HEADER: TextStyle = {
     fontSize: fontSize.headerFontSize,
 };
@@ -32,7 +35,8 @@ const HEADER_INPUT: TextStyle = {
 };
 const SAVE_NOTE_BT: TextStyle = {
     fontWeight: 'bold',
-    color: color.black
+    color: color.black,
+    fontSize:RFPercentage(2.8)
 };
 const NOTE_INPUT: TextStyle = {
     fontSize: fontSize.noteInput,
@@ -41,13 +45,13 @@ const NOTE_INPUT: TextStyle = {
 };
 const HEADER: ViewStyle = {
     justifyContent: 'space-between',
-    marginBottom: spacingHeight[3],
+    marginTop: onePercentHeight*2,
+    marginHorizontal:spacingWidth[3],
 };
 export default function AddNote() {
     const nav = useNavigation();
     const [headerValue, setHeaderValue] = useState('');
-    const [notes, setNotes] = useState();
-    const [content,setContent] = useState([]);
+    const [notes, setNotes] = useState('');
     const dispatch: AppDispatch = useDispatch();
     const userInfo: user = useSelector(
         (state: RootState) => state.persistedReducer.firebase.userInfomation
@@ -83,11 +87,12 @@ export default function AddNote() {
     const onAddMoreContent = ()=>{
         //TODOSELECT CONTENT 
     };
+   
     return (
         <SafeAreaView style={{ margin: spacingWidth[3] }}>
             <View row centerV style={HEADER}>
                 <TouchableOpacity onPress={() => nav.goBack()}>
-                    <BackArrow name="arrowleft" size={onePercentWidth * 6} color={color.black} />
+                    <BackArrow name="arrowleft" size={hp(4)} color={color.black} />
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -114,7 +119,7 @@ export default function AddNote() {
                     />
                 </View>
                 <View>
-                    <ScrollView >
+                    {/* <ScrollView >
                         {content.map((item,index)=>{
                             return (
                                 <View key={Math.random()}>
@@ -125,7 +130,7 @@ export default function AddNote() {
                         <View>
                             <AppText>Add more</AppText>
                         </View>
-                    </ScrollView>
+                    </ScrollView> */}
                     <TextInput
                         textAlignVertical={Platform.OS === 'android' ? 'top' : ''}
                         onChangeText={(text) => setNotes(text)}

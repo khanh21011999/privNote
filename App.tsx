@@ -8,7 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import NoteListScreen from './src/screen/note-screen';
 import AddNote from './src/screen/add-note/add-note';
-
+import SplashScreen from 'react-native-splash-screen';
 
 const Stack = createNativeStackNavigator();
 const firebaseConfig = {
@@ -23,6 +23,9 @@ const firebaseConfig = {
 };
 
 export default function App() {
+    React.useEffect(() => {
+        SplashScreen.hide();
+    });
     return (
         <Provider store={store}>
             <PersistGate persistor={persistStorageNote}>

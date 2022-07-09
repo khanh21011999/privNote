@@ -12,10 +12,19 @@ const defaultWidth = 390;
 const defaultHeight = 844;
 export const onePercentHeight = heightScreen / 100;
 const screenHeight = Dimensions.get('screen').height;
-const statusBarHeight = StatusBar.currentHeight;
+const statusBarHeight = StatusBar?.currentHeight;
 
 const windowHeight = Dimensions.get('window').height;
-export const bottomNavHeight = screenHeight - statusBarHeight! - windowHeight;
+const bottomHeight = screenHeight - windowHeight;
+
+
+export const bottomNavHeight = ()=>{
+    if(screenHeight-windowHeight- statusBarHeight>0){
+        return screenHeight-windowHeight- statusBarHeight;
+    } else{
+        return bottomHeight;
+    }
+};
 
 let currentSize = widthScreen;
 if (widthScreen < heightScreen) {

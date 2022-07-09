@@ -29,12 +29,12 @@ import { resetNote } from 'src/redux/noteList-reducer';
 import ThreeBar from 'react-native-vector-icons/Octicons';
 import { useNavigation } from '@react-navigation/core';
 import {DrawerActions} from '@react-navigation/core';
+import { widthPercentageToDP } from 'react-native-responsive-screen';
 const HEADER_TEXT: TextStyle = {
-    fontSize: RFPercentage(3.5),
+    fontSize:widthPercentageToDP(6),
     color: 'black',
-    marginLeft: spacingWidth[2],
-    marginBottom: spacingHeight[2],
-    fontFamily: Font.bold,
+    
+    fontFamily: Font.indieFlower,
 };
 
 const INPUT_STYLE: TextStyle = {
@@ -90,7 +90,7 @@ export default function HeaderNote() {
                 </View>
 
                 <View flex-4>
-                    <Text style={HEADER_TEXT}>This app for you</Text>
+                    <Text style={HEADER_TEXT}>This app for you babi :)</Text>
                 </View>
                 <TouchableOpacity onPress={() => nav.dispatch(DrawerActions.openDrawer())}>
                     <ThreeBar

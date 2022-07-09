@@ -39,6 +39,8 @@ import com.swmansion.reanimated.ReanimatedPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 // react-native-screens
 import com.swmansion.rnscreens.RNScreensPackage;
+// react-native-splash-screen
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
 // react-native-svg
 import com.horcrux.svg.SvgPackage;
 // react-native-ui-lib
@@ -109,6 +111,7 @@ public class PackageList {
       new ReanimatedPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
+      new SplashScreenReactPackage(),
       new SvgPackage(),
       new HighlighterViewPackage(),
       new WheelPickerPackage(),

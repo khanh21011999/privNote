@@ -13,8 +13,8 @@ import {
     DrawerItemList,
 } from '@react-navigation/drawer';
 import { Image } from 'react-native-ui-lib';
-import { useSelector } from 'react-redux';
-import { RootState } from 'src/redux/store';
+import { useSelector, useDispatch } from 'react-redux';
+import { AppDispatch, RootState } from 'src/redux/store';
 import { user } from 'src/constants/type';
 import { onePercentHeight } from 'src/theme/size';
 import { spacingHeight } from 'src/theme/spacing';
@@ -22,10 +22,25 @@ import { spacingWidth } from '../../theme/spacing';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import { color } from 'src/theme/color';
 import { AppText } from 'src/components/Text/text';
+import { logOut } from 'src/redux/authentication';
+import { resetNote } from 'src/redux/noteList-reducer';
+
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 export default function CustomDrawer(props: any) {
     const userInfo: user = useSelector(
         (state: RootState) => state.persistedReducer.firebase.userInfomation,
-    );
+    ); 
+    const dispatch: AppDispatch = useDispatch();
+    const signOutApp = async () => {
+        try {
+            await GoogleSignin.signOut();
+            dispatch(logOut());
+            dispatch(resetNote());
+            // Remember to remove the user from your app's state as well
+        } catch (error) {
+            console.error(error);
+        }
+    };
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: color.littleGrey }}>
             <View
@@ -62,6 +77,9 @@ export default function CustomDrawer(props: any) {
                 <DrawerItemList {...props} />
             </DrawerContentScrollView>
             <TouchableOpacity
+                onPress={()=>{
+                    signOutApp();
+                }}
                 style={{
                     paddingVertical: spacingHeight[3],
                     borderTopWidth: 2,

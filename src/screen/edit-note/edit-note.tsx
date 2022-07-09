@@ -5,8 +5,8 @@ import React, { useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/core';
 import { TextInput, TextStyle, ViewStyle } from 'react-native';
 import { fontSize } from 'src/theme/font-size';
-import { spacingHeight } from 'src/theme/spacing';
-import { onePercentWidth } from 'src/theme/size';
+import { spacingHeight, spacingWidth } from 'src/theme/spacing';
+import { onePercentWidth, onePercentHeight } from 'src/theme/size';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from 'src/redux/store';
 import { checkListI, fetchNote } from 'src/redux/noteList-reducer';
@@ -20,7 +20,9 @@ import { Font } from 'src/theme/font-name';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStateParamList } from 'src/navigation/note-navigator';
 import { RouteName } from 'src/navigation/route-name';
-import { CheckBoxList } from './checkbox-list';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { RFPercentage } from 'react-native-responsive-fontsize';
+// import { CheckBoxList } from './checkbox-list';
 const HEADER_INPUT: TextStyle = {
     fontSize: fontSize.headerInputNote,
     fontFamily: Font.bold,
@@ -28,11 +30,14 @@ const HEADER_INPUT: TextStyle = {
 };
 const SAVE_NOTE_BT: TextStyle = {
     fontWeight: 'bold',
-    color: color.darkGrey
+    color: color.darkGrey,
+    fontSize:RFPercentage(2.8)
 };
 const HEADER: ViewStyle = {
     justifyContent: 'space-between',
-    marginBottom: spacingHeight[3],
+    marginTop: onePercentHeight*2,
+    marginHorizontal:spacingWidth[3],
+   
 };
 
 const NOTE: TextStyle = {
@@ -107,10 +112,10 @@ export default function EditNote() {
     // }
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: color.backgroundGrey }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: color.backgroundGrey, margin: spacingWidth[3] }}>
             <View row centerV style={HEADER}>
                 <TouchableOpacity onPress={() => nav.goBack()}>
-                    <BackArrow name="arrowleft" size={onePercentWidth * 6 } color={color.black} />
+                    <BackArrow name="arrowleft" size={hp(4) } color={color.black} />
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => {
@@ -134,6 +139,7 @@ export default function EditNote() {
             <TextInput
                 onChangeText={(text) => setNoteHeader(text)}
                 value={noteHeader}
+                placeholderTextColor={color.black}
                 placeholder="Meaningful header"
                 style={HEADER_INPUT}
             />
@@ -141,6 +147,7 @@ export default function EditNote() {
                 <InputScrollView>
                     <TextInput
                         autoFocus
+                        placeholderTextColor={color.black}
                         scrollEnabled={false}
                         textAlignVertical={Platform.OS === 'android' ? 'top' : ''}
                         onChangeText={(text) => setNoteEdit(text)}
@@ -226,6 +233,7 @@ export default function EditNote() {
             ) : (
                 <ScrollView>
                     <TextInput
+                        placeholderTextColor={color.black}
                         selection={isFocused ? undefined : { start: 0 }}
                         onFocus={() => {
                             setIsFocused(true);
@@ -254,10 +262,10 @@ export default function EditNote() {
               autoPlay
               loop
             /> */}
-                    <CheckBoxList
+                    {/* <CheckBoxList
                         listCheckBox={checklist}
                         setArrayOfCheckList={setArrayofChecklist}
-                    />
+                    /> */}
                 </ScrollView>
             )}
         </SafeAreaView>

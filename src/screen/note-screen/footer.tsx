@@ -31,6 +31,7 @@ import { firebase } from '@react-native-firebase/firestore';
 import { ConstantString, user } from 'src/constants/type';
 import { fetchNote, loadDefault } from 'src/redux/noteList-reducer';
 import { switchReloadOn, switchSelectedOff } from 'src/redux/toggle-reducer';
+import { heightPercentageToDP } from 'react-native-responsive-screen';
 
 type FooterI = ViewProps
 const ADD_NOTE_BUTTON: ViewStyle = {
@@ -45,10 +46,10 @@ const SELECTED_ROW_CONTAINER: ViewStyle = {
     // position: "absolute",
 
     width: widthScreen,
-    height: onePercentHeight * 10,
+    height:heightPercentageToDP(10),
     position: 'absolute',
     // bottom: bottomNavHeight,
-    bottom: Platform.OS === 'android' ? bottomNavHeight : 0,
+    bottom: Platform.OS === 'android' ? bottomNavHeight() : 0,
     paddingHorizontal: spacingWidth[6],
     paddingBottom: 0,
     // alignItems: "center",
@@ -101,6 +102,7 @@ const SelectedItemFooter = (props: FooterI) => {
     const userInfo: user = useSelector(
         (user: RootState) => user.persistedReducer.firebase.userInfomation
     );
+    
 
     const dispatch = useDispatch();
     const [updatedData, setUpdatedData] = useState();
@@ -117,6 +119,7 @@ const SelectedItemFooter = (props: FooterI) => {
                 console.log('delete success');
             });
     };
+    console.log('bottom',bottomNavHeight() );
     return (
         <View row {...props} style={SELECTED_ROW_CONTAINER}>
             <View row>

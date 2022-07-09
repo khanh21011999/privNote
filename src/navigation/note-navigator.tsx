@@ -1,5 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator , CardStyleInterpolators,} from '@react-navigation/native-stack';
 import React from 'react';
 import AddNote from '../screen/add-note/add-note';
 import EditNote from '../screen/edit-note/edit-note';
@@ -44,11 +44,14 @@ export function NoteNavigation() {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName={RouteName.LOGIN}>
+            <Stack.Navigator
+            
+                screenOptions={{}}
+                initialRouteName={RouteName.LOGIN}>
                 {token!.length > 0 ? (
                     <>
                         <Stack.Screen
-                            options={{ headerShown: false }}
+                            options={{ headerShown: false,  }}
                             name={RouteName.HOME}
                             component={DrawerRoute}
                         />

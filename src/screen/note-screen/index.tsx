@@ -37,6 +37,7 @@ import { user } from 'src/constants/type';
 import { AppText } from 'src/components/Text/text';
 import { signedIn } from 'src/redux/authentication';
 import { switchReloadOff, switchReloadOn } from 'src/redux/toggle-reducer';
+import { heightPercentageToDP } from 'react-native-responsive-screen';
 
 const CONTAINER: ViewStyle = {
     width: widthScreen,
@@ -80,6 +81,9 @@ export default function NoteListScreen() {
         // dispatch(fetchNote(userInfo.email));
         // fetchData();
     }, []);
+    const selectStatus = useSelector(
+        (state: RootState) => state.toggle.enableSelectedButton
+    );
     useEffect(()=>{
         const isFocused = nav.addListener('focus',()=>{
             fetchData();
@@ -139,17 +143,18 @@ export default function NoteListScreen() {
                         }}
                         removeClippedSubviews
                         contentContainerStyle={{
-                            flexGrow:1
+                            flexGrow:1,
+                            paddingBottom:
+                            selectStatus===true
+                                ? heightPercentageToDP(15)
+                                : heightPercentageToDP(6),
                         }}
                             
                         data={data}
                         style={{
                             flex:1,
                               
-                            marginBottom:
-                  Platform.OS === 'ios'
-                      ? onePercentHeight * 6
-                      : onePercentHeight * 6,
+                      
                         }}
                         keyExtractor={(item:any) => item.id}
                          

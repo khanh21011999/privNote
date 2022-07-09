@@ -38,7 +38,7 @@ export interface noteListI {
   title?: string;
   note?: string;
   id?: string | undefined;
-  date?: Date;
+  date?: Date | any;
   checkList: checkListI[] | undefined;
   deleteStatus?: boolean;
   selectStatus: boolean | undefined;
@@ -69,6 +69,12 @@ const NOTE_ITEM_CONTAINER: ViewStyle = {
 };
 const NOTES: TextStyle = {
     color: color.darkGrey,
+};
+const BOTTOM_ROW:ViewStyle ={
+    alignSelf: 'flex-end',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
 };
 function NoteList(props: noteListI) {
     const { title, note, id, date, selectStatus, checkList } = props;
@@ -118,6 +124,8 @@ function NoteList(props: noteListI) {
     // const newData = useCallback(() => {
     //   setCurrentNote(data);
     // }, [note]);
+    const jsDate = new Date(date?.seconds * 1000 + date?.nanoseconds / 1000000);
+    
     return (
         <TouchableOpacity
             onLongPress={() => {
@@ -153,15 +161,11 @@ function NoteList(props: noteListI) {
                     </View>
                 </View>
                 <View
-                    style={{
-                        alignSelf: 'flex-end',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                    }}
+                    style={BOTTOM_ROW}
                 >
                     <AppText style={NOTES}>
-                        {moment(date).format('h:mmA MMM Do YY')}
+
+                        {moment(jsDate).format('h:mmA MMM Do YY')}
                     </AppText>
                 </View>
             </View>

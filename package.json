@@ -44,6 +44,7 @@
 		"react-native-responsive-screen": "^1.4.2",
 		"react-native-safe-area-context": "^3.3.2",
 		"react-native-screens": "^3.10.2",
+		"react-native-splash-screen": "^3.3.0",
 		"react-native-svg": "^12.1.1",
 		"react-native-ui-lib": "^6.8.1",
 		"react-native-vector-icons": "^9.0.0",

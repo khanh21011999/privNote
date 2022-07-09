@@ -4,4 +4,5 @@ export enum Font {
   bold = 'Montserrat-Bold',
   semiBold = 'Montserrat-SemiBold',
   italic = 'Montserrat-Italic',
+  indieFlower= 'IndieFlower-Regular'
 }

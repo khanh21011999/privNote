@@ -956,6 +956,7 @@ color mtrl_textinput_hovered_box_stroke_color
 color notification_action_color_filter
 color notification_icon_bg_color
 color numberPickerDivider
+color primary_dark
 color primary_dark_material_dark
 color primary_dark_material_light
 color primary_material_dark
@@ -1467,6 +1468,7 @@ drawable notify_panel_notification_icon_bg
 drawable redbox_top_border_background
 drawable rn_edit_text_material
 drawable spinner_dropdown_background
+drawable splash
 drawable test_custom_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -1901,6 +1903,7 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout dev_loading_view
 layout fps_view
+layout launch_screen
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title
@@ -2423,6 +2426,9 @@ style SpinnerDatePickerDialog
 style SpinnerDatePickerStyle
 style SpinnerTimePickerDialog
 style SpinnerTimePickerStyle
+style SplashScreen_Fullscreen
+style SplashScreen_SplashAnimation
+style SplashScreen_SplashTheme
 style Test_ShapeAppearanceOverlay_MaterialComponents_MaterialCalendar_Day
 style Test_Theme_MaterialComponents_MaterialCalendar
 style Test_Widget_MaterialComponents_MaterialCalendar

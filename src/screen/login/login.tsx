@@ -111,7 +111,7 @@ export default function Login(props: LoginI) {
 
                 }}
             >
-                <Text style={{ color: 'white' }}>Login</Text>
+                <Text style={{ color: 'white' }}>Login to XT's app </Text>
             </Button>
             {isPressLoading && user.current == null && (
                 <View >
