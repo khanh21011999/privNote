@@ -93,6 +93,7 @@ function NoteList(props: noteListI) {
             header: title,
             id: id,
             checklist: checkList,
+            isEdit:true
         });
     };
 

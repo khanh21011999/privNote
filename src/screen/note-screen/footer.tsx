@@ -10,7 +10,7 @@ import {
     widthScreen,
 } from 'src/theme/size';
 import { spacingWidth, spacingHeight } from 'src/theme/spacing';
-import AddNoteIcon from 'react-native-vector-icons/Ionicons';
+import AddNoteIcon from 'react-native-vector-icons/Octicons';
 import {
     Alert,
     Platform,
@@ -73,11 +73,18 @@ const DefaultFooter = () => {
         >
             <TouchableOpacity
                 onPress={() => {
-                    nav.navigate(RouteName.ADD_NOTE);
+                    nav.navigate(RouteName.EDIT_NOTE,{
+                        date: '',
+                        note: '',
+                        header: '',
+                        id: '',
+                        checklist: '',
+                        isEdit:false  
+                    });
                 }}
                 style={ADD_NOTE_BUTTON}
             >
-                <AddNoteIcon name="add" color="white" size={onePercentWidth * 8} />
+                <AddNoteIcon name="plus" color="white" size={onePercentWidth * 8} />
             </TouchableOpacity>
         </View>
     );

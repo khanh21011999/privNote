@@ -1,4 +1,4 @@
-import { Platform, SafeAreaView, ScrollView } from 'react-native';
+import { KeyboardAvoidingView, Platform, SafeAreaView, ScrollView } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 import { View, Text, TouchableOpacity } from 'react-native-ui-lib';
 import React, { useState } from 'react';
@@ -6,12 +6,12 @@ import { useNavigation, useRoute } from '@react-navigation/core';
 import { TextInput, TextStyle, ViewStyle } from 'react-native';
 import { fontSize } from 'src/theme/font-size';
 import { spacingHeight, spacingWidth } from 'src/theme/spacing';
-import { onePercentWidth, onePercentHeight } from 'src/theme/size';
+import { onePercentWidth, onePercentHeight, widthScreen, heightScreen } from 'src/theme/size';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from 'src/redux/store';
 import { checkListI, fetchNote } from 'src/redux/noteList-reducer';
 import { color } from 'src/theme/color';
-import BackArrow from 'react-native-vector-icons/AntDesign';
+import BackArrow from 'react-native-vector-icons/Octicons';
 import InputScrollView from 'react-native-input-scroll-view';
 import { firebase } from '@react-native-firebase/firestore';
 import { ConstantString, user } from 'src/constants/type';
@@ -22,11 +22,18 @@ import { RootStateParamList } from 'src/navigation/note-navigator';
 import { RouteName } from 'src/navigation/route-name';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { RFPercentage } from 'react-native-responsive-fontsize';
+import SaveIcon from 'react-native-vector-icons/Ionicons';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 // import { CheckBoxList } from './checkbox-list';
 const HEADER_INPUT: TextStyle = {
     fontSize: fontSize.headerInputNote,
     fontFamily: Font.bold,
     color: color.darkGrey,
+    paddingHorizontal:spacingWidth[4],
+    marginVertical:spacingHeight[1],
+    
+   
 };
 const SAVE_NOTE_BT: TextStyle = {
     fontWeight: 'bold',
@@ -42,7 +49,8 @@ const HEADER: ViewStyle = {
 
 const NOTE: TextStyle = {
     fontSize: fontSize.noteInput,
-    fontFamily: Font.regular,
+    fontFamily: Font.medium,
+    paddingHorizontal:spacingWidth[4],
     color: color.darkGrey,
 };
 export interface EditNoteI {
@@ -56,6 +64,14 @@ const NOTE_INPUT: TextStyle = {
     fontFamily: Font.regular,
     color: color.darkGrey,
 };
+const HEADER_WRAPPER_ITEM:ViewStyle = { 
+
+    backgroundColor:color.lightGrey,
+    paddingHorizontal:hp(4),
+    paddingVertical:hp(1),
+    borderRadius:spacingWidth[3],
+
+};
 export type PropsType = NativeStackScreenProps<
   RootStateParamList,
   RouteName.EDIT_NOTE
@@ -68,7 +84,7 @@ export default function EditNote() {
     const [isFocused, setIsFocused] = useState(false);
     const [changeSelect, setChangeSelect] = useState(false);
     const [countFocus, setCountFocus] = useState(0);
-    const { date, note, header, id, checklist } = route.params;
+    const { date, note, header, id, checklist, isEdit} = route.params;
     const [hideCaret, setHideCaret] = useState(true);
     const [textCheck, setTextCheck] = useState(false);
     const [hideKeyboard, setHideKeyboard] = useState(false);
@@ -110,16 +126,55 @@ export default function EditNote() {
     //   editNoteFunc();
     //   nav.goBack();
     // }
-
+    const addNoteToFirestore = () => {
+        firebase
+            .firestore()
+            .collection('Users')
+            .doc(userInfo.email)
+            .update({
+                note: firebase.firestore.FieldValue.arrayUnion({
+                    id:
+          new Date().getTime().toString() +
+          Math.floor(
+              Math.random() * Math.floor(new Date().getTime())
+          ).toString(),
+                    header: noteHeader,
+                    note: noteEdit,
+                    date: new Date(),
+                    selectStatus: false,
+                    checkList: [],
+                }),
+            });
+    };
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: color.backgroundGrey, margin: spacingWidth[3] }}>
+          
+            {/* <ScrollView>
+                <TextInput 
+                
+                    placeholder='enter'
+                    multiline
+                    style={{fontSize:50}}
+                />
+                <TextInput  
+                    placeholder='enter2'
+                    multiline
+                    style={{fontSize:50}}
+                />
+            </ScrollView> */}
             <View row centerV style={HEADER}>
-                <TouchableOpacity onPress={() => nav.goBack()}>
-                    <BackArrow name="arrowleft" size={hp(4) } color={color.black} />
+                <TouchableOpacity style={HEADER_WRAPPER_ITEM} onPress={() => nav.goBack()}>
+                    <BackArrow name="chevron-left" size={hp(4) } color={color.black} />
                 </TouchableOpacity>
                 <TouchableOpacity
+                    style={HEADER_WRAPPER_ITEM}
                     onPress={() => {
-                        editAndSaveFirebase();
+                        if(isEdit){
+                            editAndSaveFirebase();
+                        }else{
+                            addNoteToFirestore();
+                        }
+                           
                         setChangeSelect(false);
                         setHideCaret(true);
                         setStart(0);
@@ -132,108 +187,42 @@ export default function EditNote() {
                         // saveAndNavBack();
                     }}
                 >
-                    <Text style={SAVE_NOTE_BT}>Save</Text>
+                    <SaveIcon name='save-outline' size={hp(4)} color={color.black}/>
                 </TouchableOpacity>
             </View>
+            
+        
 
-            <TextInput
-                onChangeText={(text) => setNoteHeader(text)}
-                value={noteHeader}
-                placeholderTextColor={color.black}
-                placeholder="Meaningful header"
-                style={HEADER_INPUT}
-            />
-            {Platform.OS === 'ios' ? (
-                <InputScrollView>
+      
+            <ScrollView
+            >
+                <TextInput
+                    onChangeText={(text) => setNoteHeader(text)}
+                    value={noteHeader}
+                    placeholderTextColor={color.lightGrey}
+                    placeholder="Meaningful header"    
+                    style={HEADER_INPUT}
+                />
+                {Platform.OS === 'ios' ? (
+                    <InputScrollView>
+                        <TextInput
+                            autoFocus
+                            placeholderTextColor={color.lightGrey}
+                            scrollEnabled={false}
+                            textAlignVertical={Platform.OS === 'android' ? 'top' : ''}
+                            onChangeText={(text) => setNoteEdit(text)}
+                            placeholder="Type your secret here..."
+                            value={noteEdit}
+                            multiline
+                            style={NOTE_INPUT}
+                        />
+                        
+                    </InputScrollView>
+                ) : (
+                
                     <TextInput
-                        autoFocus
-                        placeholderTextColor={color.black}
-                        scrollEnabled={false}
-                        textAlignVertical={Platform.OS === 'android' ? 'top' : ''}
-                        onChangeText={(text) => setNoteEdit(text)}
-                        placeholder="Type your secret here..."
-                        value={noteEdit}
-                        multiline
-                        style={NOTE_INPUT}
-                    />
-                    {/* {arrayOfChecklist?.map((item, index) => {
-            return (
-              <View key={index} row centerV style={CHECKBOX_CONTAINER}>
-                <TouchableOpacity
-                  onPress={() => {
-                    const editedCheckList = arrayOfChecklist?.map(
-                      (itemArr, indexArr) => {
-                        if (indexArr === index) {
-                          // setCheck(!check);
-
-                          return {
-                            ...itemArr,
-                            isCheck: !item.isCheck,
-                          };
-                        }
-                        return itemArr;
-                      }
-                    );
-                    setArrayofChecklist(editedCheckList);
-                  }}
-                >
-                  <Icon
-                    name={
-                      item.isCheck === true
-                        ? "check-box"
-                        : "check-box-outline-blank"
-                    }
-                    size={size.noteCheckSize}
-                  />
-                </TouchableOpacity>
-                <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-                  <TextInput
-                    placeholder="new check list"
-                    defaultValue={item.item}
-                    onChangeText={(text) => {
-                      const editedCheckList = arrayOfChecklist?.map(
-                        (itemArr, indexArr) => {
-                          if (indexArr === index) {
-                            return {
-                              ...itemArr,
-                              item: text,
-                            };
-                          }
-                          return itemArr;
-                        }
-                      );
-                      setArrayofChecklist(editedCheckList);
-                    }}
-                    style={{
-                      textDecorationLine: check ? "line-through" : "none",
-                      paddingLeft: spacingWidth[3],
-                      fontSize: 15,
-                      fontFamily: Font.regular,
-                    }}
-                  />
-                </TouchableWithoutFeedback>
-              </View>
-            );
-          })} */}
-
-                    {/* <TouchableOpacity
-                        onPress={() => {
-                            const newChecklist: checkListI = {
-                                item: '',
-                                isCheck: false,
-                            };
-                            setArrayofChecklist([...arrayOfChecklist, newChecklist]);
-                        }}
-                    >
-                        <Text>Add more</Text>
-                    </TouchableOpacity> */}
-
-                    {/* <LottieView source={animation} autoPlay loop /> */}
-                </InputScrollView>
-            ) : (
-                <ScrollView>
-                    <TextInput
-                        placeholderTextColor={color.black}
+                        placeholderTextColor={color.lightGrey}
+                        // ---fix auto focus last text
                         selection={isFocused ? undefined : { start: 0 }}
                         onFocus={() => {
                             setIsFocused(true);
@@ -249,6 +238,7 @@ export default function EditNote() {
                         showSoftInputOnFocus={isFocused}
                         scrollEnabled={false}
                         autoFocus
+                        // -----
                         textAlignVertical={Platform.OS === 'android' ? 'top' : ''}
                         onChangeText={(text) => setNoteEdit(text)}
                         placeholder="Type your secret here..."
@@ -256,18 +246,31 @@ export default function EditNote() {
                         value={noteEdit}
                         style={NOTE}
                     />
-                    {/* <LottieView
-              style={{ width: 100, height: 100 }}
-              source={require("./checkbox.json")}
-              autoPlay
-              loop
-            /> */}
-                    {/* <CheckBoxList
-                        listCheckBox={checklist}
-                        setArrayOfCheckList={setArrayofChecklist}
-                    /> */}
-                </ScrollView>
-            )}
+                   
+
+                 
+                  
+         
+                   
+                )}
+            
+            </ScrollView>
+            
+        
+          
+
+           
+           
+            
+
+
+          
+          
+            
+         
+
+          
+            
         </SafeAreaView>
     );
 }

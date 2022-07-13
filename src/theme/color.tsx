@@ -9,5 +9,9 @@ export const color = {
     white: '#FFFFFF',
     darkGrey: '#303030',
     DarkBurgundy:'#730B0B',
-    littleGrey:'#e3e3e3'
+    littleGrey:'#e3e3e3',
+    pastelGray:'#CCD5AE',
+    dirtyWhite:'#E9EDC9',
+    cornSilk:'#FEFAE0',
+    crayola:'#D4A373'
 };

@@ -25,6 +25,7 @@ export type RootStateParamList = {
     header: string | undefined;
     id: string | undefined;
     checklist: checkListI[] | undefined;
+    isEdit:boolean
   };
   [RouteName.SETTING]: {
     userInfo: user;
@@ -55,11 +56,11 @@ export function NoteNavigation() {
                             name={RouteName.HOME}
                             component={DrawerRoute}
                         />
-                        <Stack.Screen
+                        {/* <Stack.Screen
                             options={{ headerShown: false }}
                             name={RouteName.ADD_NOTE}
                             component={AddNote}
-                        />
+                        /> */}
                         <Stack.Screen
                             options={{ headerShown: false }}
                             name={RouteName.EDIT_NOTE}

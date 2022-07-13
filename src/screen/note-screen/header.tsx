@@ -90,7 +90,7 @@ export default function HeaderNote() {
                 </View>
 
                 <View flex-4>
-                    <Text style={HEADER_TEXT}>This app for you babi :)</Text>
+                    <Text style={HEADER_TEXT}>This app for u</Text>
                 </View>
                 <TouchableOpacity onPress={() => nav.dispatch(DrawerActions.openDrawer())}>
                     <ThreeBar

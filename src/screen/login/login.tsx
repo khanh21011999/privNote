@@ -15,21 +15,21 @@ import firestore, { firebase } from '@react-native-firebase/firestore';
 import { Image } from 'react-native';
 GoogleSignin.configure({
     webClientId:
-    '556280479080-e3he9kh8o9nhl84b9uqin4arbl2nsuq9.apps.googleusercontent.com',
+		'556280479080-e3he9kh8o9nhl84b9uqin4arbl2nsuq9.apps.googleusercontent.com',
 });
 
 interface User {
-  idToken?: string | null;
-  serverAuthCode?: string | null;
-  scopes?: Array<string>; // on iOS this is empty array if no additional scopes are defined
-  user?: {
-    email: string;
-    id: string;
-    givenName: string | null;
-    familyName: string | null;
-    photo: string | null; // url
-    name: string | null; // full name
-  };
+	idToken?: string | null
+	serverAuthCode?: string | null
+	scopes?: Array<string> // on iOS this is empty array if no additional scopes are defined
+	user?: {
+		email: string
+		id: string
+		givenName: string | null
+		familyName: string | null
+		photo: string | null // url
+		name: string | null // full name
+	}
 }
 export default function Login(props: LoginI) {
     const user = useRef<User>(null);
@@ -39,7 +39,7 @@ export default function Login(props: LoginI) {
 
     const ListUser: any[] = [];
     const token = useSelector(
-        (item: RootState) => item.persistedReducer.firebase.token
+        (item: RootState) => item.persistedReducer.firebase.token,
     );
     const dispatch: AppDispatch = useDispatch();
 
@@ -51,7 +51,7 @@ export default function Login(props: LoginI) {
                 userInfo: { ...user.current },
                 note: [],
             });
-    // .then(() => console.log("success"));
+        // .then(() => console.log("success"));
     };
     const getUser = async () => {
         await firebase
@@ -70,11 +70,11 @@ export default function Login(props: LoginI) {
         }
     }, [ListUser]);
     async function signIn() {
-    // Get the users ID token
+        // Get the users ID token
         const userInfo = await GoogleSignin.signIn();
         setPressLoading(true);
         const googleCredential = auth.GoogleAuthProvider.credential(
-            userInfo.idToken
+            userInfo.idToken,
         );
 
         await auth().signInWithCredential(googleCredential);
@@ -82,12 +82,12 @@ export default function Login(props: LoginI) {
         user.current = userInfo;
         if (ListUser.includes(user.current.user?.email)) {
             dispatch(
-                signedIn({ token: userInfo?.idToken, userInfomation: userInfo.user })
+                signedIn({ token: userInfo?.idToken, userInfomation: userInfo.user }),
             );
         } else {
             addNew();
             dispatch(
-                signedIn({ token: userInfo?.idToken, userInfomation: userInfo.user })
+                signedIn({ token: userInfo?.idToken, userInfomation: userInfo.user }),
             );
         }
         // ListUser = ListUser.concat(user.current.user?.email);
@@ -95,12 +95,12 @@ export default function Login(props: LoginI) {
         // console.log(ListUser.includes(user.current.user?.email));
         // addNew();
         dispatch(
-            signedIn({ token: userInfo?.idToken, userInfomation: userInfo.user })
+            signedIn({ token: userInfo?.idToken, userInfomation: userInfo.user }),
         );
 
         // Create a Google credential with the token
 
-    // Sign-in the user with the credential
+        // Sign-in the user with the credential
     }
 
     return (
@@ -108,17 +108,14 @@ export default function Login(props: LoginI) {
             <Button
                 onPress={() => {
                     signIn();
-
                 }}
             >
-                <Text style={{ color: 'white' }}>Login to XT's app </Text>
+                <Text style={{ color: 'white' }}>Login </Text>
             </Button>
             {isPressLoading && user.current == null && (
-                <View >
+                <View>
                     <ActivityIndicator size="large" color="red" />
-
                 </View>
-
             )}
         </View>
     );
