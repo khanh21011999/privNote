@@ -26,11 +26,13 @@ Cancel changes
 - [ ] Seperate note by days
 - [ ] Add diary ( lots of note )
 - [ ] Redesgin UI ( important )
+- [ ] Add image,video,audio
 ## Advanced 
 - [x] Add cloud storage
 - [ ] Add payment for no ad, special note feature
 - [ ] Animation
 - [ ] Add "Series" ( a numerous notes of a story )
+- [ ] Change app to completely MERNN (Mongo,Express,RN, Node) 
  
 ## ISSUES ❌
 Change the line 
