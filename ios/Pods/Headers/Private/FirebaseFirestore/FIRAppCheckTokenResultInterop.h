@@ -1,1 +1,0 @@
-../../../FirebaseFirestore/FirebaseAppCheck/Sources/Interop/FIRAppCheckTokenResultInterop.h

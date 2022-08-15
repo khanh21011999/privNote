@@ -1,6 +1,0 @@
-module Pods_privNote {
-  umbrella header "Pods-privNote-umbrella.h"
-
-  export *
-  module * { export * }
-}
