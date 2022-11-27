@@ -1,6 +1,7 @@
 import { persistStore } from 'redux-persist';
 import store, { AppDispatch } from 'src/redux/store';
 import { useDispatch } from 'react-redux';
+import { Theme } from '@react-navigation/native';
 
 export interface user {
   email: string;

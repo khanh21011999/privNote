@@ -21,7 +21,7 @@ import { spacingHeight } from 'src/theme/spacing';
 import { spacingWidth } from '../../theme/spacing';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import { color } from 'src/theme/color';
-import { AppText } from 'src/components/Text/text';
+import { AppText } from 'src/components/text/text';
 import { logOut } from 'src/redux/authentication';
 import { resetNote } from 'src/redux/noteList-reducer';
 
@@ -40,6 +40,10 @@ export default function CustomDrawer(props: any) {
         } catch (error) {
             console.error(error);
         }
+    };
+    const capitalize = (str:string) => {
+        return `${str[0].toUpperCase()}${str.slice(1)}`;
+        // return str[0].toUpperCase() + str.slice(1)   // without template string
     };
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: color.littleGrey }}>
@@ -69,7 +73,9 @@ export default function CustomDrawer(props: any) {
                         color: color.black,
                     }}
                 >
-					Hello there {userInfo.familyName} {userInfo.givenName}
+					You are the best, <AppText bold>
+                        Xuân
+                    </AppText> 
                 </AppText>
             </View>
 

@@ -15,6 +15,8 @@ import {
     Alert,
     Platform,
     SafeAreaView,
+    StyleSheet,
+    TouchableWithoutFeedback,
     ViewProps,
     ViewStyle,
 } from 'react-native';
@@ -23,7 +25,7 @@ import TrashIcon from 'assets/icons/trash.svg';
 import { onePercentHeight } from '../../theme/size';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
-import { AppText } from 'src/components/Text/text';
+import { AppText } from 'src/components/text/text';
 import ImportantIcon from 'assets/icons/important.svg';
 import ImportantOutline from 'assets/icons/important_outline.svg';
 import CloseIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -32,60 +34,63 @@ import { ConstantString, user } from 'src/constants/type';
 import { fetchNote, loadDefault } from 'src/redux/noteList-reducer';
 import { switchReloadOn, switchSelectedOff } from 'src/redux/toggle-reducer';
 import { heightPercentageToDP } from 'react-native-responsive-screen';
-
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
+import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+import { ExtendedTheme } from '@react-navigation/native';
+// import styles from './footer.styles';
 type FooterI = ViewProps
-const ADD_NOTE_BUTTON: ViewStyle = {
-    ...size.addNoteButton,
-    marginRight: spacingWidth[4],
-    backgroundColor: color.DarkBurgundy,
-    alignItems: 'center',
-    borderRadius: size.addNoteButton.height / 2,
-    justifyContent: 'center',
-};
-const SELECTED_ROW_CONTAINER: ViewStyle = {
-    // position: "absolute",
 
-    width: widthScreen,
-    height:heightPercentageToDP(10),
-    position: 'absolute',
-    // bottom: bottomNavHeight,
-    bottom: Platform.OS === 'android' ? bottomNavHeight() : 0,
-    paddingHorizontal: spacingWidth[6],
-    paddingBottom: 0,
-    // alignItems: "center",
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: color.white,
-};
-
-const UTILITY_ICON: ViewStyle = {
-    paddingLeft: spacingWidth[8],
-};
 const DefaultFooter = () => {
     const nav = useNavigation();
+    const notes = useSelector((state:RootState)=>state.persistedReducer.note);
     return (
-        <View
+        <View         
             style={{
-                position: 'absolute',
-                bottom: onePercentHeight * 8,
-                right: onePercentWidth*4,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                flex:0.8,
+  
+              
+               
+          
+                alignItems: 'center',
+           
+                marginBottom: bottomNavHeight(),
             }}
         >
-            <TouchableOpacity
-                onPress={() => {
-                    nav.navigate(RouteName.EDIT_NOTE,{
-                        date: '',
-                        note: '',
-                        header: '',
-                        id: '',
-                        checklist: '',
-                        isEdit:false  
-                    });
-                }}
-                style={ADD_NOTE_BUTTON}
-            >
-                <AddNoteIcon name="plus" color="white" size={onePercentWidth * 8} />
-            </TouchableOpacity>
+        
+            <AppText semiBold>
+                {notes.length} Note{notes.length>1? 's':''}
+            </AppText>
+            <View style={{position:'absolute', right:16,alignSelf:'center'}}>
+                <View
+                    style={{
+                        width: '100%',
+                
+              
+                        // position: 'absolute',
+                        // bottom: onePercentHeight * 8,
+                        // right: onePercentWidth*4,
+                    }}
+                >
+                    <TouchableOpacity
+                        onPress={() => {
+                            nav.navigate(RouteName.EDIT_NOTE,{
+                                date: '',
+                                note: '',
+                                header: '',
+                                id: '',
+                                checklist: '',
+                                isEdit:false  
+                            });
+                        }}
+                        // style={styles}
+                    >
+                        <AddNoteIcon name="plus"  size={onePercentWidth * 8} />
+                    </TouchableOpacity>
+                </View>
+            </View>
+       
         </View>
     );
 };
@@ -111,6 +116,7 @@ const SelectedItemFooter = (props: FooterI) => {
     );
     
 
+ 
     const dispatch = useDispatch();
     const [updatedData, setUpdatedData] = useState();
     const data = useSelector((state: RootState) => state.persistedReducer.note);
@@ -123,19 +129,21 @@ const SelectedItemFooter = (props: FooterI) => {
                 note: data.filter((item) => item.selectStatus !== true),
             })
             .then(() => {
-                console.log('delete success');
+                // console.log('delete success');
             });
     };
-    console.log('bottom',bottomNavHeight() );
+
     return (
-        <View row {...props} style={SELECTED_ROW_CONTAINER}>
+        <Animated.View style={{flexDirection:'row', justifyContent:'space-between', marginBottom:bottomNavHeight(),padding:spacingWidth[4]}}  {...props}>
             <View row>
                 <TouchableOpacity
                     centerH
+                    paddingR-16
                     onPress={() => {
                         updateDeletedNoteFirebase();
                         Alert.alert('Note deleted');
                         dispatch(switchSelectedOff());
+                        // selectedLayoutValue.value = 0;
                         dispatch(loadDefault());
 
                         dispatch(fetchNote(userInfo.email));
@@ -144,7 +152,7 @@ const SelectedItemFooter = (props: FooterI) => {
                     <TrashIcon height={size.iconAssetSize} width={size.iconAssetSize} />
                     <AppText>Delete</AppText>
                 </TouchableOpacity>
-                <TouchableOpacity style={UTILITY_ICON} centerH>
+                <TouchableOpacity  centerH>
                     <ImportantOutline
                         height={size.iconAssetSize}
                         width={size.iconAssetSize}
@@ -160,10 +168,10 @@ const SelectedItemFooter = (props: FooterI) => {
                         dispatch(loadDefault());
                     }}
                 >
-                    <CloseIcon name="close" size={size.iconAssetSize} color={color.black} />
+                    <CloseIcon name="close" size={size.iconAssetSize}  />
                     <AppText>Cancel</AppText>
                 </TouchableOpacity>
             </View>
-        </View>
+        </Animated.View>
     );
 };

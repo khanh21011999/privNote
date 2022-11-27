@@ -13,7 +13,7 @@ import NoteIcon from 'assets/icons/notes_outline.svg';
 import NoteIconFocus from 'assets/icons/notes.svg';
 import ImportantIcon from 'assets/icons/important_outline.svg';
 import ImportantIconFocus from 'assets/icons/important.svg';
-import { AppText } from 'src/components/Text/text';
+import { AppText } from 'src/components/text/text';
 import { color } from 'src/theme/color';
 import { spacingHeight, spacingWidth } from 'src/theme/spacing';
 import { useSelector } from 'react-redux';

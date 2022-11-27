@@ -9,6 +9,7 @@ import HeaderNote from './header';
 import { Dimensions, TextStyle, ViewStyle } from 'react-native';
 import { spacingWidth, spacingHeight } from 'src/theme/spacing';
 import {
+    bottomNavHeight,
     heightScreen,
     onePercentHeight,
     onePercentWidth,
@@ -34,18 +35,22 @@ import { Button } from 'react-native-ui-lib';
 
 import { async } from '@firebase/util';
 import { user } from 'src/constants/type';
-import { AppText } from 'src/components/Text/text';
+import { AppText } from 'src/components/text/text';
 import { signedIn } from 'src/redux/authentication';
 import { switchReloadOff, switchReloadOn } from 'src/redux/toggle-reducer';
 import { heightPercentageToDP } from 'react-native-responsive-screen';
+import LinearGradient from 'react-native-linear-gradient';
+import { SwipeListView } from 'react-native-swipe-list-view';
+import Shimmer from 'react-native-shimmer';
+import { createShimmerPlaceholder } from 'react-native-shimmer-placeholder';
 
 const CONTAINER: ViewStyle = {
     width: widthScreen,
 
     // display: "flex",
-    backgroundColor: color.backgroundGrey,
+    // backgroundColor: color.backgroundGrey,
 };
-
+const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 const ADD_NOTE_TEXT: TextStyle = {
     fontWeight: 'bold',
 };
@@ -78,44 +83,86 @@ export default function NoteListScreen() {
     // }, []);
     // console.log("user", user);
     useEffect(() => {
-        // dispatch(fetchNote(userInfo.email));
-        // fetchData();
+    // dispatch(fetchNote(userInfo.email));
+    // fetchData();
     }, []);
     const selectStatus = useSelector(
         (state: RootState) => state.toggle.enableSelectedButton
     );
-    useEffect(()=>{
-        const isFocused = nav.addListener('focus',()=>{
+    useEffect(() => {
+        const isFocused = nav.addListener('focus', () => {
             fetchData();
         });
         return isFocused;
-    },[refresh]);
+    }, [refresh]);
     const fetchData = () => {
         dispatch(switchReloadOn());
-        dispatch(fetchNote(userInfo.email)).then(() =>{
+        dispatch(fetchNote(userInfo.email)).then(() => {
             dispatch(switchReloadOff());
-        }
-          
-        );
+        });
     };
-    const onPullRefresh = ()=>{
-        setTimeout(()=>{
+    const onPullRefresh = () => {
+        setTimeout(() => {
             dispatch(fetchNote(userInfo.email)).then(() =>
                 dispatch(switchReloadOff())
             );
-
-        },500);
+        }, 500);
     };
-    const renderItem = useCallback(({item})=>(
-        <NoteList
-            checkList={item.checkList}
-            note={item.note}
-            title={item.header}
-            date={item.date}
-            id={item.id}
-            selectStatus={item.selectStatus}
-        />
-    ),[]);
+    const renderItem = useCallback(
+        ({ item }) => (
+            <NoteList
+                checkList={item.checkList}
+                note={item.note}
+                title={item.header}
+                date={item.date}
+                id={item.id}
+                selectStatus={item.selectStatus}
+            />
+        ),
+        []
+    );
+    const fakeCategory = [
+        {
+            id:0,
+            name:'General'
+        },
+        {
+            id:0,
+            name:'Private'
+        },
+        {
+            id:0,
+            name:'Learning'
+        },
+        {
+            id:0,
+            name:'Work'
+        },
+        {
+            id:0,
+            name:'Life'
+        },
+    ];
+    const renderCategoryHeader = ()=>{
+        return(
+            <ScrollView horizontal>
+                {fakeCategory.map((item,index)=>{
+                    return(
+                        <TouchableOpacity key={'app key' + index +Math.random()}>
+                            <AppText >
+                                {item.name}
+                            </AppText>
+                        </TouchableOpacity>
+                       
+                    );
+
+                })}
+               
+
+            </ScrollView>
+        );
+    };
+  
     return (
         <View style={CONTAINER}>
             {data.length === 0 ? (
@@ -131,36 +178,42 @@ export default function NoteListScreen() {
                     </SafeAreaView>
                 </>
             ) : (
-                <SafeAreaView style={{minHeight:heightScreen}} >
-                    <HeaderNote/>
-                  
-                    <FlatList
+                <SafeAreaView style={{ minHeight: heightScreen }}>
+                   
+                    <HeaderNote />
+                   
+                
+                    {/* {renderCategoryHeader()} */}
+                    <View style={{ flex: 8 }}>
+                        <FlatList
                             
-                        refreshing={refresh}
-                        onRefresh={() => {
-                            dispatch(switchReloadOn());
-                            onPullRefresh();
-                        }}
-                        removeClippedSubviews
-                        contentContainerStyle={{
-                            flexGrow:1,
-                            paddingBottom:
-                            selectStatus===true
-                                ? heightPercentageToDP(15)
-                                : heightPercentageToDP(6),
-                        }}
-                            
-                        data={data}
-                        style={{
-                            flex:1,
-                              
-                      
-                        }}
-                        keyExtractor={(item:any) => item.id}
-                         
-                        renderItem={renderItem}
-                    />
+                            fadingEdgeLength={heightPercentageToDP(5)}
+                            refreshing={refresh}
+                            onRefresh={() => {
+                                dispatch(switchReloadOn());
+                                onPullRefresh();
+                            }}
+                            removeClippedSubviews
+                            contentContainerStyle={{
+                                flexGrow: 1,
+                                paddingBottom:
+                                selectStatus===true
+                                    ? heightPercentageToDP(15)
+                                    : heightPercentageToDP(6),
+                            }}
+                            data={data}
+                            style={{
+                                flex: 1,
+                            }}
+                     
+                            keyExtractor={(item: any) => item.id}
+                            renderItem={renderItem}
+                        />
+                    </View>
+             
                     <FooterNote />
+                
+                    
                 </SafeAreaView>
             )}
         </View>

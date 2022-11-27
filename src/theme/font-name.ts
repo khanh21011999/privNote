@@ -3,7 +3,14 @@ export enum Font {
   regular = 'Montserrat-Regular',
   bold = 'Montserrat-Bold',
   semiBold = 'Montserrat-SemiBold',
+  extraBold='Montserrat-Black',
   italic = 'Montserrat-Italic',
   indieFlower= 'IndieFlower-Regular',
-  medium = 'Montserrat-Medium'
+  medium = 'Montserrat-Medium',
+  latoRegular='Lato-Regular',
+  latoMedium ='Lato-Medium',
+  latoBold= 'Lato-Bold',
+  latoItalic='Lato-Italic',
+  latoSemibold='Lato-Semibold',
+  latoExtrabold='Lato-Black',
 }

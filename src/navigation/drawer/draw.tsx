@@ -37,11 +37,11 @@ export default function DrawerRoute() {
                 name="Note List"
                 component={NoteListScreen}
             />
-            <Drawer.Screen
+            {/* <Drawer.Screen
                 options={{headerShown:false}}
                 name = {RouteName.SETTING}
                 component={NoteListScreen}
-            />
+            /> */}
         </Drawer.Navigator>
     );
 }

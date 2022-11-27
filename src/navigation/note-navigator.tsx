@@ -1,5 +1,9 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator , CardStyleInterpolators,} from '@react-navigation/native-stack';
+/* eslint-disable @typescript-eslint/no-namespace */
+import { NavigationContainer, useTheme } from '@react-navigation/native';
+import {
+    createNativeStackNavigator,
+    CardStyleInterpolators,
+} from '@react-navigation/native-stack';
 import React from 'react';
 import AddNote from '../screen/add-note/add-note';
 import EditNote from '../screen/edit-note/edit-note';
@@ -13,7 +17,9 @@ import { RootState } from 'src/redux/store';
 import { user } from 'src/constants/type';
 import { checkListI } from 'src/redux/noteList-reducer';
 import DrawerRoute from './drawer/draw';
-
+import { DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { useColorScheme } from 'react-native';
+import { darkTheme, lightTheme } from 'src/theme/color';
 export type RootStateParamList = {
   [RouteName.LOGIN]: undefined;
   [RouteName.HOME_NAV]: undefined;
@@ -25,7 +31,7 @@ export type RootStateParamList = {
     header: string | undefined;
     id: string | undefined;
     checklist: checkListI[] | undefined;
-    isEdit:boolean
+    isEdit: boolean;
   };
   [RouteName.SETTING]: {
     userInfo: user;
@@ -35,24 +41,23 @@ export type RootStateParamList = {
 const Stack = createNativeStackNavigator<RootStateParamList>();
 declare global {
   namespace ReactNavigation {
-    type RootParamList = RootStateParamList
+    type RootParamList = RootStateParamList;
   }
 }
 export function NoteNavigation() {
     const token: string | null = useSelector(
         (item: RootState) => item.persistedReducer.firebase.token
     );
+    const scheme = useColorScheme();
+    const {colors} = useTheme();
 
     return (
-        <NavigationContainer>
-            <Stack.Navigator
-            
-                screenOptions={{}}
-                initialRouteName={RouteName.LOGIN}>
+        <NavigationContainer theme={scheme === 'dark' ? darkTheme : lightTheme}>
+            <Stack.Navigator screenOptions={{}} initialRouteName={RouteName.LOGIN}>
                 {token!.length > 0 ? (
                     <>
                         <Stack.Screen
-                            options={{ headerShown: false,  }}
+                            options={{ headerShown: false }}
                             name={RouteName.HOME}
                             component={DrawerRoute}
                         />

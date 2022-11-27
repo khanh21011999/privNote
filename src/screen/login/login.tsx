@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect, useRef, useState } from 'react';
-import { ViewProps, TextProps, Text, ActivityIndicator } from 'react-native';
+import { ViewProps, TextProps, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { Button, View } from 'react-native-ui-lib';
 type LoginI = ViewProps
 import {
@@ -13,6 +14,9 @@ import { AppDispatch, RootState } from 'src/redux/store';
 import { signedIn } from 'src/redux/authentication';
 import firestore, { firebase } from '@react-native-firebase/firestore';
 import { Image } from 'react-native';
+import { Font } from 'src/theme/font-name';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { AppText } from 'src/components/text/text';
 GoogleSignin.configure({
     webClientId:
 		'556280479080-e3he9kh8o9nhl84b9uqin4arbl2nsuq9.apps.googleusercontent.com',
@@ -105,13 +109,34 @@ export default function Login(props: LoginI) {
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Button
+            <Text style={{
+                fontFamily:Font.indieFlower,
+                fontSize:RFValue(32),
+                textAlign:'center'
+            }}>
+            "This may not be the prettiest app, but it's the most sincere"
+                <Text>{'\n'}LQK</Text>
+            </Text>
+            <TouchableOpacity
+                style={{
+                    backgroundColor:color.capeHoney,
+                    marginTop:RFValue(64),
+                    alignItems:'center',
+                    justifyContent:'center',
+                    borderRadius:RFValue(24),
+                }}
                 onPress={() => {
                     signIn();
                 }}
             >
-                <Text style={{ color: 'white' }}>Login </Text>
-            </Button>
+                <AppText 
+                    bold
+                    style={{
+                        alignSelf:'center',
+                        padding:RFValue(24),
+                        fontSize:RFValue(16)
+                    }}>Login</AppText>
+            </TouchableOpacity>
             {isPressLoading && user.current == null && (
                 <View>
                     <ActivityIndicator size="large" color="red" />

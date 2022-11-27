@@ -1,0 +1,1 @@
+export const convertJsDate =( date:any) => new Date(date?.seconds * 1000 + date?.nanoseconds / 1000000);
