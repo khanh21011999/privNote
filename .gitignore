@@ -27,6 +27,7 @@ project.xcworkspace
 build/
 .idea
 .gradle
+.build
 local.properties
 *.iml
 
